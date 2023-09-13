@@ -4,15 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class TestCon {
+public class HoaDonController {
 
     @GetMapping("/index")
     public String index1(){
-        return "/admin/pages/billing";
+        return "/admin/hoadon/hoa-don";
     }
 
-    @GetMapping("/index2")
-    public String index2(){
-        return "/admin/pages/hoa-don";
-    }
 }
