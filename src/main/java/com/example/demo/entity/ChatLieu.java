@@ -1,29 +1,30 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "DanhMuc")
+@Table(name = "ChatLieu")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DanhMuc implements Serializable {
+public class ChatLieu implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "IdDanhMuc")
-    private Integer IdDanhMuc;
-    @Column(name = "TenDanhMuc")
-    private String TenDanhMuc;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "IdChatLieu")
+    private Integer IdChatLieu;
+    @Column(name = "TenChatLieu")
+    private String TenChatLieu;
     @Column(name = "MoTa")
     private String MoTa;
-    @Column(name = "Anh")
-    private String Anh;
     @Column(name = "NgayTao")
     private Date NgayTao;
     @Column(name = "NgayCapNhat")
@@ -32,4 +33,7 @@ public class DanhMuc implements Serializable {
     private String NguoiCapNhat;
     @Column(name = "TrangThai")
     private Integer TrangThai;
+    @JsonBackReference
+    @OneToMany(mappedBy = "chatLieu")
+    private List<ChatLieu_CTSP> chatLieuCtsps;
 }

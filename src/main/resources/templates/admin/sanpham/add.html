@@ -20,15 +20,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../../../static/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" th:href="@{/static/images/shop.png}">
-    <title>Quản Lý Hóa Đơn</title>
+    <title>Quản Lý Sản Phẩm</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     <!-- Nucleo Icons -->
     <link href="../../../static/assets/css/nucleo-icons.css" rel="stylesheet"/>
     <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <link href="../../../static/css/sanpham.css" rel="stylesheet"/>
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <script src="../../../static/js/sanpham.js" crossorigin="anonymous"></script>
     <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>
+
     <!-- CSS Files -->
     <link id="pagestyle" href="../../../static/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet"/>
     <!-- Nepcha Analytics (nepcha.com) -->
@@ -48,43 +51,60 @@
 
     <!--noidung-->
     <div class="container-fluid py-4">
-        <div> Quản Lý Sản Phẩm</div>
-       <div> <button class="btn btn-success">Add</button></div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Ảnh</th>
-                <th scope="col">Mã SP</th>
-                <th scope="col">Tên SP</th>
-                <th scope="col">Giá Bán</th>
-                <th scope="col">Danh Mục</th>
-                <th scope="col">Thương Hiệu</th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
-            </tbody>
-        </table>
+        <div> <h3>Thêm Sản Phẩm</h3></div>
+           <div class="row">
+               <div class="col-md-3" style="border: solid 2px; text-align: center; background-color: white">
+                   <div>Ảnh đại diện sản phẩm</div>
+                   <img id="output"/>
+                   <input type="file" accept="image/*" onchange="loadFile(event)" multiple >
+               </div>
+               <div class="col-md-9">
+                   <form class="form-control">
+                       <div class="row">
+                           <div class="col-md-6">
+                               <label>Mã Sản Phẩm</label> <input>
+                           </div>
+                           <div class="col-md-6">
+                               <label>Tên Sản Phẩm</label> <input>
+                           </div>
+                           <div class="col-md-6">
+                              <label> Giá Nhập</label> <input>
+                           </div>
+                           <div class="col-md-6">
+                               <label>Giá Bán</label> <input>
+                           </div>
+                           <div class="col-md-6">
+                               <label>Danh Mục</label> <select><option>1</option></select>
+                           </div>
+                           <div class="col-md-6">
+                               <label>Phân Loại</label> <select><option>1</option></select>
+                           </div>
+                           <div class="col-md-6">
+                               <label>Thương Hiệu</label> <select><option>1</option></select>
+                           </div>
+                           <div class="col-md-6">
+                               <label>Xuất Xứ</label> <select><option>1</option></select>
+                           </div>
+                           <div class="col-md-6">
+                               <label>Phong Cách</label> <input type="checkbox">
+                           </div>
+                           <div class="col-md-6">
+                               <label>Chất Liệu</label> <input type="checkbox">
+                           </div>
+                           <div class="col-md-6">
+                               <label>Màu Sắc</label>
+                               <input type="checkbox" id="28" onclick="myFunction(28)">xanh
+                               <input type="checkbox" id="29" onclick="myFunction(29)">đỏ
+                               <div id="text28"></div>
+                               <div id="text29"></div>
+                           </div>
+                       </div>
 
+                        <div><button class="btn btn-danger">Thêm</button></div>
+                   </form>
+               </div>
 
+           </div>
 
         <!--    endNoidung-->
 

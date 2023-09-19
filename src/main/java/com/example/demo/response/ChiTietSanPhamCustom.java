@@ -1,8 +1,10 @@
-package com.example.demo.custom;
+package com.example.demo.response;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public interface ChiTietSanPhamCustom {
+    UUID getIdCTSP();
     String getLink();
     String getMaSanPham();
     String getTenSanPham();
