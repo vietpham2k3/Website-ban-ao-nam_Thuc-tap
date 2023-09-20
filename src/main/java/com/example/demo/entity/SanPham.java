@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -34,10 +35,13 @@ public class SanPham {
     private String NguoiCapNhat;
     @Column(name = "TrangThai")
     private Integer TrangThai;
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "sanPham")
     private List<DanhGia> danhGias;
-    @JsonBackReference
+    @JsonIgnore
+    @OneToMany(mappedBy = "sanPham")
+    private List<Anh> anhs;
+    @JsonIgnore
     @OneToMany(mappedBy = "sanPham")
     private List<ChiTietSanPham> chiTietSanPhams;
 }

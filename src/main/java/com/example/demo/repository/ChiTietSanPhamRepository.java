@@ -18,12 +18,12 @@ public interface ChiTietSanPhamRepository extends JpaRepository<ChiTietSanPham, 
             "join SanPham sp on sp.IdSanPham = ctsp.IdSanPham\n" +
             "join Anh a on a.IdSanPham = sp.IdSanPham\n" +
             "join DanhMuc dm on dm.IdDanhMuc = ctsp.IdDanhMuc\n" +
-            "join ThuongHieu th on th.IdThuongHieu = ctsp.IdThuongHieu", nativeQuery = true)
+            "join ThuongHieu th on th.IdThuongHieu = ctsp.IdThuongHieu where sp.TrangThai = 0", nativeQuery = true)
     public List<ChiTietSanPhamCustom> getAll();
     @Query(value = "Select ctsp.IdCTSP,a.Link, sp.MaSanPham, sp.TenSanPham, ctsp.GiaBan,dm.TenDanhMuc, th.TenThuongHieu from ChiTietSanPham ctsp\n" +
             "join SanPham sp on sp.IdSanPham = ctsp.IdSanPham\n" +
             "join Anh a on a.IdSanPham = sp.IdSanPham\n" +
             "join DanhMuc dm on dm.IdDanhMuc = ctsp.IdDanhMuc\n" +
-            "join ThuongHieu th on th.IdThuongHieu = ctsp.IdThuongHieu", nativeQuery = true)
+            "join ThuongHieu th on th.IdThuongHieu = ctsp.IdThuongHieu where sp.TrangThai = 0", nativeQuery = true)
     public Page<ChiTietSanPhamCustom> phanTrang(Pageable pageable);
 }

@@ -20,11 +20,9 @@ public class GioHangChiTiet implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "IdGioHangChiTiet")
     private UUID IdGioHangChiTiet;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdGioHang")
     private GioHang gioHang;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdCTSP")
     private ChiTietSanPham chiTietSanPham;

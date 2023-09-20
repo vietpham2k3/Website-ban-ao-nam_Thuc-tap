@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -39,39 +40,34 @@ public class ChiTietSanPham implements Serializable {
     private String NguoiCapNhat;
     @Column(name = "TrangThai")
     private Integer TrangThai;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdSanPham")
     private SanPham sanPham;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdPhanLoai")
     private PhanLoai phanLoai;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdThuongHieu")
     private ThuongHieu thuongHieu;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdXuatXu")
     private XuatXu xuatXu;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdDanhMuc")
     private DanhMuc danhMuc;
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "chiTietSanPham")
     private List<MauSac_KichThuoc_CTSP> mauSac_kichThuoc_ctspList;
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "chiTietSanPham")
     private List<ChatLieu_CTSP> chatLieu_ctspList;
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "chiTietSanPham")
     private List<PhongCach_CTSP> phongCach_ctspList;
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "chiTietSanPham")
     private List<GioHangChiTiet> gioHangChiTiets;
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "chiTietSanPham")
     private List<HoaDonChiTiet> hoaDonChiTiets;
 

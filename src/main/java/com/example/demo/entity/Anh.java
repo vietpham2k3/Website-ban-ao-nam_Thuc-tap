@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,5 +30,8 @@ public class Anh implements Serializable {
     private Date NgayCapNhat;
     @Column(name = "NguoiCapNhat")
     private String NguoiCapNhat;
+    @ManyToOne
+    @JoinColumn(name = "IdSanPham")
+    private SanPham sanPham;
 
 }

@@ -19,15 +19,12 @@ public class MauSac_KichThuoc_CTSP implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     private UUID Id;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdMauSac")
     private MauSac mauSac;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdKichThuoc")
     private KichThuoc kichThuoc;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdCTSP")
     private ChiTietSanPham chiTietSanPham;

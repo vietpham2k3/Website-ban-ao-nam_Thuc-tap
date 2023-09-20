@@ -19,11 +19,9 @@ public class NhanVien_ChucVu implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     private UUID Id;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdNhanVien")
     private NhanVien nhanVien;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdChucVu")
     private ChucVu chucVu;

@@ -33,7 +33,7 @@ public class ChatLieu implements Serializable {
     private String NguoiCapNhat;
     @Column(name = "TrangThai")
     private Integer TrangThai;
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "chatLieu")
     private List<ChatLieu_CTSP> chatLieuCtsps;
 }

@@ -19,11 +19,9 @@ public class ChatLieu_CTSP implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     private UUID Id;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdChatLieu")
     private ChatLieu chatLieu;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdCTSP")
     private ChiTietSanPham chiTietSanPham;
