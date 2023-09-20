@@ -29,11 +29,9 @@ public class DanhGia implements Serializable {
     private Date NgayDanhGia;
     @Column(name = "TrangThai")
     private Integer TrangThai;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdKhachHang")
     private KhachHang khachHang;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdSanPham")
     private SanPham sanPham;

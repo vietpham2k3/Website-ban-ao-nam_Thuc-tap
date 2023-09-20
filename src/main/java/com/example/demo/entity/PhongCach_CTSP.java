@@ -19,11 +19,9 @@ public class PhongCach_CTSP implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     private UUID Id;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdPhongCach")
     private PhongCach phongCach;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdCTSP")
     private ChiTietSanPham chiTietSanPham;

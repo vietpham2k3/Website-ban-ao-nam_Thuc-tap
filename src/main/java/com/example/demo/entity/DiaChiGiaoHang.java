@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -35,11 +36,10 @@ public class DiaChiGiaoHang implements Serializable {
     private String GhiChu;
     @Column(name = "TrangThai")
     private Integer TrangThai;
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdKhachHang")
     private KhachHang khachHang;
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "diaChiGiaoHang")
     private List<HoaDon> hoaDons;
 

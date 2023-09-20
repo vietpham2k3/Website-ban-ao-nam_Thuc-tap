@@ -1,5 +1,6 @@
 
-    let url = "http://localhost:8080/api/sanpham";
+    let url = "http://localhost:8080/api/sanpham/phantrang";
+    let url1 = "http://localhost:8080/api/sanpham/phantrang";
     let urldanhmuc = "http://localhost:8080/api/danhmuc";
     let urlthuonghieu = "http://localhost:8080/api/thuonghieu";
     let urlphanloai = "http://localhost:8080/api/phanloai";
@@ -10,9 +11,11 @@
     let urlkichthuoc = "http://localhost:8080/api/kichthuoc";
     let app = angular.module("myApp", []);
     app.controller("ctrl", function ($scope, $http){
+
         $scope.list = [];
         $http.get(url).then(function (response) {
-            $scope.list = response.data;
+            $scope.list = response.data.content;
+
         });
         $scope.listDM = [];
         $http.get(urldanhmuc).then(function (response) {
@@ -72,6 +75,9 @@
                }
 
         };
+
+
+
 
     });
 

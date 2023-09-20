@@ -34,7 +34,6 @@ public class LichSuHoaDon implements Serializable {
     @Column(name = "TrangThai")
     private Integer TrangThai;
 
-    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "IdHoaDon")
     private HoaDon hoaDon;

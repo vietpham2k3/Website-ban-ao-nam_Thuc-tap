@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -53,10 +54,10 @@ public class HoaDon implements Serializable {
     @ManyToOne
     @JoinColumn(name = "IdKhuyenMai")
     private KhuyenMai khuyenMai;
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "hoaDon")
     private List<LichSuHoaDon> lichSuHoaDonList;
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "hoaDon")
     private List<HoaDonChiTiet> hoaDonChiTiets;
 
