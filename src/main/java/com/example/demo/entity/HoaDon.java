@@ -23,6 +23,8 @@ public class HoaDon implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdHoaDon")
     private Integer IdHoaDon;
+    @Column(name = "MaHoaDon")
+    private String MaHoaDon;
     @Column(name = "TongTien")
     private BigDecimal TongTien;
     @Column(name = "TongTienKhiGiam")

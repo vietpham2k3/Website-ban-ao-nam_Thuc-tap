@@ -425,7 +425,7 @@
                         <div class="col-12">
                             <div class="page-title-box">
                                 <div class="page-title-center">
-                                    <h1 class="page-title" style="text-align: center; font-size: 200%">Hóa Đơn </h1>
+                                    <h1 class="page-title" style="text-align: center; font-size: 200%;margin-bottom: 50px;font-weight: bold;">Hóa Đơn</h1>
 
                                 </div>
                             </div>
@@ -437,211 +437,212 @@
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <div class="card-box" style="display: flex;justify-content:center ">
+                                        <div class="card-box" style="display: flex;justify-content:center ;border-radius: 20px;margin-bottom: 35px;">
                                             <div class="col-xl-12">
                                                 <div style="margin-left: 20px;" class="dataTables_filter">
 
-<!--                                                    <form th:object="${searchHD}"-->
-<!--                                                          th:action="@{/hoa-don/hien-thi-page-search}"-->
-<!--                                                          class="row form-row justify-content-between" id="searchForm">-->
+                                                    <form th:object="${searchHD}"
+                                                          th:action="@{hien-thi-page-search}"
+                                                          class="row form-row justify-content-between" id="searchForm">
 
-<!--                                                        <div class="col-12 row container">-->
+                                                        <div class="col-12 row container">
 
-<!--                                                            &lt;!&ndash; Các trường input ẩn để lưu trữ giá trị tìm kiếm &ndash;&gt;-->
-<!--                                                            &lt;!&ndash;                                                        <input type="hidden" >&ndash;&gt;-->
-<!--                                                            &lt;!&ndash;                                                        <input type="hidden" >&ndash;&gt;-->
-<!--                                                            &lt;!&ndash;                                                        <input type="hidden" >&ndash;&gt;-->
-<!--                                                            &lt;!&ndash;                                                        <input type="hidden" name="trangThaiHidden" id="trangThaiHidden">&ndash;&gt;-->
-<!--                                                            &lt;!&ndash;                                                        <input type="hidden" name="tuNgayHidden" id="tuNgayHidden">&ndash;&gt;-->
-<!--                                                            &lt;!&ndash;                                                        <input type="hidden" name="denNgayHidden" id="denNgayHidden">&ndash;&gt;-->
-<!--                                                            &lt;!&ndash;                                                        <input type="hidden" name="loaiDonHidden" id="loaiDonHidden">&ndash;&gt;-->
-
-
-<!--                                                            <div class=" col-2">-->
-
-<!--                                                                <label class="input">-->
-<!--                                                                    <input style="height:28px;border-radius: 8px;width: 150px"-->
-<!--                                                                           type="search"-->
-<!--                                                                           class="input__field"-->
-<!--                                                                           th:field="*{maHoaDon}"-->
-
-<!--                                                                           name="maHoaDon" id="maHoaDon">-->
-<!--                                                                    <span style="font-size: 13px;font-weight: bold;"-->
-<!--                                                                          class="input__label">Mã hóa đơn</span>-->
-<!--                                                                </label>-->
-
-<!--                                                            </div>-->
+                                                            <!-- Các trường input ẩn để lưu trữ giá trị tìm kiếm -->
+                                                            <!--                                                        <input type="hidden" >-->
+                                                            <!--                                                        <input type="hidden" >-->
+                                                            <!--                                                        <input type="hidden" >-->
+                                                            <!--                                                        <input type="hidden" name="trangThaiHidden" id="trangThaiHidden">-->
+                                                            <!--                                                        <input type="hidden" name="tuNgayHidden" id="tuNgayHidden">-->
+                                                            <!--                                                        <input type="hidden" name="denNgayHidden" id="denNgayHidden">-->
+                                                            <!--                                                        <input type="hidden" name="loaiDonHidden" id="loaiDonHidden">-->
 
 
-<!--                                                            <div class=" col-2">-->
-<!--                                                                <label class="input">-->
-<!--                                                                    <input class="input__field"-->
-<!--                                                                           style="height:28px;border-radius: 8px;width: 150px"-->
-<!--                                                                           type="search"-->
-<!--                                                                           th:field="*{nguoiNhan}"-->
-<!--                                                                           name="nguoiNhan" id="nguoiNhan"-->
-<!--                                                                    >-->
-<!--                                                                    <span class="input__label"-->
-<!--                                                                          style="font-size: 13px;font-weight: bold;"-->
-<!--                                                                    >Tên khách hàng:</span>-->
-<!--                                                                </label>-->
-<!--                                                            </div>-->
+                                                            <div class=" col-2">
 
-<!--                                                            <div class=" col-2">-->
-<!--                                                                <label class="input">-->
-<!--                                                                    <input style="height:28px;width: 150px;border-radius: 8px;"-->
-<!--                                                                           type="number"-->
-<!--                                                                           class="input__field"-->
-<!--                                                                           min="0" max="9000000" value="0"-->
-<!--                                                                           th:field="*{tongTienSauKhiGiam}"-->
-<!--                                                                           name="tongTienSauKhiGiam"-->
-<!--                                                                           id="tongTienSauKhiGiam">-->
-<!--                                                                    <span style="font-size: 13px;font-weight: bold;"-->
-<!--                                                                          class="input__label">Tổng tiền:</span>-->
-<!--                                                                </label>-->
-<!--                                                            </div>-->
+                                                                <label class="input">
+                                                                    <input style="height:28px;border-radius: 8px;width: 150px"
+                                                                           type="search"
+                                                                           class="input__field"
+                                                                           th:field="*{MaHoaDon}"
 
-<!--                                                            <div class="col-2">-->
-<!--                                                                <label class="input">-->
-<!--                                                                    <select style="font-size: 14px;width: 150px;border-radius: 20px;"-->
-<!--                                                                            class="input__field"-->
-<!--                                                                            th:field="*{trangThai}" name="trangThai"-->
-<!--                                                                            id="trangThai">-->
-<!--                                                                        <option value="">Tất Cả</option>-->
-<!--                                                                        <option value="0">Đang chờ xác nhận</option>-->
-<!--                                                                        <option value="1">Đã xác nhận</option>-->
-<!--                                                                        <option value="2">Đã hủy đơn</option>-->
-<!--                                                                        <option value="3">Chờ giao hàng</option>-->
-<!--                                                                        <option value="4">Đang giao hàng</option>-->
-<!--                                                                        <option value="5">Giao hàng thành công</option>-->
-<!--                                                                        <option value="6">Giao hàng thất bại</option>-->
-<!--                                                                        <option value="7">Thanh toán thành công</option>-->
+                                                                           name="MaHoaDon" id="MaHoaDon">
+                                                                    <span style="font-size: 13px;font-weight: bold;"
+                                                                          class="input__label">Mã hóa đơn</span>
+                                                                </label>
 
-<!--                                                                    </select>-->
-<!--                                                                    <span style="font-size: 13px;font-weight: bold;"-->
-<!--                                                                          class="input__label">Trạng thái:</span>-->
-<!--                                                                </label>-->
-
-<!--                                                            </div>-->
-
-<!--                                                            <div class="col-2">-->
-<!--                                                                <label class="input">-->
-<!--                                                                    <input style="width: 150px; border-radius: 8px;"-->
-<!--                                                                           type="datetime-local" class="input__field"-->
-<!--                                                                           name="tuNgay" id="tuNgay" onchange="updateURL()">-->
-<!--                                                                    <span style="font-size: 13px; font-weight: bold;"-->
-<!--                                                                          class="input__label">Từ ngày:</span>-->
-<!--                                                                </label>-->
-<!--                                                            </div>-->
-
-<!--                                                            <div class="col-2">-->
-<!--                                                                <label class="input">-->
-<!--                                                                    <input style="width: 150px; border-radius: 8px;"-->
-<!--                                                                           type="datetime-local" class="input__field"-->
-<!--                                                                           name="denNgay" id="denNgay"-->
-<!--                                                                           onchange="updateURL()">-->
-<!--                                                                    <span style="font-size: 13px; font-weight: bold;"-->
-<!--                                                                          class="input__label">Đến ngày:</span>-->
-<!--                                                                </label>-->
-<!--                                                            </div>-->
+                                                            </div>
 
 
-<!--                                                        </div>-->
+                                                            <div class=" col-2">
+                                                                <label class="input">
+                                                                    <input class="input__field"
+                                                                           style="height:28px;border-radius: 8px;width: 150px"
+                                                                           type="search"
+                                                                           th:field="*{khachHang.TenKhachHang}"
+                                                                           name="TenKhachHang" id="TenKhachHang"
+                                                                    >
+                                                                    <span class="input__label"
+                                                                          style="font-size: 13px;font-weight: bold;"
+                                                                    >Tên khách hàng:</span>
+                                                                </label>
+                                                            </div>
 
-<!--                                                        <br>-->
-<!--                                                        <br>-->
-<!--                                                        <div class="col-12 row container d-flex  align-content-around flex-wrap">-->
+                                                            <div class=" col-2">
+                                                                <label class="input">
+                                                                    <input style="height:28px;width: 150px;border-radius: 8px;"
+                                                                           type="number"
+                                                                           class="input__field"
+                                                                           min="0" max="9000000" value="0"
+                                                                           th:field="*{TongTienKhiGiam}"
+                                                                           name="TongTienKhiGiam"
+                                                                           id="TongTienKhiGiam">
+                                                                    <span style="font-size: 13px;font-weight: bold;"
+                                                                          class="input__label">Tổng tiền:</span>
+                                                                </label>
+                                                            </div>
 
-<!--                                                            <div class="col-4">-->
-<!--                                                                <label style="float: right;" class="input">-->
-<!--                                                                    <select style="font-size: 14px;width: 150px;border-radius: 20px;"-->
-<!--                                                                            class="input__field"-->
-<!--                                                                            th:field="*{loaiDon}" name="loaiDon"-->
-<!--                                                                            id="loaiDon">-->
-<!--                                                                        <option value="">Tất Cả</option>-->
-<!--                                                                        <option value="0">Tại quầy</option>-->
-<!--                                                                        <option value="1">Đặt hàng online</option>-->
-<!--                                                                    </select>-->
-<!--                                                                    <span style="font-size: 13px;font-weight: bold;"-->
-<!--                                                                          class="input__label">Loại đơn:</span>-->
-<!--                                                                </label>-->
-<!--                                                            </div>-->
+                                                            <div class="col-2">
+                                                                <label class="input">
+                                                                    <select style="font-size: 14px;width: 150px;border-radius: 20px;"
+                                                                            class="input__field"
+                                                                            th:field="*{TrangThai}" name="TrangThai"
+                                                                            id="TrangThai">
+                                                                        <option value="">Tất Cả</option>
+                                                                        <option value="0">Đang chờ xác nhận</option>
+                                                                        <option value="1">Đã xác nhận</option>
+                                                                        <option value="2">Đã hủy đơn</option>
+                                                                        <option value="3">Chờ giao hàng</option>
+                                                                        <option value="4">Đang giao hàng</option>
+                                                                        <option value="5">Giao hàng thành công</option>
+                                                                        <option value="6">Giao hàng thất bại</option>
+                                                                        <option value="7">Thanh toán thành công</option>
 
-<!--                                                            <div class="col-3">-->
-<!--                                                                <div style="float: right;">-->
-<!--                                                                    <label class="input">-->
+                                                                    </select>
+                                                                    <span style="font-size: 13px;font-weight: bold;"
+                                                                          class="input__label">Trạng thái:</span>
+                                                                </label>
 
-<!--                                                                        <select onchange="searchAndUpdate()"-->
-<!--                                                                                style="font-size: 14px;width: 150px;height: 30px;border-radius: 20px;"-->
-<!--                                                                                class="input__field" name="xapXep"-->
-<!--                                                                                th:value="${xapXep}" id="xapXep">-->
-<!--                                                                            <option value=""-->
-<!--                                                                                    th:selected="${xapXep == null}">Mặc định-->
-<!--                                                                            </option>-->
-<!--                                                                            <option value="1" th:selected="${xapXep == 1}">-->
-<!--                                                                                Mới nhất-->
-<!--                                                                            </option>-->
-<!--                                                                            <option value="2" th:selected="${xapXep == 2}">-->
-<!--                                                                                Cũ nhất-->
-<!--                                                                            </option>-->
-<!--                                                                            <option value="3" th:selected="${xapXep == 3}">-->
-<!--                                                                                Giá cao nhất-->
-<!--                                                                            </option>-->
-<!--                                                                            <option value="4" th:selected="${xapXep == 4}">-->
-<!--                                                                                Giá thấp nhất-->
-<!--                                                                            </option>-->
-<!--                                                                            <option value="5" th:selected="${xapXep == 5}">-->
-<!--                                                                                Từ (A-Z)-->
-<!--                                                                            </option>-->
-<!--                                                                            <option value="6" th:selected="${xapXep == 6}">-->
-<!--                                                                                Từ (Z-A)-->
-<!--                                                                            </option>-->
-<!--                                                                        </select>-->
-<!--                                                                        <span class="input__label"-->
-<!--                                                                              style="font-size: 13px;font-weight: bold;">Sắp xếp: </span>-->
-<!--                                                                    </label>-->
-<!--                                                                </div>-->
-<!--                                                            </div>-->
+                                                            </div>
 
-<!--                                                            <div style="height: 35px;float: right;" class="col-2">-->
-<!--                                                                <button onclick="searchAndUpdate3()" data-toggle="tooltip"-->
-<!--                                                                        title="Tìm kiếm" &#xE254; height="22px"-->
-<!--                                                                        style="background:blue;border-radius: 50px;border:1px solid black;justify-content: center;"-->
-<!--                                                                        type="submit" class="btn btn-labeled shadow-button">-->
-<!--                                                            <span style="margin-bottom: 3px;color: white;"-->
-<!--                                                                  class="btn-icon"><i class="fas fa-search"></i></span>-->
-<!--                                                                    <span style="margin-bottom: 3px;color: white;"-->
-<!--                                                                          class="separator">|</span>-->
-<!--                                                                    <span style="margin-bottom: 3px;color: white;font-size: 15px;font-weight: bold"-->
-<!--                                                                          ;-->
-<!--                                                                          class="btn-text">Tìm Kiếm</span>-->
-<!--                                                                </button>-->
-<!--                                                            </div>-->
+                                                            <div class="col-2">
+                                                                <label class="input">
+                                                                    <input style="width: 150px; border-radius: 8px;"
+                                                                           type="datetime-local" class="input__field"
+                                                                           name="tuNgay" id="tuNgay" onchange="updateURL()">
+                                                                    <span style="font-size: 13px; font-weight: bold;"
+                                                                          class="input__label">Từ ngày:</span>
+                                                                </label>
+                                                            </div>
 
-<!--                                                            <div style="height: 35px;"-->
-<!--                                                                 class="col-2">-->
-<!--                                                                <a th:href="@{/hoa-don/hien-thi-page-search}">-->
-<!--                                                                    <button onclick="refreshPage()" data-toggle="tooltip"-->
-<!--                                                                            title="Làm mới" &#xE254; height="22px"-->
-<!--                                                                            style="background:#0ad406;border-radius: 50px;border:1px solid black;justify-items: center;"-->
-<!--                                                                            type="button"-->
-<!--                                                                            class="btn btn-labeled shadow-button">-->
-<!--                                                            <span style="margin-bottom: 3px;color: white;"-->
-<!--                                                                  class="btn-icon">-->
-<!--                                                                <i class="fa-solid fa-arrows-rotate fa-spin fa-lg"></i>-->
-<!--                                                            </span>-->
-<!--                                                                        <span style="margin-bottom: 3px;color: white;"-->
-<!--                                                                              class="separator">|</span>-->
-<!--                                                                        <span style="margin-bottom: 3px;color: white;font-size: 15px;font-weight: bold"-->
-<!--                                                                              ;-->
-<!--                                                                              class="btn-text">Refresh</span>-->
-<!--                                                                    </button>-->
-<!--                                                                </a>-->
-<!--                                                            </div>-->
+                                                            <div class="col-2">
+                                                                <label class="input">
+                                                                    <input style="width: 150px; border-radius: 8px;"
+                                                                           type="datetime-local" class="input__field"
+                                                                           name="denNgay" id="denNgay"
+                                                                           onchange="updateURL()">
+                                                                    <span style="font-size: 13px; font-weight: bold;"
+                                                                          class="input__label">Đến ngày:</span>
+                                                                </label>
+                                                            </div>
 
 
-<!--                                                        </div>-->
-<!--                                                    </form>-->
+                                                        </div>
+
+                                                        <br>
+                                                        <br>
+                                                        <div class="col-12 row container d-flex  align-content-around flex-wrap">
+
+                                                            <div class="col-4">
+                                                                <label style="float: right;" class="input">
+                                                                    <select style="font-size: 14px;width: 150px;border-radius: 20px;"
+                                                                            class="input__field"
+                                                                            th:field="*{hinhThucThanhToan.TenHinhThuc}"
+                                                                            name="TenHinhThuc"
+                                                                            id="TenHinhThuc">
+                                                                        <option value="">Tất Cả</option>
+                                                                        <option value="Tại quầy">Tại quầy</option>
+                                                                        <option value="Đặt hàng online">Đặt hàng online</option>
+                                                                    </select>
+                                                                    <span style="font-size: 13px;font-weight: bold;"
+                                                                          class="input__label">Loại đơn:</span>
+                                                                </label>
+                                                            </div>
+
+                                                            <div class="col-3">
+                                                                <div style="float: right;">
+                                                                    <label class="input">
+
+                                                                        <select onchange="searchAndUpdate()"
+                                                                                style="font-size: 14px;width: 150px;height: 30px;border-radius: 20px;"
+                                                                                class="input__field" name="xapXep"
+                                                                                th:value="${xapXep}" id="xapXep">
+                                                                            <option value=""
+                                                                                    th:selected="${xapXep == null}">Mặc định
+                                                                            </option>
+                                                                            <option value="1" th:selected="${xapXep == 1}">
+                                                                                Mới nhất
+                                                                            </option>
+                                                                            <option value="2" th:selected="${xapXep == 2}">
+                                                                                Cũ nhất
+                                                                            </option>
+                                                                            <option value="3" th:selected="${xapXep == 3}">
+                                                                                Giá cao nhất
+                                                                            </option>
+                                                                            <option value="4" th:selected="${xapXep == 4}">
+                                                                                Giá thấp nhất
+                                                                            </option>
+                                                                            <option value="5" th:selected="${xapXep == 5}">
+                                                                                Từ (A-Z)
+                                                                            </option>
+                                                                            <option value="6" th:selected="${xapXep == 6}">
+                                                                                Từ (Z-A)
+                                                                            </option>
+                                                                        </select>
+                                                                        <span class="input__label"
+                                                                              style="font-size: 13px;font-weight: bold;">Sắp xếp: </span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div style="height: 25px;float: right;" class="col-2">
+                                                                <button onclick="searchAndUpdate3()" data-toggle="tooltip"
+                                                                        title="Tìm kiếm" &#xE254; height="22px"
+                                                                        style="background:blue;border-radius: 50px;border:1px solid black;justify-content: center;"
+                                                                        type="submit" class="btn btn-labeled shadow-button">
+                                                            <span style="margin-bottom: 3px;color: white;"
+                                                                  class="btn-icon"><i class="fas fa-search"></i></span>
+                                                                    <span style="margin-bottom: 3px;color: white;"
+                                                                          class="separator">|</span>
+                                                                    <span style="margin-bottom: 3px;color: white;font-size: 15px;font-weight: bold"
+                                                                          ;
+                                                                          class="btn-text">Tìm Kiếm</span>
+                                                                </button>
+                                                            </div>
+
+                                                            <div style="height: 25px;"
+                                                                 class="col-2">
+                                                                <a th:href="@{hien-thi}">
+                                                                    <button onclick="refreshPage()" data-toggle="tooltip"
+                                                                            title="Làm mới" &#xE254; height="22px"
+                                                                            style="background:#0ad406;border-radius: 50px;border:1px solid black;justify-items: center;"
+                                                                            type="button"
+                                                                            class="btn btn-labeled shadow-button">
+                                                            <span style="margin-bottom: 3px;color: white;"
+                                                                  class="btn-icon">
+                                                                <i class="fa-solid fa-arrows-rotate fa-spin fa-lg"></i>
+                                                            </span>
+                                                                        <span style="margin-bottom: 3px;color: white;"
+                                                                              class="separator">|</span>
+                                                                        <span style="margin-bottom: 3px;color: white;font-size: 15px;font-weight: bold"
+                                                                              ;
+                                                                              class="btn-text">Refresh</span>
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </form>
 
                                                     <div style=" margin-top: 30px; height: 35px;display: flex;justify-content: end;"
                                                          class="col-12">
@@ -662,7 +663,7 @@
 <!--                                                                                                            </form>-->
 
                                                         <form class="export-form"
-                                                              th:action="@{/hoa-don/export-excel}"
+                                                              th:action="@{export-excel}"
                                                               method="post">
                                                             <button onclick="return confirm('Bạn chắc chắn muốn in hóa đơn ?')"
                                                                     style="border: 1px solid black; background:greenyellow;border-radius:10px;"
@@ -670,7 +671,7 @@
                                                                     title="In hóa đơn Excel"
                                                                     class="shadow-button" type="submit">
                                                                 <a style="text-decoration: none;"
-                                                                   th:href="@{admin/hoa-don/export-excel}">
+                                                                   th:href="@{export-excel}">
                                                                     <img th:src="@{/static/image/printer.png}"
                                                                          width="30px" height="30px" alt="">
                                                                 </a>
@@ -718,7 +719,7 @@
                                                                     th:text="${index.count}"></td>
                                                                 <td style="font-size: 14px;font-weight: bold"
                                                                     class="align-middle"
-                                                                    th:text="${hd.IdHoaDon}"></td>
+                                                                    th:text="${hd.MaHoaDon}"></td>
                                                                 <td style="font-size: 14px;font-weight: bold"
                                                                     class="align-middle"
                                                                     th:text="${hd.khachHang.TenKhachHang}"></td>
@@ -804,17 +805,17 @@
 
                                                         <label class="input">
 
-<!--                                                            <select onchange="searchAndUpdate2()"-->
-<!--                                                                    style="font-size: 14px;width: 50px;height: 30px;border-radius: 10px;"-->
-<!--                                                                    class="input__field" name="size"-->
-<!--                                                                    th:value="${size}" id="size">-->
-<!--                                                                <option value="5" th:selected="${size == 5}">5</option>-->
-<!--                                                                <option value="10" th:selected="${size == 10}">10</option>-->
-<!--                                                                <option value="25" th:selected="${size == 25}">25</option>-->
-<!--                                                                <option value="50" th:selected="${size == 50}">50</option>-->
-<!--                                                                <option value="100" th:selected="${size == 100}">100-->
-<!--                                                                </option>-->
-<!--                                                            </select>-->
+                                                            <select onchange="searchAndUpdate2()"
+                                                                    style="font-size: 14px;width: 50px;height: 30px;border-radius: 10px;"
+                                                                    class="input__field" name="size"
+                                                                    th:value="${size}" id="size">
+                                                                <option value="5" th:selected="${size == 5}">5</option>
+                                                                <option value="10" th:selected="${size == 10}">10</option>
+                                                                <option value="25" th:selected="${size == 25}">25</option>
+                                                                <option value="50" th:selected="${size == 50}">50</option>
+                                                                <option value="100" th:selected="${size == 100}">100
+                                                                </option>
+                                                            </select>
                                                         </label>
 
                                                     </section>
@@ -842,7 +843,7 @@
                                             <ul class="pagination">
                                                 <li class="page-item" th:classappend="${listHD.number == 0} ? disabled">
                                                     <a class="page-link"
-                                                       th:href="@{hien-thi(page=${listHD.number == 0})}">First</a>
+                                                       th:href="@{hien-thi(page=0)}">First</a>
                                                 </li>
                                                 <li class="page-item"
                                                     th:classappend="${listHD.number == 0} ? disabled">
@@ -903,16 +904,14 @@
                             </script>
                             ,
                             made with <i class="fa fa-heart"></i> by
-                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Creative
-                                Tim</a>
+                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">V</a>
                             for a better web.
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                             <li class="nav-item">
-                                <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">Creative
-                                    Tim</a>
+                                <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">V</a>
                             </li>
                             <li class="nav-item">
                                 <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
@@ -1039,5 +1038,220 @@
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="../../../static/assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+
+<!-- App js -->
+<script src="../../static/assets\js\app.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+
+
+<th:block id="js-resources">
+    <script>
+        function showValue(value) {
+            document.getElementById("rangeValue").innerHTML = value;
+        }
+
+        function showValue1(value) {
+            document.getElementById("rangeValue1").innerHTML = value;
+        }
+
+        const form = document.querySelector('.form-row');
+        const rangeInputs = form.querySelectorAll('input[type="range"]');
+        const datetimeInputs = form.querySelectorAll('input[type="datetime-local"]');
+        const radioInputs = form.querySelectorAll('input[type="radio"]');
+        const searchInput = form.querySelector('input[type="search"]');
+
+        rangeInputs.forEach(input => {
+            input.addEventListener('mousemove', () => {
+                form.submit();
+            });
+        });
+
+        datetimeInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                form.submit();
+            });
+        });
+
+        radioInputs.forEach(input => {
+            input.addEventListener('change', () => {
+                form.submit();
+            });
+        });
+
+        searchInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                form.submit();
+            }
+        });
+    </script>
+
+    <script>
+        function searchAndUpdate() {
+            var xapXepValue = document.getElementById("xapXep").value;
+            var encodedXapXepValue = encodeURIComponent(xapXepValue);
+
+            // Lưu trữ giá trị xapXepValue vào localStorage
+            localStorage.setItem("selectedXapXepValue", xapXepValue);
+
+            // Lấy giá trị từ các trường lọc
+            var MaHoaDon = document.getElementById('MaHoaDon').value;
+            var TenKhachHang = document.getElementById('TenKhachHang').value;
+            var TongTienKhiGiam = document.getElementById('TongTienKhiGiam').value;
+            var TrangThai = document.getElementById('TrangThai').value;
+            var tuNgay = document.getElementById('tuNgay').value;
+            var denNgay = document.getElementById('denNgay').value;
+            var TenHinhThuc = document.getElementById('TenHinhThuc').value;
+
+            // Tạo URL tìm kiếm với các tham số lọc
+            var searchUrl = "http://localhost:8080/admin/hoa-don/hien-thi-page-search?";
+            searchUrl += "MaHoaDon=" + encodeURIComponent(MaHoaDon);
+            searchUrl += "&TenKhachHang=" + encodeURIComponent(TenKhachHang);
+            searchUrl += "&TongTienKhiGiam=" + encodeURIComponent(TongTienKhiGiam);
+            searchUrl += "&TrangThai=" + encodeURIComponent(TrangThai);
+            searchUrl += "&tuNgay=" + encodeURIComponent(tuNgay);
+            searchUrl += "&denNgay=" + encodeURIComponent(denNgay);
+            searchUrl += "&TenHinhThuc=" + encodeURIComponent(TenHinhThuc);
+            searchUrl += "&xapXep=" + encodedXapXepValue;
+
+            // Chuyển hướng đến URL tìm kiếm với các tham số lọc
+            window.location.href = searchUrl;
+        }
+
+        function searchAndUpdate2() {
+            var sizeValue = document.getElementById("size").value;
+            var encodedSizeValue = encodeURIComponent(sizeValue);
+
+            // Lưu trữ giá trị sizeValue vào localStorage
+            localStorage.setItem("selectedSizeValue", sizeValue);
+
+            // Lấy giá trị từ các trường lọc
+            var MaHoaDon = document.getElementById('MaHoaDon').value;
+            var TenKhachHang = document.getElementById('TenKhachHang').value;
+            var TongTienKhiGiam = document.getElementById('TongTienKhiGiam').value;
+            var TrangThai = document.getElementById('TrangThai').value;
+            var tuNgay = document.getElementById('tuNgay').value;
+            var denNgay = document.getElementById('denNgay').value;
+            var TenHinhThuc = document.getElementById('TenHinhThuc').value;
+
+
+            // Tạo URL tìm kiếm với các tham số lọc
+            var searchUrl = "http://localhost:8080/admin/hoa-don/hien-thi-page-search?";
+            searchUrl += "MaHoaDon=" + encodeURIComponent(MaHoaDon);
+            searchUrl += "&TenKhachHang=" + encodeURIComponent(TenKhachHang);
+            searchUrl += "&TongTienKhiGiam=" + encodeURIComponent(TongTienKhiGiam);
+            searchUrl += "&TrangThai=" + encodeURIComponent(TrangThai);
+            searchUrl += "&tuNgay=" + encodeURIComponent(tuNgay);
+            searchUrl += "&denNgay=" + encodeURIComponent(denNgay);
+            searchUrl += "&TenHinhThuc=" + encodeURIComponent(TenHinhThuc);
+            // searchUrl += "&xapXep=" + encodedXapXepValue;
+            searchUrl += "&size=" + encodedSizeValue;
+
+            // Chuyển hướng đến URL tìm kiếm với các tham số lọc
+            window.location.href = searchUrl;
+        }
+
+        // Khôi phục giá trị lựa chọn sau khi trang được load lại
+        window.onload = function () {
+            var selectedXapXepValue = localStorage.getItem("selectedXapXepValue");
+            if (selectedXapXepValue) {
+                document.getElementById("xapXep").value = selectedXapXepValue
+            }
+
+            var selectedSizeValue = localStorage.getItem("selectedSizeValue");
+            if (selectedSizeValue) {
+                document.getElementById("size").value = selectedSizeValue;
+            }
+        };
+
+        function resetFilters() {
+            // Xóa giá trị từ các trường nhập liệu
+            document.getElementById('MaHoaDon').value = '';
+            document.getElementById('TenKhachHang').value = '';
+            document.getElementById('TongTienKhiGiam').value = '';
+            document.getElementById('TrangThai').value = '';
+            document.getElementById('tuNgay').value = '';
+            document.getElementById('denNgay').value = '';
+            document.getElementById('TenHinhThuc').value = '';
+
+            // // Xóa giá trị từ các trường input ẩn
+            // document.getElementById('maHoaDonHidden').value = '';
+            // document.getElementById('nguoiNhanHidden').value = '';
+            // document.getElementById('tongTienSauKhiGiamHidden').value = '';
+            // document.getElementById('trangThaiHidden').value = '';
+            // document.getElementById('tuNgayHidden').value = '';
+            // document.getElementById('denNgayHidden').value = '';
+            // document.getElementById('loaiDonHidden').value = '';
+
+            // Submit form để làm mới
+            document.getElementById('searchForm').submit();
+        }
+    </script>
+    <script th:inline="javascript">
+        function updateURL() {
+            var tuNgay = document.getElementById("tuNgay").value;
+            var denNgay = document.getElementById("denNgay").value;
+
+            var currentURL = window.location.href;
+            var updatedURL = updateQueryStringParameter(currentURL, "tuNgay", tuNgay);
+            updatedURL = updateQueryStringParameter(updatedURL, "denNgay", denNgay);
+            window.location.href = updatedURL;
+        }
+
+        var urlParams = new URLSearchParams(window.location.search);
+
+        var urlParamFields = {
+            "tuNgay": document.getElementById("tuNgay"),
+            "denNgay": document.getElementById("denNgay")
+        };
+
+        Object.keys(urlParamFields).forEach(function (key) {
+            if (urlParams.has(key)) {
+                urlParamFields[key].value = urlParams.get(key);
+                localStorage.setItem(key, urlParams.get(key)); // Lưu giá trị vào localStorage
+            } else if (localStorage.getItem(key)) {
+                urlParamFields[key].value = localStorage.getItem(key); // Khôi phục giá trị từ localStorage
+            }
+        });
+
+        function updateQueryStringParameter(url, key, value) {
+            var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+            var separator = url.indexOf('?') !== -1 ? "&" : "?";
+            return url.match(re) ? url.replace(re, '$1' + key + "=" + value + '$2') : url + separator + key + "=" + value;
+        }
+
+        function handleSearch() {
+            // Get the value of the input field
+            var timKiemValue = document.getElementById("timKiem").value;
+
+            // Perform the search here, for example, by submitting the form
+            // You can use JavaScript to submit the form or handle the search via AJAX
+            // For simplicity, I'll demonstrate form submission.
+            document.getElementById("yourFormId").submit(); // Replace "yourFormId" with the actual ID of your form.
+        }
+
+        document.getElementById("tuNgay").addEventListener("change", function () {
+            localStorage.setItem("tuNgay", this.value); // Lưu giá trị vào localStorage khi thay đổi
+        });
+
+        document.getElementById("denNgay").addEventListener("change", function () {
+            localStorage.setItem("denNgay", this.value); // Lưu giá trị vào localStorage khi thay đổi
+        });
+
+        function refreshPage() {
+            document.getElementById("tuNgay").value = "";
+            document.getElementById("denNgay").value = "";
+
+            localStorage.removeItem("tuNgay"); // Xóa giá trị trong localStorage
+            localStorage.removeItem("denNgay");
+
+            // Xóa giá trị đã lưu trữ trong localStorage
+            localStorage.removeItem("selectedXapXepValue");
+            localStorage.removeItem("selectedSizeValue");
+
+            // Làm mới trang
+            location.reload();
+        }
+    </script>
+</th:block>
 </body>
 </html>
