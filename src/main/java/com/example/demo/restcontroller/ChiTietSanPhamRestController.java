@@ -1,7 +1,5 @@
 package com.example.demo.restcontroller;
 
-import com.example.demo.entity.ChiTietSanPham;
-import com.example.demo.entity.SanPham;
 import com.example.demo.request.ChiTietSanPhamRequest;
 import com.example.demo.service.ChiTietSanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +32,7 @@ public class ChiTietSanPhamRestController {
         return ResponseEntity.ok(service.delete(id));
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@RequestBody ChiTietSanPhamRequest chiTietSanPham,@PathVariable("id")UUID id){
+    public ResponseEntity<?> update(@RequestBody ChiTietSanPhamRequest chiTietSanPham, @PathVariable("id")UUID id){
         return ResponseEntity.ok(service.update(chiTietSanPham,id));
     }
 }

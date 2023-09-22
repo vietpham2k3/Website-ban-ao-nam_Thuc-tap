@@ -51,7 +51,7 @@ public class ChiTietSanPham implements Serializable {
     @ManyToOne
     @JoinColumn(name = "IdXuatXu")
     private XuatXu xuatXu;
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "IdDanhMuc")
     private DanhMuc danhMuc;
     @OneToMany(mappedBy = "chiTietSanPham")

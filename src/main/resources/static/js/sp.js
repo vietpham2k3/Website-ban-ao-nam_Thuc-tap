@@ -167,7 +167,12 @@
                             }
                         }
                     })
-                    Swal.fire("Thêm sản phẩm thành công","success");
+                    Swal.fire(
+                        'Thông báo',
+                        'Thêm sản phẩm thành công !',
+                        'success'
+                    );
+
                 }
             })
         }
@@ -201,10 +206,11 @@
           //
           //    })
 
-
-
-
         $scope.update = function(){
+            var idDanhMuc = document.getElementById("danhMuc").value;
+            var idThuongHieu = document.getElementById("thuongHieu").value;
+            var idPhanLoai = document.getElementById("phanLoai").value;
+            var idXuatXu = document.getElementById("xuatXu").value;
             var idctsp = document.getElementById("idctsp").value;
             $http.delete("/api/phongcach-ctsp/"+ idctsp);
             $http.delete("/api/chatlieu-ctsp/"+ idctsp);
@@ -216,10 +222,10 @@
                 giaNhap : $scope.detail.giaNhap,
                 giamGia : $scope.detail.giamGia,
                 moTa : $scope.detail.moTa,
-                idDanhMuc : $scope.detail.danhMuc.idDanhMuc,
-                idPhanLoai : $scope.detail.phanLoai.idPhanLoai,
-                idThuongHieu : $scope.detail.thuongHieu.idThuongHieu,
-                idXuatXu : $scope.detail.xuatXu.idXuatXu,
+                idDanhMuc : idDanhMuc,
+                idPhanLoai : idPhanLoai,
+                idThuongHieu : idThuongHieu,
+                idXuatXu : idXuatXu,
                 ngaySua : new Date()
             }).then(function (ctsp){
                 //update sanpham

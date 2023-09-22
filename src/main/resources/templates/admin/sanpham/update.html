@@ -87,24 +87,24 @@
                             <label>Mô Tả</label> <input ng-model="detail.moTa">
                         </div>
                         <div class="col-md-6">
-                            <label>Danh Mục</label> <select ng-model="detail.danhMuc">
+                            <label>Danh Mục</label> <select ng-model="detail.danhMuc" id="danhMuc">
                             <option ng-repeat="dm in listDM" value="{{dm.idDanhMuc}}" ng-selected="detail.danhMuc.idDanhMuc == dm.idDanhMuc">
                                 {{dm.tenDanhMuc}}</option></select>
                         </div>
                         <div class="col-md-6">
                             <label>Phân Loại</label>
-                            <select ng-model="detail.phanLoai">
+                            <select ng-model="detail.phanLoai" id="phanLoai">
                                 <option ng-repeat="pl in listPL" value="{{pl.idPhanLoai}}" ng-selected="detail.phanLoai.idPhanLoai == pl.idPhanLoai">
                                     {{pl.tenPhanLoai}}</option></select>
                         </div>
                         <div class="col-md-6">
-                            <label>Thương Hiệu</label> <select ng-model="detail.thuongHieu">
+                            <label>Thương Hiệu</label> <select ng-model="detail.thuongHieu" id="thuongHieu">
                             <option ng-repeat="th in listTH" value="{{th.idThuongHieu}}" ng-selected="detail.thuongHieu.idThuongHieu == th.idThuongHieu">
                                 {{th.tenThuongHieu}}</option></select>
                         </div>
                         <div class="col-md-6">
                             <label>Xuất Xứ</label>
-                            <select ng-model="detail.xuatXu">
+                            <select ng-model="detail.xuatXu" id="xuatXu">
                                 <option ng-repeat="xx in listXX" value="{{xx.idXuatXu}}" ng-selected="detail.xuatXu.idXuatXu == xx.idXuatXu">
                                     {{xx.tenXuatXu}}</option></select>
                         </div>
