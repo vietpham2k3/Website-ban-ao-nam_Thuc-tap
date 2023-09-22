@@ -1,17 +1,15 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.Anh;
+import com.example.demo.entity.PhongCach_CTSP;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.UUID;
-
 @Repository
-public interface AnhRepository extends JpaRepository<Anh, UUID> {
+public interface PhongCach_CTSPRepository extends JpaRepository<PhongCach_CTSP, UUID> {
 
-    @Query(value = "Select a from Anh a where a.sanPham.IdSanPham = :id")
-    List<Anh> getAnhBySanPham(@Param("id") Integer id);
+    @Query("Select e from PhongCach_CTSP  e  where e.chiTietSanPham.IdCTSP = :id")
+    public PhongCach_CTSP getbyCTSP(@Param("id") UUID id);
 }

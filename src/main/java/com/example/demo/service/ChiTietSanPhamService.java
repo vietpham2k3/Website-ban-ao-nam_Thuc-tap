@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.DanhMuc;
+import com.example.demo.entity.*;
+import com.example.demo.request.ChiTietSanPhamRequest;
 import com.example.demo.response.ChiTietSanPhamCustom;
-import com.example.demo.entity.ChiTietSanPham;
 import com.example.demo.repository.ChiTietSanPhamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,18 +14,60 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class ChiTietSanPhamService {
     @Autowired
     private ChiTietSanPhamRepository repository;
 
-    public List<ChiTietSanPhamCustom> getAll(){
-        return repository.getAll();
+    public List<ChiTietSanPham> getAll(){
+        return repository.findAll();
+    }public List<ChiTietSanPham> getAll1(){
+        return repository.findAll();
     }
-    public Page<ChiTietSanPhamCustom> phanTrang(Integer page){
+
+
+    public Page<ChiTietSanPham> phanTrang(Integer page){
         Pageable pageable = PageRequest.of(page,10);
-        return repository.phanTrang(pageable);
+        return repository.findAll(pageable);
+    }
+    public ChiTietSanPham add(ChiTietSanPhamRequest request){
+        ChiTietSanPham chiTietSanPham = new ChiTietSanPham();
+        chiTietSanPham.setGiaBan(request.getGiaBan());
+        chiTietSanPham.setGiaNhap(request.getGiaNhap());
+        chiTietSanPham.setPhanLoai(PhanLoai.builder().IdPhanLoai(request.getIdPhanLoai()).build());
+        chiTietSanPham.setThuongHieu(ThuongHieu.builder().IdThuongHieu(request.getIdThuongHieu()).build());
+        chiTietSanPham.setDanhMuc(DanhMuc.builder().IdDanhMuc(request.getIdDanhMuc()).build());
+        chiTietSanPham.setXuatXu(XuatXu.builder().IdXuatXu(request.getIdXuatXu()).build());
+        chiTietSanPham.setMoTa(request.getMoTa());
+        chiTietSanPham.setGiamGia(request.getGiamGia());
+        chiTietSanPham.setSanPham(SanPham.builder().IdSanPham(request.getIdSanPham()).build());
+        chiTietSanPham.setTrangThai(0);
+        return repository.save(chiTietSanPham);
+    }
+    public ChiTietSanPhamCustom getById(Integer id){
+        return repository.getByid(id);
+    }
+    public ChiTietSanPham getCTSP(UUID id){
+        return repository.getCTSP(id);
+    }
+    public ChiTietSanPham delete(UUID id){
+        ChiTietSanPham chiTietSanPham = repository.getById(id);
+        chiTietSanPham.setTrangThai(1);
+        return repository.save(chiTietSanPham);
+    }
+    public ChiTietSanPham update(ChiTietSanPhamRequest request, UUID id){
+        ChiTietSanPham chiTietSanPham = repository.getById(id);
+        chiTietSanPham.setGiaBan(request.getGiaBan());
+        chiTietSanPham.setGiaNhap(request.getGiaNhap());
+        chiTietSanPham.setPhanLoai(PhanLoai.builder().IdPhanLoai(request.getIdPhanLoai()).build());
+        chiTietSanPham.setThuongHieu(ThuongHieu.builder().IdThuongHieu(request.getIdThuongHieu()).build());
+        chiTietSanPham.setDanhMuc(DanhMuc.builder().IdDanhMuc(request.getIdDanhMuc()).build());
+        chiTietSanPham.setXuatXu(XuatXu.builder().IdXuatXu(request.getIdXuatXu()).build());
+        chiTietSanPham.setMoTa(request.getMoTa());
+        chiTietSanPham.setGiamGia(request.getGiamGia());
+        return repository.save(chiTietSanPham);
     }
 
 

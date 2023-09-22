@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,5 +25,6 @@ public class ChatLieu_CTSP implements Serializable {
     private ChatLieu chatLieu;
     @ManyToOne
     @JoinColumn(name = "IdCTSP")
+    @JsonBackReference
     private ChiTietSanPham chiTietSanPham;
 }

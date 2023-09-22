@@ -31,6 +31,9 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="../../../static/js/sanpham.js" crossorigin="anonymous"></script>
     <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 
     <!-- CSS Files -->
     <link id="pagestyle" href="../../../static/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet"/>
@@ -40,75 +43,101 @@
 
 </head>
 
-<body class="g-sidenav-show  bg-gray-100">
+<body class="g-sidenav-show  bg-gray-100" ng-app="myApp" ng-controller="ctrl" >
 
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
        id="sidenav-main" th:insert="admin/layout/navbar_slide.html :: slide">
 </aside>
 
-<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg" >
     <div class="navbar-custom" th:insert="admin/layout/navbar_header.html"> :: header"></div>
 
     <!--noidung-->
     <div class="container-fluid py-4">
         <div> <h3>Sửa Sản Phẩm</h3></div>
-           <div class="row">
-               <div class="col-md-3" style="border: solid 2px; text-align: center; background-color: white">
-                   <div>Ảnh đại diện sản phẩm</div>
-                   <img id="output"/>
-                   <input type="file" accept="image/*" onchange="loadFile(event)" multiple >
-               </div>
-               <div class="col-md-9">
-                   <form class="form-control">
-                       <div class="row">
-                           <div class="col-md-6">
-                               <label>Mã Sản Phẩm</label> <input>
-                           </div>
-                           <div class="col-md-6">
-                               <label>Tên Sản Phẩm</label> <input>
-                           </div>
-                           <div class="col-md-6">
-                              <label> Giá Nhập</label> <input>
-                           </div>
-                           <div class="col-md-6">
-                               <label>Giá Bán</label> <input>
-                           </div>
-                           <div class="col-md-6">
-                               <label>Danh Mục</label> <select><option>1</option></select>
-                           </div>
-                           <div class="col-md-6">
-                               <label>Phân Loại</label> <select><option>1</option></select>
-                           </div>
-                           <div class="col-md-6">
-                               <label>Thương Hiệu</label> <select><option>1</option></select>
-                           </div>
-                           <div class="col-md-6">
-                               <label>Xuất Xứ</label> <select><option>1</option></select>
-                           </div>
-                           <div class="col-md-6">
-                               <label>Phong Cách</label> <input type="checkbox">
-                           </div>
-                           <div class="col-md-6">
-                               <label>Chất Liệu</label> <input type="checkbox">
-                           </div>
-                           <div class="col-md-6">
-                               <label>Màu Sắc</label>
-                               <input type="checkbox" id="28" onclick="myFunction(28)">xanh
-                               <input type="checkbox" id="29" onclick="myFunction(29)">đỏ
-                               <div id="text28"></div>
-                               <div id="text29"></div>
-                           </div>
-                       </div>
+        <form class="form-control">
+            <input type="hidden" th:value="${idctsp}" id="idctsp">
+            <div class="row">
 
-                        <div><button class="btn btn-danger">Sửa</button></div>
-                   </form>
-               </div>
+                <div class="col-md-3 anh">
+                    <div>Ảnh đại diện sản phẩm</div>
+                    <img id="output"/>
+                    <input file-model="image" id="fileUpload" type="file" accept="image/*" onchange="loadFile(event)" multiple >
+                </div>
+                <div class="col-md-9">
 
-           </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Mã Sản Phẩm</label> <input ng-model="masanpham">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Tên Sản Phẩm</label> <input ng-model="tensanpham">
+                        </div>
+                        <div class="col-md-6">
+                            <label> Giá Nhập</label> <input ng-model="gianhap">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Giá Bán</label> <input ng-model="giaban">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Giảm Giá</label> <input ng-model="giamgia">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Mô Tả</label> <input ng-model="mota">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Danh Mục</label> <select ng-model="danhmuc">
+                            <option ng-repeat="dm in listDM" value="{{dm.idDanhMuc}}">
+                                {{dm.tenDanhMuc}}</option></select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Phân Loại</label>
+                            <select ng-model="phanloai">
+                                <option ng-repeat="pl in listPL" value="{{pl.idPhanLoai}}">
+                                    {{pl.tenPhanLoai}}</option></select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Thương Hiệu</label> <select ng-model="thuonghieu">
+                            <option ng-repeat="th in listTH" value="{{th.idThuongHieu}}">
+                                {{th.tenThuongHieu}}</option></select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Xuất Xứ</label>
+                            <select ng-model="xuatxu">
+                                <option ng-repeat="xx in listXX" value="{{xx.idXuatXu}}">
+                                    {{xx.tenXuatXu}}</option></select>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Phong Cách</label> <span style="padding-left: 5px" ng-repeat="pc in listPC"><input id="{{pc.idPhongCach}}" type="checkbox" value="{{pc.idPhongCach}}"> {{pc.tenPhongCach}}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Chất Liệu</label> <span style="padding-left: 5px" ng-repeat="cl in listCL"><input id="{{cl.idChatLieu}}"  type="checkbox" value="{{cl.idChatLieu}}"> {{cl.tenChatLieu}}</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Màu Sắc</label>
+                            <span ng-repeat="ms in listMS">
+                                    <input type="checkbox" id="{{ms.idMauSac}}" ng-click="checkbox(ms.idMauSac)">{{ms.tenMauSac}}
+                               </span>
+
+                        </div>
+                        <div>
+                                <span ng-repeat="ms in listMS">
+                                    <div id="text{{ms.idMauSac}}"></div>
+                               </span>
+                        </div>
+                    </div>
+
+                    <div style="padding-top: 30px"><button  class="btn btn-danger" ng-click="add()">Thêm</button></div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+        <script src="../../../static/js/sp.js"></script>
 
         <!--    endNoidung-->
 
-<!--        //footer-->
+        <!--        //footer-->
         <footer class="footer pt-3  ">
             <div class="container-fluid">
                 <div class="row align-items-center justify-content-lg-between">
