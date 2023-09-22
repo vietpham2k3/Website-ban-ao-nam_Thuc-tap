@@ -441,9 +441,10 @@
                                             <div class="col-xl-12">
                                                 <div style="margin-left: 20px;" class="dataTables_filter">
 
-                                                    <form th:object="${searchHD}"
+                                                    <form th:object="${searchHD}" method="get"
                                                           th:action="@{hien-thi-page-search}"
-                                                          class="row form-row justify-content-between" id="searchForm">
+                                                          class="row form-row justify-content-between"
+                                                          id="searchForm">
 
                                                         <div class="col-12 row container">
 
@@ -621,7 +622,8 @@
 
                                                             <div style="height: 25px;"
                                                                  class="col-2">
-                                                                <a th:href="@{hien-thi}">
+                                                                <a th:href="@{hien-thi-page-search(MaHoaDon='', khachHang.TenKhachHang='',
+                                                                        TongTienKhiGiam='', TrangThai='', tuNgay='', denNgay='', hinhThucThanhToan.TenHinhThuc='', xapXep='')}">
                                                                     <button onclick="refreshPage()" data-toggle="tooltip"
                                                                             title="Làm mới" &#xE254; height="22px"
                                                                             style="background:#0ad406;border-radius: 50px;border:1px solid black;justify-items: center;"
@@ -1105,12 +1107,12 @@
             // Tạo URL tìm kiếm với các tham số lọc
             var searchUrl = "http://localhost:8080/admin/hoa-don/hien-thi-page-search?";
             searchUrl += "MaHoaDon=" + encodeURIComponent(MaHoaDon);
-            searchUrl += "&TenKhachHang=" + encodeURIComponent(TenKhachHang);
+            searchUrl += "&khachHang.TenKhachHang=" + encodeURIComponent(TenKhachHang);
             searchUrl += "&TongTienKhiGiam=" + encodeURIComponent(TongTienKhiGiam);
             searchUrl += "&TrangThai=" + encodeURIComponent(TrangThai);
             searchUrl += "&tuNgay=" + encodeURIComponent(tuNgay);
             searchUrl += "&denNgay=" + encodeURIComponent(denNgay);
-            searchUrl += "&TenHinhThuc=" + encodeURIComponent(TenHinhThuc);
+            searchUrl += "&hinhThucThanhToan.TenHinhThuc=" + encodeURIComponent(TenHinhThuc);
             searchUrl += "&xapXep=" + encodedXapXepValue;
 
             // Chuyển hướng đến URL tìm kiếm với các tham số lọc
@@ -1137,12 +1139,12 @@
             // Tạo URL tìm kiếm với các tham số lọc
             var searchUrl = "http://localhost:8080/admin/hoa-don/hien-thi-page-search?";
             searchUrl += "MaHoaDon=" + encodeURIComponent(MaHoaDon);
-            searchUrl += "&TenKhachHang=" + encodeURIComponent(TenKhachHang);
+            searchUrl += "&khachHang.TenKhachHang=" + encodeURIComponent(TenKhachHang);
             searchUrl += "&TongTienKhiGiam=" + encodeURIComponent(TongTienKhiGiam);
             searchUrl += "&TrangThai=" + encodeURIComponent(TrangThai);
             searchUrl += "&tuNgay=" + encodeURIComponent(tuNgay);
             searchUrl += "&denNgay=" + encodeURIComponent(denNgay);
-            searchUrl += "&TenHinhThuc=" + encodeURIComponent(TenHinhThuc);
+            searchUrl += "&hinhThucThanhToan.TenHinhThuc=" + encodeURIComponent(TenHinhThuc);
             // searchUrl += "&xapXep=" + encodedXapXepValue;
             searchUrl += "&size=" + encodedSizeValue;
 
@@ -1186,6 +1188,7 @@
             document.getElementById('searchForm').submit();
         }
     </script>
+
     <script th:inline="javascript">
         function updateURL() {
             var tuNgay = document.getElementById("tuNgay").value;

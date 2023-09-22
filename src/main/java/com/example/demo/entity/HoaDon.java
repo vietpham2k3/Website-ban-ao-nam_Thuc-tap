@@ -56,9 +56,7 @@ public class HoaDon implements Serializable {
     @ManyToOne
     @JoinColumn(name = "IdKhuyenMai")
     private KhuyenMai khuyenMai;
-    @JsonIgnore
-    @OneToMany(mappedBy = "hoaDon")
-    private List<LichSuHoaDon> lichSuHoaDonList;
+
     @JsonIgnore
     @OneToMany(mappedBy = "hoaDon")
     private List<HoaDonChiTiet> hoaDonChiTiets;

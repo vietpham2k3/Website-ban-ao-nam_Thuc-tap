@@ -27,16 +27,15 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
 
     @Query("SELECT HD FROM HoaDon HD " +
             "JOIN HD.khachHang KH " +
-            "JOIN HD.khuyenMai KM " +
+//            "JOIN HD.khuyenMai KM " +
             "JOIN HD.hinhThucThanhToan HTTT " +
-            "WHERE HD.MaHoaDon LIKE CONCAT('%', ?1, '%') " +
-            "AND (KH.TenKhachHang IS NULL OR KH.TenKhachHang LIKE CONCAT('%', ?2, '%')) " +
-            "AND (HD.TongTienKhiGiam IS NULL OR HD.TongTienKhiGiam = ?3) " +
-            "AND (HD.TrangThai IS NULL OR HD.TrangThai = ?4) "+
-            "AND (?5 IS NULL OR HD.NgayCapNhat >= ?5) " +
-            "AND (?6 IS NULL OR HD.NgayCapNhat <= ?6) " +
-            "AND (HTTT.TenHinhThuc IS NULL OR HTTT.TenHinhThuc = ?7)"
-    )
+            "WHERE (:MaHoaDon IS NULL OR HD.MaHoaDon LIKE CONCAT('%', :MaHoaDon , '%')) " +
+            "AND (:TenKhachHang IS NULL OR KH.TenKhachHang LIKE CONCAT('%', :TenKhachHang , '%')) " +
+            "AND (:TongTienKhiGiam IS NULL OR HD.TongTienKhiGiam = :TongTienKhiGiam ) " +
+            "AND (:TrangThai IS NULL OR HD.TrangThai = :TrangThai ) "+
+            "AND (:tuNgay IS NULL OR HD.NgayCapNhat >= :tuNgay ) " +
+            "AND (:denNgay IS NULL OR HD.NgayCapNhat <= :denNgay ) " +
+            "AND (:TenHinhThuc IS NULL OR HTTT.TenHinhThuc LIKE CONCAT('%', :TenHinhThuc , '%') )" )
     Page<HoaDon> searchHD(@Param("MaHoaDon") String MaHoaDon, @Param("TenKhachHang") String TenKhachHang,
                           @Param("TongTienKhiGiam") BigDecimal TongTienKhiGiam,
                           @Param("TrangThai") Integer TrangThai, @Param("tuNgay") Date tuNgay,

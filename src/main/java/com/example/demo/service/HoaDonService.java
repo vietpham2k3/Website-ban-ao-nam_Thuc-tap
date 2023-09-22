@@ -31,8 +31,11 @@ public class HoaDonService {
 
     public Page<HoaDon> searchHD(String MaHoaDon, String TenKhachHang, BigDecimal TongTienKhiGiam, Integer TrangThai,
                                  Date tuNgay, Date denNgay, String TenHinhThuc, Pageable pageable){
+        Page<HoaDon> result = res.searchHD(MaHoaDon, TenKhachHang, TongTienKhiGiam, TrangThai, tuNgay,denNgay, TenHinhThuc, pageable);
 
-        return res.searchHD(MaHoaDon, TenKhachHang, TongTienKhiGiam, TrangThai, tuNgay,denNgay, TenHinhThuc, pageable);
+        System.out.println(result);
+
+        return result;
     }
 
 }

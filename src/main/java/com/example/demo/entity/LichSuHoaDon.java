@@ -35,6 +35,7 @@ public class LichSuHoaDon implements Serializable {
     private Integer TrangThai;
 
     @ManyToOne
-    @JoinColumn(name = "IdHoaDon")
+    @JoinColumn(name = "IdHoaDon",
+    referencedColumnName = "IdHoaDon")
     private HoaDon hoaDon;
 }
