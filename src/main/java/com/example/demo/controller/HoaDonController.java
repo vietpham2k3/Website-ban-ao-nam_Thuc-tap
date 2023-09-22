@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.HoaDon;
+import com.example.demo.entity.KhachHang;
 import com.example.demo.service.*;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Cell;
@@ -22,10 +23,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin/hoa-don/")
@@ -42,11 +40,12 @@ public class HoaDonController {
     public String hienThi(@RequestParam(defaultValue = "0") int page, Model model){
         Pageable pageable = PageRequest.of(page,5);
         model.addAttribute("listHD", serHD.pageHD(pageable));
-        model.addAttribute("searchHD", new HoaDon());
         model.addAttribute("listNV", serNV.getAll());
         model.addAttribute("listKM", serKM.getAll());
         model.addAttribute("listKH", serKH.getAll());
         model.addAttribute("listHTTT", serHTTT.getAll());
+        model.addAttribute("searchHD", new HoaDon());
+
         return "/admin/hoadon/hoa-don";
     }
 
@@ -64,8 +63,8 @@ public class HoaDonController {
         sortMapping.put(2, Sort.by("NgayCapNhat").ascending());
         sortMapping.put(3, Sort.by("TongTienKhiGiam").descending());
         sortMapping.put(4, Sort.by("TongTienKhiGiam").ascending());
-        sortMapping.put(5, Sort.by("TenKhachHang").descending());
-        sortMapping.put(6, Sort.by("TenKhachHang").ascending());
+        sortMapping.put(5, Sort.by("KH.TenKhachHang").descending());
+        sortMapping.put(6, Sort.by("KH.TenKhachHang").ascending());
         sortMapping.put(null, Sort.by("NgayCapNhat").descending());
 
         Sort sort = sortMapping.getOrDefault(xapXep, Sort.by("NgayCapNhat").descending());
@@ -76,18 +75,25 @@ public class HoaDonController {
 
         Pageable pageable = PageRequest.of(page, size, sort);
 
-        Page<HoaDon> listHD = serHD.searchHD(hoaDon.getMaHoaDon(), TenKhachHang, hoaDon.getTongTienKhiGiam(),
-                hoaDon.getTrangThai(), tuNgay != null ? Date.from(tuNgay.atZone(ZoneId.systemDefault()).toInstant()) : null,
-                denNgay != null ? Date.from(denNgay.atZone(ZoneId.systemDefault()).toInstant()) : null,
-               TenHinhThuc, pageable);
+
+
 
 //        model.addAttribute("listNV", serNV.getAll());
 //        model.addAttribute("listKM", serKM.getAll());
 //        model.addAttribute("listKH", serKH.getAll());
 //        model.addAttribute("listHTTT", serHTTT.getAll());
 
+
+
+        Page<HoaDon> listHD = serHD.searchHD(hoaDon.getMaHoaDon(), hoaDon.getKhachHang().getTenKhachHang() , hoaDon.getTongTienKhiGiam(),
+                hoaDon.getTrangThai(), tuNgay != null ? Date.from(tuNgay.atZone(ZoneId.systemDefault()).toInstant()) : null,
+                denNgay != null ? Date.from(denNgay.atZone(ZoneId.systemDefault()).toInstant()) : null,
+               hoaDon.getHinhThucThanhToan().getTenHinhThuc(), pageable);
+
         model.addAttribute("tuNgay", tuNgay);
         model.addAttribute("denNgay", denNgay);
+        model.addAttribute("TenKhachHang", TenKhachHang);
+        model.addAttribute("TenHinhThuc", TenHinhThuc);
 
         model.addAttribute("listHD", listHD);
         return "/admin/hoadon/hoa-don";
