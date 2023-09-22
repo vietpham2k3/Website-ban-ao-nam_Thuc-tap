@@ -8,6 +8,7 @@ import com.example.demo.request.PhongCach_CTSPRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -21,8 +22,11 @@ public class PhongCach_CTSPService {
         phongCach_ctsp.setChiTietSanPham(ChiTietSanPham.builder().IdCTSP(request.getIdCTSP()).build());
         return repository.save(phongCach_ctsp);
     }
-    public PhongCach_CTSP delete(UUID idCTSP){
-        PhongCach_CTSP phongCach_ctsp = repository.getbyCTSP(idCTSP);
-        return repository.save(phongCach_ctsp);
+    public void delete(UUID idCTSP){
+        List<PhongCach_CTSP> list = repository.getbyCTSP(idCTSP);
+        for(PhongCach_CTSP p : list){
+             repository.delete(p);
+        }
+
     }
 }

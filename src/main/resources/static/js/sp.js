@@ -49,6 +49,7 @@
             $scope.listKT = response.data;
         });
 
+
         // mausac, kichthuoc
         $scope.checkbox = function(mausac) {
             let listMS1 =  $scope.listMS;
@@ -117,7 +118,8 @@
                         idPhanLoai : $scope.phanloai,
                         idThuongHieu : $scope.thuonghieu,
                         idXuatXu : $scope.xuatxu,
-                        idSanPham : sanpham.data.idSanPham
+                        idSanPham : sanpham.data.idSanPham,
+                        ngayTao : new Date()
                     }).then(function(ctsp){
                         if(ctsp.status === 200){
                             //add phong cach
@@ -202,6 +204,145 @@
 
 
 
+        $scope.update = function(){
+            var idctsp = document.getElementById("idctsp").value;
+            $http.delete("/api/phongcach-ctsp/"+ idctsp);
+            $http.delete("/api/chatlieu-ctsp/"+ idctsp);
+            $http.delete("/api/kichthuoc-mausac-ctsp/"+ idctsp);
+            var fileanh = document.getElementById("fileUpload").files;
+            //update ctsp
+            $http.put("/api/ctsp/update/"+idctsp,{
+                giaBan : $scope.detail.giaBan,
+                giaNhap : $scope.detail.giaNhap,
+                giamGia : $scope.detail.giamGia,
+                moTa : $scope.detail.moTa,
+                idDanhMuc : $scope.detail.danhMuc.idDanhMuc,
+                idPhanLoai : $scope.detail.phanLoai.idPhanLoai,
+                idThuongHieu : $scope.detail.thuongHieu.idThuongHieu,
+                idXuatXu : $scope.detail.xuatXu.idXuatXu,
+                ngaySua : new Date()
+            }).then(function (ctsp){
+                //update sanpham
+                    $http.put("/api/sanpham/update/"+ ctsp.data.sanPham.idSanPham,{
+                        maSanPham : $scope.detail.sanPham.maSanPham ,
+                        tenSanPham : $scope.detail.sanPham.tenSanPham,
+                        ngaySua : new Date()
+                    }).then(function (sanpham){
+                        if (sanpham.status === 200){
+                            //update ảnh
+                            var img = new FormData();
+                            var fileanh = document.getElementById("fileUpload").files;
+
+                            if (fileanh.length > 0){
+                                $http.delete("/api/anh/"+sanpham.data.idSanPham);
+                                for (let i = 0; i < fileanh.length; i++) {
+                                    img.append('files',fileanh[i]);
+                                    $http.post("/api/upload",img, {
+                                        transformRequest: angular.identity,
+                                        headers: {
+                                            'Content-Type': undefined
+                                        }
+                                    }).then(function (image) {
+                                        $http.post("/api/anh",{
+                                            link : image.data[i],
+                                            tenAnh : sanpham.data.tenSanPham,
+                                            idSanPham : sanpham.data.idSanPham
+                                        });
+
+                                    });
+
+                                }
+                            }
+
+                        }
+                    })
+                //update phong cach
+                let listPC2 = $scope.listPC;
+                for(let i = 0 ; i < listPC2.length; i++){
+                    var checkPC = document.getElementById('PC'+listPC2[i].idPhongCach);
+                    if(checkPC.checked == true){
+                        $http.post("/api/phongcach-ctsp",{
+                            idPhongCach : listPC2[i].idPhongCach,
+                            idCTSP : ctsp.data.idCTSP
+                        });
+                    }
+                }
+
+                //update chat lieu
+                let listCL2 = $scope.listCL;
+                for(let i = 0 ; i < listCL2.length; i++){
+                    var checkcl = document.getElementById('CL'+listCL2[i].idChatLieu);
+                    if(checkcl.checked == true){
+                        $http.post("/api/chatlieu-ctsp",{
+                            idChatLieu : listCL2[i].idChatLieu,
+                            idCTSP : ctsp.data.idCTSP
+                        });
+                    }
+                }
+
+                //update mau sac va kich thuoc
+                let listMS3 = $scope.listMS;
+                let listKT1 = $scope.listKT;
+                for (let i = 0; i < listMS3.length; i++) {
+                    let mausacc = document.getElementById(listMS3[i].idMauSac);
+                    if (mausacc.checked === true){
+                        for (let j = 0; j < listKT1.length; j++) {
+                            var soLuong = document.getElementById('MS' +listMS3[i].idMauSac + 'KT'+listKT1[j].idKichThuoc).value;
+                            if (soLuong > 0){
+                                $http.post("/api/kichthuoc-mausac-ctsp",{
+                                    idMauSac : listMS3[i].idMauSac,
+                                    idKichThuoc : listKT1[j].idKichThuoc,
+                                    idCTSP : ctsp.data.idCTSP,
+                                    soLuong : soLuong
+                                });
+                            }
+
+                        }
+                    }
+
+                }
+                Swal.fire("Sửa sản phẩm thành công","success");
+
+            })
+
+        }
+
+        //detail
+        $scope.detail = function (){
+            var idctsp1 = document.getElementById("idctsp").value;
+            $http.get("/api/ctsp/"+idctsp1).then(function (detail){
+                $scope.detail = detail.data;
+                for (let i = 0; i < detail.data.phongCach_ctspList.length; i++) {
+                    document.getElementById('PC'+detail.data.phongCach_ctspList[i].phongCach.idPhongCach).checked = true;
+                }
+                for (let i = 0; i < detail.data.chatLieu_ctspList.length; i++) {
+                    document.getElementById('CL'+detail.data.chatLieu_ctspList[i].chatLieu.idChatLieu).checked = true;
+                }
+                var check;
+                for (let i = 0; i < detail.data.mauSac_kichThuoc_ctspList.length; i++) {
+                    document.getElementById(detail.data.mauSac_kichThuoc_ctspList[i].mauSac.idMauSac).checked = true;
+
+                        // document.getElementById('MS'+detail.data.mauSac_kichThuoc_ctspList[i].mauSac.idMauSac + 'KT'+detail.data.mauSac_kichThuoc_ctspList[i].kichThuoc.idKichThuoc).value = detail.data.mauSac_kichThuoc_ctspList[i].soLuong;
+
+                }
+                let listmau = $scope.listMS;
+                for (let i = 0; i < listmau.length; i++) {
+                    var checkBox = document.getElementById(listmau[i].idMauSac);
+                    if (checkBox.checked == true){
+                        $scope.checkbox(listmau[i].idMauSac);
+                    }
+                }
+                for (let i = 0; i < detail.data.mauSac_kichThuoc_ctspList.length; i++) {
+                    document.getElementById('MS'+detail.data.mauSac_kichThuoc_ctspList[i].mauSac.idMauSac + 'KT'+detail.data.mauSac_kichThuoc_ctspList[i].kichThuoc.idKichThuoc).value = detail.data.mauSac_kichThuoc_ctspList[i].soLuong;
+
+                }
+
+
+
+
+            })
+
+        }
 
 
 

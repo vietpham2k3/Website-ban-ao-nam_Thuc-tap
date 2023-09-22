@@ -35,7 +35,7 @@ public class SanPhamRestController {
     public ResponseEntity<?> add(@RequestBody SanPham sanPham){
         return ResponseEntity.ok(sanPhamService.add(sanPham));
     }
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id") Integer id,@RequestBody SanPham sanPham){
         return ResponseEntity.ok(sanPhamService.update(sanPham,id));
     }

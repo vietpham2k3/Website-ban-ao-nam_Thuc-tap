@@ -26,9 +26,10 @@ public class SanPhamService {
     }
     public SanPham update(SanPham sanPham,Integer id){
         SanPham sp = repository.getById(id);
+        sp.setMaSanPham(sanPham.getMaSanPham());
         sp.setTenSanPham(sanPham.getTenSanPham());
         sp.setNgayCapNhat(new Date());
-        return repository.save(sanPham);
+        return repository.save(sp);
     }
     public SanPham getById(Integer id){
         SanPham sanPham = repository.getById(id);

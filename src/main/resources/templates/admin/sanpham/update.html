@@ -34,6 +34,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- CSS Files -->
     <link id="pagestyle" href="../../../static/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet"/>
@@ -43,7 +44,7 @@
 
 </head>
 
-<body class="g-sidenav-show  bg-gray-100" ng-app="myApp" ng-controller="ctrl" >
+<body class="g-sidenav-show  bg-gray-100" ng-app="myApp" ng-controller="ctrl" data-ng-init="detail()">
 
 <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
        id="sidenav-main" th:insert="admin/layout/navbar_slide.html :: slide">
@@ -68,50 +69,50 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Mã Sản Phẩm</label> <input ng-model="masanpham">
+                            <label>Mã Sản Phẩm</label> <input readonly ng-model="detail.sanPham.maSanPham">
                         </div>
                         <div class="col-md-6">
-                            <label>Tên Sản Phẩm</label> <input ng-model="tensanpham">
+                            <label>Tên Sản Phẩm</label> <input ng-model="detail.sanPham.tenSanPham">
                         </div>
                         <div class="col-md-6">
-                            <label> Giá Nhập</label> <input ng-model="gianhap">
+                            <label> Giá Nhập</label> <input ng-model="detail.giaNhap">
                         </div>
                         <div class="col-md-6">
-                            <label>Giá Bán</label> <input ng-model="giaban">
+                            <label>Giá Bán</label> <input ng-model="detail.giaBan">
                         </div>
                         <div class="col-md-6">
-                            <label>Giảm Giá</label> <input ng-model="giamgia">
+                            <label>Giảm Giá</label> <input ng-model="detail.giamGia">
                         </div>
                         <div class="col-md-6">
-                            <label>Mô Tả</label> <input ng-model="mota">
+                            <label>Mô Tả</label> <input ng-model="detail.moTa">
                         </div>
                         <div class="col-md-6">
-                            <label>Danh Mục</label> <select ng-model="danhmuc">
-                            <option ng-repeat="dm in listDM" value="{{dm.idDanhMuc}}">
+                            <label>Danh Mục</label> <select ng-model="detail.danhMuc">
+                            <option ng-repeat="dm in listDM" value="{{dm.idDanhMuc}}" ng-selected="detail.danhMuc.idDanhMuc == dm.idDanhMuc">
                                 {{dm.tenDanhMuc}}</option></select>
                         </div>
                         <div class="col-md-6">
                             <label>Phân Loại</label>
-                            <select ng-model="phanloai">
-                                <option ng-repeat="pl in listPL" value="{{pl.idPhanLoai}}">
+                            <select ng-model="detail.phanLoai">
+                                <option ng-repeat="pl in listPL" value="{{pl.idPhanLoai}}" ng-selected="detail.phanLoai.idPhanLoai == pl.idPhanLoai">
                                     {{pl.tenPhanLoai}}</option></select>
                         </div>
                         <div class="col-md-6">
-                            <label>Thương Hiệu</label> <select ng-model="thuonghieu">
-                            <option ng-repeat="th in listTH" value="{{th.idThuongHieu}}">
+                            <label>Thương Hiệu</label> <select ng-model="detail.thuongHieu">
+                            <option ng-repeat="th in listTH" value="{{th.idThuongHieu}}" ng-selected="detail.thuongHieu.idThuongHieu == th.idThuongHieu">
                                 {{th.tenThuongHieu}}</option></select>
                         </div>
                         <div class="col-md-6">
                             <label>Xuất Xứ</label>
-                            <select ng-model="xuatxu">
-                                <option ng-repeat="xx in listXX" value="{{xx.idXuatXu}}">
+                            <select ng-model="detail.xuatXu">
+                                <option ng-repeat="xx in listXX" value="{{xx.idXuatXu}}" ng-selected="detail.xuatXu.idXuatXu == xx.idXuatXu">
                                     {{xx.tenXuatXu}}</option></select>
                         </div>
                         <div class="col-md-6">
-                            <label>Phong Cách</label> <span style="padding-left: 5px" ng-repeat="pc in listPC"><input id="{{pc.idPhongCach}}" type="checkbox" value="{{pc.idPhongCach}}"> {{pc.tenPhongCach}}</span>
+                            <label>Phong Cách</label> <span style="padding-left: 5px" ng-repeat="pc in listPC"><input id="PC{{pc.idPhongCach}}" type="checkbox" value="{{pc.idPhongCach}}"> {{pc.tenPhongCach}}</span>
                         </div>
                         <div class="col-md-6">
-                            <label>Chất Liệu</label> <span style="padding-left: 5px" ng-repeat="cl in listCL"><input id="{{cl.idChatLieu}}"  type="checkbox" value="{{cl.idChatLieu}}"> {{cl.tenChatLieu}}</span>
+                            <label>Chất Liệu</label> <span style="padding-left: 5px" ng-repeat="cl in listCL"><input id="CL{{cl.idChatLieu}}"  type="checkbox" value="{{cl.idChatLieu}}"> {{cl.tenChatLieu}}</span>
                         </div>
                         <div class="col-md-6">
                             <label>Màu Sắc</label>
@@ -127,13 +128,13 @@
                         </div>
                     </div>
 
-                    <div style="padding-top: 30px"><button  class="btn btn-danger" ng-click="add()">Thêm</button></div>
+                    <div style="padding-top: 30px"><button  class="btn btn-danger" ng-click="update()">Sửa</button></div>
 
                 </div>
             </div>
         </form>
     </div>
-        <script src="../../../static/js/sp.js"></script>
+    <script src="../../../static/js/sp.js"></script>
 
         <!--    endNoidung-->
 

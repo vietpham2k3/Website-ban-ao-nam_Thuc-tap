@@ -7,6 +7,9 @@ import com.example.demo.request.KichThuoc_MauSac_CTSPRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class KichThuoc_MauSac_CTSPService {
     @Autowired
@@ -19,5 +22,12 @@ public class KichThuoc_MauSac_CTSPService {
         mauSac_kichThuoc_ctsp.setChiTietSanPham(ChiTietSanPham.builder().IdCTSP(request.getIdCTSP()).build());
         mauSac_kichThuoc_ctsp.setSoLuong(request.getSoLuong());
         return repository.save(mauSac_kichThuoc_ctsp);
+    }
+    public void delete(UUID idCTSP){
+        List<MauSac_KichThuoc_CTSP> list = repository.getbyCTSP(idCTSP);
+        for(MauSac_KichThuoc_CTSP p : list){
+            repository.delete(p);
+        }
+
     }
 }

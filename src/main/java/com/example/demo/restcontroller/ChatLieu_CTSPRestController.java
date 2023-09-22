@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/chatlieu-ctsp")
@@ -17,5 +19,11 @@ public class ChatLieu_CTSPRestController {
     @PostMapping()
     public ResponseEntity<?> add(@RequestBody ChatLieu_CTSPRequest request){
         return ResponseEntity.ok(service.add(request));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") UUID id){
+        service.delete(id);
+        return ResponseEntity.ok("delete");
+
     }
 }

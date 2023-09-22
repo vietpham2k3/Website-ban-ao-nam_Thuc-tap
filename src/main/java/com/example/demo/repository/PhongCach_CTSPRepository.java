@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 @Repository
 public interface PhongCach_CTSPRepository extends JpaRepository<PhongCach_CTSP, UUID> {
 
     @Query("Select e from PhongCach_CTSP  e  where e.chiTietSanPham.IdCTSP = :id")
-    public PhongCach_CTSP getbyCTSP(@Param("id") UUID id);
+    public List<PhongCach_CTSP> getbyCTSP(@Param("id") UUID id);
 }

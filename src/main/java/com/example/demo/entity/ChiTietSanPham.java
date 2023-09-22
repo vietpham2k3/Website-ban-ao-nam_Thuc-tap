@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -50,7 +51,7 @@ public class ChiTietSanPham implements Serializable {
     @ManyToOne
     @JoinColumn(name = "IdXuatXu")
     private XuatXu xuatXu;
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "IdDanhMuc")
     private DanhMuc danhMuc;
     @OneToMany(mappedBy = "chiTietSanPham")

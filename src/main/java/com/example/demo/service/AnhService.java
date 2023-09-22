@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Anh;
+import com.example.demo.entity.ChatLieu_CTSP;
 import com.example.demo.entity.SanPham;
 import com.example.demo.repository.AnhRepository;
 import com.example.demo.request.ImageRequest;
@@ -26,12 +27,12 @@ public class AnhService {
         anh.setSanPham(SanPham.builder().IdSanPham(request.getIdSanPham()).build());
         return repository.save(anh);
     }
-    public void delete(UUID id){
-        Optional<Anh> optional = repository.findById(id);
-        optional.map(o -> {
-             repository.delete(o);
-            return o;
-        }).orElse(null);
+    public void delete(Integer idSP){
+        List<Anh> list = repository.getAnhBySanPham(idSP);
+        for(Anh p : list){
+            repository.delete(p);
+        }
+
     }
 
 

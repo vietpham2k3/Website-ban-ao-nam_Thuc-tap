@@ -8,6 +8,9 @@ import com.example.demo.request.PhongCach_CTSPRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 public class ChatLieu_CTSPService {
     @Autowired
@@ -18,5 +21,12 @@ public class ChatLieu_CTSPService {
         chatLieu_ctsp.setChatLieu(ChatLieu.builder().IdChatLieu(request.getIdChatLieu()).build());
         chatLieu_ctsp.setChiTietSanPham(ChiTietSanPham.builder().IdCTSP(request.getIdCTSP()).build());
         return repository.save(chatLieu_ctsp);
+    }
+    public void delete(UUID idCTSP){
+        List<ChatLieu_CTSP> list = repository.getbyCTSP(idCTSP);
+        for(ChatLieu_CTSP p : list){
+            repository.delete(p);
+        }
+
     }
 }
