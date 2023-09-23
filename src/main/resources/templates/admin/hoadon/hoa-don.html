@@ -853,19 +853,31 @@
                                             <ul class="pagination">
                                                 <li class="page-item" th:classappend="${listHD.number == 0} ? disabled">
                                                     <a class="page-link"
-                                                       th:href="@{hien-thi(page=0)}">First</a>
+                                                       th:href="@{/admin/hoa-don/hien-thi-page-search(page=0,
+                                                    MaHoaDon=${param.MaHoaDon}, khachHang.TenKhachHang=${param.TenKhachHang},
+                                                    TongTienKhiGiam=${param.TongTienKhiGiam},
+                                                     TrangThai=${param.TrangThai}, tuNgay=${param.tuNgay}, denNgay=${param.denNgay},
+                                                      hinhThucThanhToan.TenHinhThuc=${param.TenHinhThuc},
+                                                      xapXep=${param.xapXep},size=${param.size})}">First</a>
                                                 </li>
                                                 <li class="page-item"
                                                     th:classappend="${listHD.number == 0} ? disabled">
                                                     <a class="page-link"
-                                                       th:href="@{hien-thi(page=${listHD.number - 1})}">
+                                                       th:href="@{/admin/hoa-don/hien-thi-page-search(page=${listHD.number - 1}, MaHoaDon=${param.MaHoaDon},
+                                                   khachHang.TenKhachHang=${param.TenKhachHang}, TongTienKhiGiam=${param.TongTienKhiGiam},
+                                                    TrangThai=${param.TrangThai}, tuNgay=${param.tuNgay}, denNgay=${param.denNgay},
+                                                     hinhThucThanhToan.TenHinhThuc=${param.TenHinhThuc}, xapXep=${param.xapXep},size=${param.size})}">
                                                         <i class="fa-solid fa-angles-left fa-lg"></i>
                                                     </a>
                                                 </li>
                                                 <li class="page-item"
                                                     th:each="pageNumber : ${#numbers.sequence(0, listHD.totalPages - 1)}">
                                                     <a class="page-link"
-                                                       th:href="@{hien-thi(page=${pageNumber})}"
+                                                       th:href="@{/admin/hoa-don/hien-thi-page-search(page=${pageNumber},
+                                                    MaHoaDon=${param.MaHoaDon},  khachHang.TenKhachHang=${param.TenKhachHang}, TongTienKhiGiam=${param.TongTienKhiGiam},
+                                                    TrangThai=${param.TrangThai}, tuNgay=${param.tuNgay}, denNgay=${param.denNgay},
+                                                     hinhThucThanhToan.TenHinhThuc=${param.TenHinhThuc},
+                                                     xapXep=${param.xapXep},size=${param.size})}"
                                                        th:text="${pageNumber + 1}"
                                                        th:classappend="${pageNumber == listHD.number} ? active">
                                                     </a>
@@ -873,14 +885,20 @@
                                                 <li class="page-item"
                                                     th:classappend="${listHD.number == listHD.totalPages - 1} ? disabled">
                                                     <a class="page-link"
-                                                       th:href="@{hien-thi(page=${listHD.number + 1})}">
+                                                       th:href="@{/admin/hoa-don/hien-thi-page-search(page=${listHD.number + 1}, MaHoaDon=${param.MaHoaDon},
+                                                   khachHang.TenKhachHang=${param.TenKhachHang}, TongTienKhiGiam=${param.TongTienKhiGiam},
+                                                    TrangThai=${param.TrangThai}, tuNgay=${param.tuNgay}, denNgay=${param.denNgay},
+                                                     hinhThucThanhToan.TenHinhThuc=${param.TenHinhThuc}, xapXep=${param.xapXep},size=${param.size})}">
                                                         <i class="fa-solid fa-angles-right fa-lg"></i>
                                                     </a>
                                                 </li>
                                                 <li class="page-item"
                                                     th:classappend="${listHD.number == listHD.totalPages - 1} ? disabled"><a
                                                         class="page-link"
-                                                        th:href="@{hien-thi(page=${listHD.totalPages - 1})}">Last</a>
+                                                        th:href="@{/admin/hoa-don/hien-thi-page-search(page=${listHD.totalPages - 1}, MaHoaDon=${param.MaHoaDon},
+                                                    khachHang.TenKhachHang=${param.TenKhachHang}, TongTienKhiGiam=${param.TongTienKhiGiam},
+                                                    TrangThai=${param.TrangThai}, tuNgay=${param.tuNgay}, denNgay=${param.denNgay},
+                                                     hinhThucThanhToan.TenHinhThuc=${param.TenHinhThuc},  xapXep=${param.xapXep},size=${param.size})}">Last</a>
                                                 </li>
                                             </ul>
                                         </nav>
