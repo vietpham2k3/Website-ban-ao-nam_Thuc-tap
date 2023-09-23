@@ -21,6 +21,10 @@ public class HoaDonService {
 //        return res.hienThi();
 //    }
 
+    public HoaDon detail(Integer id){
+        return res.findById(id).orElse(null);
+    }
+
     public Page<HoaDon> pageHD(Pageable pageable){
         return res.findAll(pageable);
     }

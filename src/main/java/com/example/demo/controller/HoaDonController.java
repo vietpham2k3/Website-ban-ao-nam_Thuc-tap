@@ -75,16 +75,6 @@ public class HoaDonController {
 
         Pageable pageable = PageRequest.of(page, size, sort);
 
-
-
-
-//        model.addAttribute("listNV", serNV.getAll());
-//        model.addAttribute("listKM", serKM.getAll());
-//        model.addAttribute("listKH", serKH.getAll());
-//        model.addAttribute("listHTTT", serHTTT.getAll());
-
-
-
         Page<HoaDon> listHD = serHD.searchHD(hoaDon.getMaHoaDon(), hoaDon.getKhachHang().getTenKhachHang() , hoaDon.getTongTienKhiGiam(),
                 hoaDon.getTrangThai(), tuNgay != null ? Date.from(tuNgay.atZone(ZoneId.systemDefault()).toInstant()) : null,
                 denNgay != null ? Date.from(denNgay.atZone(ZoneId.systemDefault()).toInstant()) : null,
@@ -97,6 +87,17 @@ public class HoaDonController {
 
         model.addAttribute("listHD", listHD);
         return "/admin/hoadon/hoa-don";
+    }
+
+    @GetMapping("view-hdct/{id}")
+    public String details(@PathVariable Integer id,Model model){
+        model.addAttribute("HDCT", serHD.detail(id));
+        model.addAttribute("listNV", serNV.getAll());
+        model.addAttribute("listKM", serKM.getAll());
+        model.addAttribute("listKH", serKH.getAll());
+        model.addAttribute("listHTTT", serHTTT.getAll());
+
+        return "/admin/hoadon/hoa-don-chi-tiet";
     }
 
 
