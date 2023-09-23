@@ -776,7 +776,7 @@
                                                                     <div style="display: flex;justify-content: center;"
                                                                          class="button-group">
                                                                         <a class="view-hoa-don"
-                                                                           th:href="@{view-hoa-don/{IdHoaDon}(IdHoaDon=${hd.IdHoaDon})}"
+                                                                           th:href="@{view-hdct/{IdHoaDon}(IdHoaDon=${hd.IdHoaDon})}"
                                                                            data-toggle="tooltip" title="Chi Tiết">
                                                                             <i style="color:#0c5460"
                                                                                class="fa-solid fa-circle-info fa-shake fa-lg"></i>
@@ -784,6 +784,14 @@
                                                                     </div>
                                                                 </td>
                                                             </tr>
+
+<!--                                                            &lt;!&ndash; Modal &ndash;&gt;-->
+<!--                                                            <div id="myModal" class="modal">-->
+<!--                                                                <div class="modal-content">-->
+<!--                                                                    <span class="close">&times;</span>-->
+<!--                                                                    <div id="modalContent"></div>-->
+<!--                                                                </div>-->
+<!--                                                            </div>-->
 
                                                             <tr th:if="${listHD.content.size() == 0}">
                                                                 <div class="col-sm-12">

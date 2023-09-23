@@ -43,5 +43,10 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
                           Pageable pageable);
 
 
-
+    @Query(value = "SELECT HD.MaHoaDon, KH.TenKhachHang,HD.NgayCapNhat,HD.TongTienKhiGiam," +
+            "KM.TenKhuyenMai, HTTT.TenHinhThuc, HD.TrangThai\n" +
+            "FROM HoaDon HD JOIN KhachHang KH ON HD.IdKhachHang = KH.IdKhachHang\n" +
+            "JOIN KhuyenMai KM ON HD.IdKhuyenMai = KM.IdKhuyenMai \n" +
+            "JOIN HinhThucThanhToan HTTT ON HD.IdHTTT = HTTT.IdHTTT", nativeQuery = true)
+    public List<HoaDon> hienThiDetail();
 }
