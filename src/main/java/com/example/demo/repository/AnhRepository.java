@@ -13,5 +13,5 @@ import java.util.UUID;
 public interface AnhRepository extends JpaRepository<Anh, UUID> {
 
     @Query(value = "Select a from Anh a where a.sanPham.IdSanPham = :id")
-    List<Anh> getAllBySanPham(@Param("id") Integer id);
+    List<Anh> getAnhBySanPham(@Param("id") Integer id);
 }

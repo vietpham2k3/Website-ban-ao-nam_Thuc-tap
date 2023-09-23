@@ -35,6 +35,7 @@
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="../../../static/assets/css/nucleo-svg.css" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <!-- CSS Files -->
     <link id="pagestyle" href="../../../static/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet"/>
     <!-- Nepcha Analytics (nepcha.com) -->
@@ -71,17 +72,17 @@
             </thead>
             <tbody>
 
-            <tr ng-repeat="sp in list">
-                <td> {{$index + 1}}</td>
-                <td><img style="width: 100px;height: 100px" src="{{sp.link}}"></td>
-                <td>{{sp.maSanPham}}</td>
-                <td>{{sp.tenSanPham}}</td>
-                <td>{{sp.giaBan}}</td>
-                <td>{{sp.tenDanhMuc}}</td>
-                <td>{{sp.tenThuongHieu}}</td>
-                <td><a href="/admin/san-pham/update/{{sp.idCTSP}}"><button class="btn btn-behance">Update</button></a>
-                    <a href="/admin/san-pham/delete/{{sp.idCTSP}}"><button class="btn btn-danger">Delete</button></a>
-                </td>
+            <tr ng-repeat="sp in list" ng-if="sp.trangThai == 0">
+                   <td> {{$index + 1}}</td>
+                   <td><img style="width: 100px;height: 100px" src="{{sp.sanPham.anhs[0].link}}"></td>
+                   <td>{{sp.sanPham.maSanPham}}</td>
+                   <td>{{sp.sanPham.tenSanPham}}</td>
+                   <td>{{sp.giaBan}}</td>
+                   <td>{{sp.danhMuc.tenDanhMuc}}</td>
+                   <td>{{sp.thuongHieu.tenThuongHieu}}</td>
+                   <td><a href="/admin/san-pham/update/{{sp.idCTSP}}"><button class="btn btn-behance" ng-click="getbyid(sp)">Update</button></a>
+                       <button class="btn btn-danger" ng-click="delete(sp.idCTSP)">Delete</button>
+                   </td>
             </tr>
             </tbody>
         </table>

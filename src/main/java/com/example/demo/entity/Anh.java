@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -32,6 +33,7 @@ public class Anh implements Serializable {
     private String NguoiCapNhat;
     @ManyToOne
     @JoinColumn(name = "IdSanPham")
+    @JsonBackReference
     private SanPham sanPham;
 
 }

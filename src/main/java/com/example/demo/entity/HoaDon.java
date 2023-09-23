@@ -23,6 +23,8 @@ public class HoaDon implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdHoaDon")
     private Integer IdHoaDon;
+    @Column(name = "MaHoaDon")
+    private String MaHoaDon;
     @Column(name = "TongTien")
     private BigDecimal TongTien;
     @Column(name = "TongTienKhiGiam")
@@ -54,9 +56,7 @@ public class HoaDon implements Serializable {
     @ManyToOne
     @JoinColumn(name = "IdKhuyenMai")
     private KhuyenMai khuyenMai;
-    @JsonIgnore
-    @OneToMany(mappedBy = "hoaDon")
-    private List<LichSuHoaDon> lichSuHoaDonList;
+
     @JsonIgnore
     @OneToMany(mappedBy = "hoaDon")
     private List<HoaDonChiTiet> hoaDonChiTiets;

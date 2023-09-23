@@ -27,6 +27,7 @@
     <link href="../../../static/assets/css/nucleo-icons.css" rel="stylesheet"/>
     <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>
     <link href="../../../static/css/sanpham.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <script src="../../../static/js/sanpham.js" crossorigin="anonymous"></script>
@@ -55,67 +56,68 @@
     <!--noidung-->
     <div class="container-fluid py-4">
         <div> <h3>Thêm Sản Phẩm</h3></div>
+        <form class="form-control">
            <div class="row">
+
                <div class="col-md-3 anh">
                    <div>Ảnh đại diện sản phẩm</div>
                    <img id="output"/>
-                   <input type="file" accept="image/*" onchange="loadFile(event)" multiple >
+                   <input file-model="image" id="fileUpload" type="file" accept="image/*" onchange="loadFile(event)" multiple >
                </div>
                <div class="col-md-9">
-                   <form class="form-control">
+
                        <div class="row">
                            <div class="col-md-6">
-                               <label>Mã Sản Phẩm</label> <input>
+                               <label>Mã Sản Phẩm</label> <input ng-model="masanpham">
                            </div>
                            <div class="col-md-6">
-                               <label>Tên Sản Phẩm</label> <input>
+                               <label>Tên Sản Phẩm</label> <input ng-model="tensanpham">
                            </div>
                            <div class="col-md-6">
-                              <label> Giá Nhập</label> <input>
+                              <label> Giá Nhập</label> <input ng-model="gianhap">
                            </div>
                            <div class="col-md-6">
-                               <label>Giá Bán</label> <input>
+                               <label>Giá Bán</label> <input ng-model="giaban">
                            </div>
                            <div class="col-md-6">
-                               <label>Giảm Giá</label> <input>
+                               <label>Giảm Giá</label> <input ng-model="giamgia">
                            </div>
                            <div class="col-md-6">
-                               <label>Mô Tả</label> <input>
+                               <label>Mô Tả</label> <input ng-model="mota">
                            </div>
                            <div class="col-md-6">
-                               <label>Danh Mục</label> <select >
+                               <label>Danh Mục</label> <select ng-model="danhmuc">
                                <option ng-repeat="dm in listDM" value="{{dm.idDanhMuc}}">
                                {{dm.tenDanhMuc}}</option></select>
                            </div>
                            <div class="col-md-6">
                                <label>Phân Loại</label>
-                             <select >
+                             <select ng-model="phanloai">
                                <option ng-repeat="pl in listPL" value="{{pl.idPhanLoai}}">
                                    {{pl.tenPhanLoai}}</option></select>
                            </div>
                            <div class="col-md-6">
-                               <label>Thương Hiệu</label> <select >
+                               <label>Thương Hiệu</label> <select ng-model="thuonghieu">
                                <option ng-repeat="th in listTH" value="{{th.idThuongHieu}}">
                                    {{th.tenThuongHieu}}</option></select>
                            </div>
                            <div class="col-md-6">
                                <label>Xuất Xứ</label>
-                               <select >
+                               <select ng-model="xuatxu">
                                    <option ng-repeat="xx in listXX" value="{{xx.idXuatXu}}">
                                        {{xx.tenXuatXu}}</option></select>
                            </div>
                            <div class="col-md-6">
-                               <label>Phong Cách</label> <span style="padding-left: 5px" ng-repeat="pc in listPC"><input  type="checkbox" value="{{pc.idPhongCach}}"> {{pc.tenPhongCach}}</span>
+                               <label>Phong Cách</label> <span style="padding-left: 5px" ng-repeat="pc in listPC"><input id="PC{{pc.idPhongCach}}" type="checkbox" value="{{pc.idPhongCach}}"> {{pc.tenPhongCach}}</span>
                            </div>
                            <div class="col-md-6">
-                               <label>Chất Liệu</label> <span style="padding-left: 5px" ng-repeat="cl in listCL"><input  type="checkbox" value="{{cl.idChatLieu}}"> {{cl.tenChatLieu}}</span>
+                               <label>Chất Liệu</label> <span style="padding-left: 5px" ng-repeat="cl in listCL"><input id="CL{{cl.idChatLieu}}"  type="checkbox" value="{{cl.idChatLieu}}"> {{cl.tenChatLieu}}</span>
                            </div>
                            <div class="col-md-6">
                                <label>Màu Sắc</label>
                                <span ng-repeat="ms in listMS">
                                     <input type="checkbox" id="{{ms.idMauSac}}" ng-click="checkbox(ms.idMauSac)">{{ms.tenMauSac}}
                                </span>
-
 
                            </div>
                            <div>
@@ -125,10 +127,11 @@
                            </div>
                        </div>
 
-                        <div style="padding-top: 30px"><button  class="btn btn-danger">Thêm</button></div>
-                   </form>
-               </div>
+                        <div style="padding-top: 30px"><button  class="btn btn-danger" ng-click="add()">Thêm</button></div>
 
+               </div>
+           </div>
+               </form>
            </div>
         <script src="../../../static/js/sp.js"></script>
 

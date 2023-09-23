@@ -2,12 +2,11 @@ package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "SanPham")
@@ -37,11 +36,10 @@ public class SanPham {
     private Integer TrangThai;
     @JsonIgnore
     @OneToMany(mappedBy = "sanPham")
-    private List<DanhGia> danhGias;
+    private Set<DanhGia> danhGias;
+    @OneToMany(mappedBy = "sanPham")
+    private Set<Anh> anhs = new HashSet<Anh>();
     @JsonIgnore
     @OneToMany(mappedBy = "sanPham")
-    private List<Anh> anhs;
-    @JsonIgnore
-    @OneToMany(mappedBy = "sanPham")
-    private List<ChiTietSanPham> chiTietSanPhams;
+    private Set<ChiTietSanPham> chiTietSanPhams;
 }

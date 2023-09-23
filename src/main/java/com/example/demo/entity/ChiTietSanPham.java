@@ -5,12 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Entity
 @Table(name = "ChiTietSanPham")
@@ -55,15 +54,12 @@ public class ChiTietSanPham implements Serializable {
     @ManyToOne
     @JoinColumn(name = "IdDanhMuc")
     private DanhMuc danhMuc;
-    @JsonIgnore
     @OneToMany(mappedBy = "chiTietSanPham")
-    private List<MauSac_KichThuoc_CTSP> mauSac_kichThuoc_ctspList;
-    @JsonIgnore
+    private Set<MauSac_KichThuoc_CTSP> mauSac_kichThuoc_ctspList = new HashSet<MauSac_KichThuoc_CTSP>();
     @OneToMany(mappedBy = "chiTietSanPham")
-    private List<ChatLieu_CTSP> chatLieu_ctspList;
-    @JsonIgnore
+    private Set<ChatLieu_CTSP> chatLieu_ctspList = new HashSet<ChatLieu_CTSP>();
     @OneToMany(mappedBy = "chiTietSanPham")
-    private List<PhongCach_CTSP> phongCach_ctspList;
+    private Set<PhongCach_CTSP> phongCach_ctspList = new HashSet<PhongCach_CTSP>();
     @JsonIgnore
     @OneToMany(mappedBy = "chiTietSanPham")
     private List<GioHangChiTiet> gioHangChiTiets;
