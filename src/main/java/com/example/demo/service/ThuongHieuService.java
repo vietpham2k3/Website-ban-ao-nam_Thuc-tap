@@ -5,8 +5,11 @@ import com.example.demo.entity.ThuongHieu;
 import com.example.demo.repository.DanhMucRepository;
 import com.example.demo.repository.ThuongHieuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,5 +18,24 @@ public class ThuongHieuService {
     private ThuongHieuRepository repository;
     public List<ThuongHieu> getAll(){
         return  repository.findAll();
+    }
+
+    public Page<ThuongHieu> pageTH(Pageable pageable){
+        return repository.findAll(pageable);
+    }
+
+    public ThuongHieu save(ThuongHieu thuongHieu){
+        return repository.save(thuongHieu);
+    }
+
+    public ThuongHieu detail(Integer id){
+        return repository.findById(id).orElse(null);
+    }
+
+    public ThuongHieu xoa(Integer id){
+        ThuongHieu thuongHieu = detail(id);
+        thuongHieu.setTrangThai(1);
+        thuongHieu.setNgayCapNhat(new Date());
+        return thuongHieu;
     }
 }

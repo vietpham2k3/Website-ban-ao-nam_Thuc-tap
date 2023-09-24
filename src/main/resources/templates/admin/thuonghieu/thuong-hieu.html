@@ -1,0 +1,999 @@
+<!--
+=========================================================
+* Soft UI Dashboard - v1.0.7
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard
+* Copyright 2023 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:thnum="http://www.thymeleaf.org/extras/numbers">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../../static/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" th:href="@{/static/images/shop.png}">
+    <title>Quản Lý Hóa Đơn</title>
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link href="../../../static/assets/css/nucleo-icons.css" rel="stylesheet"/>
+    <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link id="pagestyle" href="../../../static/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet"/>
+
+    <!-- App css -->
+    <script src="https://kit.fontawesome.com/52ef4965e2.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap 5 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+          integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+    <!-- Nepcha Analytics (nepcha.com) -->
+    <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+    <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+
+        :root {
+            --color-light: white;
+            --color-dark: #212121;
+            --color-signal: #fab700;
+
+            --color-background: var(--color-light);
+            --color-text: var(--color-dark);
+            --color-accent: var(--color-signal);
+
+            --size-bezel: .05rem;
+            --size-radius: 1px;
+
+            /*line-height: 1.4;*/
+
+            font-family: 'Inter', sans-serif;
+            font-size: calc(.6rem + .4vw);
+            color: var(--color-text);
+            background: none;
+            /*font-weight: 300;*/
+            padding: 0 calc(var(--size-bezel) * 3);
+        }
+
+        .input {
+            position: relative;
+        }
+
+        .input__label {
+            position: absolute;
+            left: 0;
+            top: 0;
+            padding: calc(var(--size-bezel) * 0.75) calc(var(--size-bezel) * .5);
+            margin: calc(var(--size-bezel) * 0.75 + 3px) calc(var(--size-bezel) * .5);
+            background: pink;
+            white-space: nowrap;
+            transform: translate(0, 0);
+            transform-origin: 0 0;
+            background: var(--color-background);
+            transition: transform 120ms ease-in;
+            font-weight: bold;
+            /*line-height: 1.2;*/
+        }
+
+        .input__field {
+            box-sizing: border-box;
+            display: block;
+            width: 100%;
+            border: 3px solid currentColor;
+            padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
+            color: currentColor;
+            background: transparent;
+            border-radius: var(--size-radius);
+        }
+
+        .input__field:not(:placeholder-shown) + .input__label {
+            transform: translate(.25rem, -65%) scale(.8);
+            color: var(--color-accent);
+        }
+
+        .button-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .export-form {
+            margin: 0;
+            padding: 0;
+        }
+
+        .export-button {
+            border: none;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .export-button a {
+            text-decoration: none;
+        }
+
+        .export-button img {
+            vertical-align: middle;
+        }
+
+        .search-date-input {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 6px;
+            font-size: 14px;
+            /*Thêm các thuộc tính khác tùy chỉnh kiểu dáng*/
+        }
+
+        .search-button {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .search-button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .search-button .btn-icon,
+        .search-button .separator,
+        .search-button .btn-text {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .search-button .separator {
+            margin: 0 5px;
+        }
+
+        .search-button .btn-icon i {
+            color: white;
+        }
+
+        .search-button .btn-text {
+            font-weight: bold;
+            color: white;
+        }
+
+        .search-button {
+            background-color: blue;
+            color: white;
+            border-color: blue;
+        }
+
+        .search-button .btn-icon,
+        .search-button .separator,
+        .search-button .btn-text {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .search-button .separator {
+            margin: 0 5px;
+            color: white;
+        }
+
+        .search-button .btn-icon i {
+            color: white;
+        }
+
+        .search-button .btn-text {
+            font-weight: bold;
+        }
+
+        .shadow-button {
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .shadow-button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+
+    <style>
+        .alert > .start-icon {
+            margin-right: 0;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .alert > .start-icon {
+            margin-right: 5px;
+        }
+
+        .greencross {
+            font-size: 18px;
+            color: #25ff0b;
+            text-shadow: none;
+        }
+
+        .alert-simple.alert-success {
+            border: 1px solid rgba(36, 241, 6, 0.46);
+            background-color: rgba(7, 149, 66, 0.12156862745098039);
+            box-shadow: 0px 0px 2px #259c08;
+            color: #0ad406;
+            text-shadow: 2px 1px #00040a;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .alert-success:hover {
+            background-color: rgba(7, 149, 66, 0.35);
+            transition: 0.5s;
+        }
+
+        .alert-simple.alert-info {
+            border: 1px solid rgba(6, 44, 241, 0.46);
+            background-color: rgba(7, 73, 149, 0.12156862745098039);
+            box-shadow: 0px 0px 2px #0396ff;
+            color: #0396ff;
+            text-shadow: 2px 1px #00040a;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .alert-info:hover {
+            background-color: rgba(7, 73, 149, 0.35);
+            transition: 0.5s;
+        }
+
+        .blue-cross {
+            font-size: 18px;
+            color: #0bd2ff;
+            text-shadow: none;
+        }
+
+        .alert-simple.alert-warning {
+            border: 1px solid rgba(241, 142, 6, 0.81);
+            background-color: rgba(220, 128, 1, 0.16);
+            box-shadow: 0px 0px 2px #ffb103;
+            color: #ffb103;
+            text-shadow: 2px 1px #00040a;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .alert-warning:hover {
+            background-color: rgba(220, 128, 1, 0.33);
+            transition: 0.5s;
+        }
+
+        .warning {
+            font-size: 18px;
+            color: #ffb40b;
+            text-shadow: none;
+        }
+
+        .alert-simple.alert-danger {
+            border: 1px solid rgba(241, 6, 6, 0.81);
+            background-color: rgba(220, 17, 1, 0.16);
+            box-shadow: 0px 0px 2px #ff0303;
+            color: #ff0303;
+            text-shadow: 2px 1px #00040a;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .alert-danger:hover {
+            background-color: rgba(220, 17, 1, 0.33);
+            transition: 0.5s;
+        }
+
+        .danger {
+            font-size: 18px;
+            color: #ff0303;
+            text-shadow: none;
+        }
+
+        .alert-simple.alert-primary {
+            border: 1px solid rgba(6, 241, 226, 0.81);
+            background-color: rgba(1, 204, 220, 0.16);
+            box-shadow: 0px 0px 2px #03fff5;
+            color: #03d0ff;
+            text-shadow: 2px 1px #00040a;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        .alert-primary:hover {
+            background-color: rgba(1, 204, 220, 0.33);
+            transition: 0.5s;
+        }
+
+        .alertprimary {
+            font-size: 18px;
+            color: #03d0ff;
+            text-shadow: none;
+        }
+
+        .square_box {
+            position: absolute;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+            border-top-left-radius: 45px;
+            opacity: 0.302;
+        }
+
+        .square_box.box_three {
+            background-image: -moz-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            background-image: -webkit-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            opacity: 0.059;
+            left: -80px;
+            top: -60px;
+            width: 500px;
+            height: 500px;
+            border-radius: 45px;
+        }
+
+        .square_box.box_four {
+            background-image: -moz-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            background-image: -webkit-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+            opacity: 0.059;
+            left: 150px;
+            top: -25px;
+            width: 550px;
+            height: 550px;
+            border-radius: 45px;
+        }
+
+        .alert:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: calc(100% - 44px);
+            border-left: 1px solid;
+            border-right: 2px solid;
+            border-bottom-right-radius: 3px;
+            border-top-right-radius: 3px;
+            left: 0;
+            top: 50%;
+            transform: translate(0, -50%);
+            height: 20px;
+        }
+
+        .fa-times {
+            -webkit-animation: blink-1 2s infinite both;
+            animation: blink-1 2s infinite both;
+        }
+
+
+        /**
+         * ----------------------------------------
+         * animation blink-1
+         * ----------------------------------------
+         */
+        @-webkit-keyframes blink-1 {
+            0%,
+            50%,
+            100% {
+                opacity: 1;
+            }
+            25%,
+            75% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes blink-1 {
+            0%,
+            50%,
+            100% {
+                opacity: 1;
+            }
+            25%,
+            75% {
+                opacity: 0;
+            }
+        }
+    </style>
+
+
+
+</head>
+
+<body class="g-sidenav-show  bg-gray-100">
+
+<aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 "
+       id="sidenav-main" th:insert="admin/layout/navbar_slide.html :: slide">
+</aside>
+
+<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+    <div class="navbar-custom" th:insert="admin/layout/navbar_header.html"> :: header"></div>
+
+    <!--noidung-->
+    <div class="container-fluid py-4">
+
+
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <div class="page-title-center">
+                        <h1 class="page-title" style="text-align: center; font-size: 200%;margin-bottom: 50px;font-weight: bold;">Thương Hiệu</h1>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end page title -->
+
+            <div class="row">
+                <div class="col-12">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box" style="display: flex;justify-content:center ;border-radius: 20px;margin-bottom: 35px;">
+                                <div class="col-xl-12">
+                                    <div style="margin-left: 20px;" class="dataTables_filter">
+
+                                        <div style="height: 25px;"
+                                             class="col-2">
+                                            <a >
+                                                <button data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+                                                        height="22px"
+                                                        style="background:#0ad406;border-radius: 50px;border:1px solid black;justify-items: center;"
+                                                        type="button"
+                                                        class="btn btn-labeled shadow-button">
+                                                            <span style="margin-bottom: 3px;color: white;"
+                                                                  class="btn-icon">
+                                                                <i class="fa-solid fa-plus fa-beat fa-lg"></i>
+                                                            </span>
+                                                    <span style="margin-bottom: 3px;color: white;"
+                                                          class="separator">|</span>
+                                                    <span style="margin-bottom: 3px;color: white;font-size: 15px;font-weight: bold"
+                                                          ;
+                                                          class="btn-text">Thêm</span>
+                                                </button>
+                                            </a>
+                                        </div>
+
+                                        <!--                                        modal 1 dau-->
+                                        <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+                                             aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Thêm Thương Hiệu</h1>
+                                                        <button style="color: black;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <form class="row form-row justify-content-between"
+                                                              th:object="${th}"
+                                                              th:action="@{add}"
+                                                              method="post">
+
+                                                            <div class="col-12 row container">
+
+                                                                <!--                                                                input-->
+                                                                <div style="display: flex;justify-content:center">
+
+                                                                    <label class="input">
+                                                                        <input style="height:28px;border-radius: 8px;width: 150px"
+                                                                               type="search"
+                                                                               class="input__field"
+                                                                               th:field="*{TenThuongHieu}"
+                                                                               required
+                                                                        >
+                                                                        <span style="font-size: 13px;font-weight: bold;"
+                                                                              class="input__label">Tên:</span>
+
+                                                                        <div class="invalid-feedback">
+                                                                            Không được để trống!
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+
+                                                                <div style="display: flex; justify-content: center; margin-top: 25px;">
+                                                                    <label class="input">
+                                                                        <input style="height: 28px; border-radius: 8px; width: 150px"
+                                                                               type="text" th:field="*{Anh}" class="input__field"
+                                                                               oninput="displayImagePreview(this)"
+                                                                               required>
+                                                                        <span style="font-size: 13px; font-weight: bold;" class="input__label">Ảnh:</span>
+
+                                                                        <div class="invalid-feedback">
+                                                                            Không được để trống!
+                                                                        </div>
+                                                                    </label>
+                                                                </div>
+
+                                                                <div style="display: flex; justify-content: center; margin-top: 10px;">
+                                                                    <img id="imagePreview" style="max-width: 150px; max-height: 150px;">
+                                                                </div>
+
+                                                                <div style="display: flex;justify-content:center; margin-top: 10px;">
+
+                                                                    <label class="input">
+                                                                        <select style="height:28px;border-radius: 8px;width: 150px"
+                                                                                class="input__field" th:field="*{TrangThai}">
+                                                                            <option value="0">Đang hoạt động</option>
+                                                                            <option value="1">Ngừng hoạt động</option>
+                                                                        </select>
+
+                                                                        <span style="font-size: 13px;font-weight: bold;"
+                                                                              class="input__label">Trạng Thái:</span>
+                                                                    </label>
+                                                                </div>
+
+                                                                <div style="display: flex;justify-content:center;margin-top: 25px;">
+                                                                    <label class="input">
+                                                                        <input style="height:28px;border-radius: 8px;width: 150px"
+                                                                               type="search"
+                                                                               class="input__field"
+                                                                               th:field="*{MoTa}"
+                                                                               required
+                                                                        >
+                                                                        <span style="font-size: 13px;font-weight: bold;"
+                                                                              class="input__label">Mô tả:</span>
+
+                                                                        <div class="invalid-feedback">
+                                                                            Không được để trống!
+                                                                        </div>
+                                                                    </label>
+
+                                                                </div>
+
+                                                            </div>
+                                                            <!--                                                            //input-->
+
+                                                            <div style="height: 20px;display: flex;justify-content: flex-end;margin-bottom: 20px">
+                                                                <a >
+                                                                    <button height="22px"
+                                                                            style="background:#0ad406;border-radius: 50px;border:1px solid black;justify-items: center;"
+                                                                            type="submit"
+                                                                            class="btn btn-labeled shadow-button">
+                                                            <span style="margin-bottom: 3px;color: white;"
+                                                                  class="btn-icon">
+                                                                <i class="fa-solid fa-plus fa-beat fa-lg"></i>
+                                                            </span>
+                                                                        <span style="margin-bottom: 3px;color: white;"
+                                                                              class="separator">|</span>
+                                                                        <span style="margin-bottom: 3px;color: white;font-size: 15px;font-weight: bold"
+                                                                              ;
+                                                                              class="btn-text"> Thêm</span>
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <!--                                                    <div class="modal-footer">-->
+                                                    <!--&lt;!&ndash;                                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Update Thương Hiệu</button>&ndash;&gt;-->
+                                                    <!--                                                    </div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--                                        end modal1-->
+
+                                        <!--&lt;!&ndash;                                        modal 2&ndash;&gt;-->
+                                        <!--                                        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">-->
+                                        <!--                                            <div class="modal-dialog modal-dialog-centered">-->
+                                        <!--                                                <div class="modal-content">-->
+                                        <!--                                                    <div class="modal-header">-->
+                                        <!--                                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>-->
+                                        <!--                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                                        <!--                                                    </div>-->
+                                        <!--                                                    <div class="modal-body">-->
+                                        <!--                                                        Hide this modal and show the first with the button below.-->
+                                        <!--                                                    </div>-->
+                                        <!--                                                    <div class="modal-footer">-->
+                                        <!--                                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>-->
+                                        <!--                                                    </div>-->
+                                        <!--                                                </div>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
+                                        <!--&lt;!&ndash;                                        //end modal2&ndash;&gt;-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    <br>-->
+                    <!--                    <br>-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <section class="navbar-expand-lg navbar-light bg-light">
+                                            <table class="table" style="text-align:center;">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>#</th>
+                                                    <th>Tên</th>
+                                                    <th>Ảnh</th>
+                                                    <th>Ngày Tạo</th>
+                                                    <th>Ngày Cập Nhật</th>
+                                                    <th>Người Cập Nhật</th>
+                                                    <!--                                                                <th>Khuyến Mãi</th>-->
+                                                    <th>Mô Tả</th>
+                                                    <th>Trạng Thái</th>
+                                                    <th>Hành Động</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="text-align:center;">
+                                                <tr th:each="th,index : ${listTH}">
+                                                    <td style="font-weight: bold;font-style: italic;"
+                                                        class="align-middle"
+                                                        th:text="${index.count}"></td>
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle"
+                                                        th:text="${th.TenThuongHieu}"></td>
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle">
+                                                        <img width="85px" height="100px"
+                                                             th:src="${th.Anh}">
+                                                    </td>
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle"
+                                                        th:text="${#dates.format(th.NgayTao, 'dd/MM/yyyy HH:mm')}"
+                                                    ></td>
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle"
+                                                        th:text="${#dates.format(th.NgayCapNhat, 'dd/MM/yyyy HH:mm')}"
+                                                    ></td>
+
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle"
+                                                        th:text="${th.NguoiCapNhat}"></td>
+
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle"
+                                                        th:text="${th.MoTa}"></td>
+
+                                                    <td class="align-middle">
+                                                        <span style="width: 200px; pointer-events: none; height: 30px; border-radius: 20px; display: flex; align-items: center; justify-content: center;margin-top: 15px;"
+                                                              th:if="${th.TrangThai == 0}"
+                                                              class="btn btn-labeled shadow-button btn btn-warning status-pending">Đang hoạt động</span>
+                                                        <span style="width: 200px; pointer-events: none; height: 30px; border-radius: 20px; display: flex; align-items: center; justify-content: center;margin-top: 15px;"
+                                                              th:if="${th.TrangThai != 0}"
+                                                              class="btn btn-labeled shadow-button btn btn-danger status-success">Ngừng hoạt động</span>
+                                                    </td>
+
+                                                    <td class="align-middle">
+
+                                                        <div style="display: flex;justify-content: space-around;" class="button-group">
+
+                                                            <form method="get" th:action="@{view-thuong-hieu/{id}(id=${th.IdThuongHieu})}">
+                                                                <button type="submit" style="background: none; border: none; padding: 0;">
+                                                                    <i style="color:#0c5460" class="fa-solid fa-pen fa-fade fa-lg"></i>
+                                                                </button>
+                                                            </form>
+
+
+                                                            <form method="post" th:action="@{delete/{IdThuongHieu}(IdThuongHieu=${th.IdThuongHieu})}">
+                                                                <button type="submit" style="background: none; border: none; padding: 0;">
+                                                                    <i style="color: red;" class="fa-solid fa-trash fa-shake fa-lg"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr th:if="${listTH.content.size() == 0}">
+                                                    <div class="col-sm-12">
+                                                        <td colspan="10"
+                                                            style="text-align: center;pointer-events:none;">
+                                                            <div style="background: whitesmoke;" class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-28 font__weight-light brk-library-rendered rendered show"
+                                                                 role="alert"
+                                                                 data-brk-library="component__alert">
+
+                                                                <div class="start-icon far fa-times-circle faa-pulse animated fa-times">
+                                                                    <strong style="font-family: Arial"
+                                                                            class="font__weight-semibold ">Không
+                                                                        tìm thấy dữ liệu !</strong></div>
+                                                            </div>
+                                                        </td>
+                                                    </div>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                        </section>
+                                    </div> <!-- end container-fluid -->
+
+                                </div> <!-- end content -->
+                            </div>
+                        </div>
+
+                        <!-- ============================================================== -->
+                        <!-- End Page content -->
+                        <!-- ============================================================== -->
+
+                    </div>
+                    <!-- END wrapper -->
+
+                    <!--&lt;!&ndash; Right Sidebar &ndash;&gt;-->
+                    <!-- Right bar overlay-->
+                    <div class="rightbar-overlay"></div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12" style="display: flex; justify-content: center">
+                            <nav aria-label="Page navigation example" class="flex">
+                                <ul class="pagination">
+                                    <li class="page-item" th:classappend="${listTH.number == 0} ? disabled">
+                                        <a class="page-link"
+                                           th:href="@{hien-thi-page(page=0)}">First</a>
+                                    </li>
+                                    <li class="page-item"
+                                        th:classappend="${listTH.number == 0} ? disabled">
+                                        <a class="page-link"
+                                           th:href="@{hien-thi-page(page=${listTH.number - 1})}">
+                                            <i class="fa-solid fa-angles-left fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"
+                                        th:each="pageNumber : ${#numbers.sequence(0, listTH.totalPages - 1)}">
+                                        <a class="page-link"
+                                           th:href="@{hien-thi-page(page=${pageNumber})}"
+                                           th:text="${pageNumber + 1}"
+                                           th:classappend="${pageNumber == listTH.number} ? active">
+                                        </a>
+                                    </li>
+                                    <li class="page-item"
+                                        th:classappend="${listTH.number == listTH.totalPages - 1} ? disabled">
+                                        <a class="page-link"
+                                           th:href="@{hien-thi-page(page=${listTH.number + 1})}">
+                                            <i class="fa-solid fa-angles-right fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"
+                                        th:classappend="${listTH.number == listTH.totalPages - 1} ? disabled"><a
+                                            class="page-link"
+                                            th:href="@{hien-thi-page(page=${listTH.totalPages - 1})}">Last</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+
+
+                    <!--<a href="javascript:void(0);" class="right-bar-toggle demos-show-btn">-->
+                    <!--    <i class="mdi mdi-settings-outline mdi-spin"></i> &nbsp;Choose Demos-->
+                    <!--</a>-->
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!--    endNoidung-->
+
+        <!--        //footer-->
+        <footer class="footer pt-3  ">
+            <div class="container-fluid">
+                <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-6 mb-lg-0 mb-4">
+                        <div class="copyright text-center text-sm text-muted text-lg-start">
+                            ©
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            ,
+                            made with <i class="fa fa-heart"></i> by
+                            <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">V</a>
+                            for a better web.
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul class="nav nav-footer justify-content-center justify-content-lg-end">
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com" class="nav-link text-muted" target="_blank">V</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/presentation" class="nav-link text-muted"
+                                   target="_blank">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/blog" class="nav-link text-muted" target="_blank">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://www.creative-tim.com/license" class="nav-link pe-0 text-muted"
+                                   target="_blank">License</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+</main>
+
+
+<!--    setting-->
+<div class="fixed-plugin">
+    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+        <i class="fa fa-cog py-2"> </i>
+    </a>
+    <div class="card shadow-lg ">
+        <div class="card-header pb-0 pt-3 ">
+            <div class="float-start">
+                <h5 class="mt-3 mb-0">Soft UI Configurator</h5>
+                <p>See our dashboard options.</p>
+            </div>
+            <div class="float-end mt-4">
+                <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+                    <i class="fa fa-close"></i>
+                </button>
+            </div>
+            <!-- End Toggle Button -->
+        </div>
+        <hr class="horizontal dark my-1">
+        <div class="card-body pt-sm-3 pt-0">
+            <!-- Sidebar Backgrounds -->
+            <div>
+                <h6 class="mb-0">Sidebar Colors</h6>
+            </div>
+            <a href="javascript:void(0)" class="switch-trigger background-color">
+                <div class="badge-colors my-2 text-start">
+                        <span class="badge filter bg-gradient-primary active" data-color="primary"
+                              onclick="sidebarColor(this)"></span>
+                    <span class="badge filter bg-gradient-dark" data-color="dark"
+                          onclick="sidebarColor(this)"></span>
+                    <span class="badge filter bg-gradient-info" data-color="info"
+                          onclick="sidebarColor(this)"></span>
+                    <span class="badge filter bg-gradient-success" data-color="success"
+                          onclick="sidebarColor(this)"></span>
+                    <span class="badge filter bg-gradient-warning" data-color="warning"
+                          onclick="sidebarColor(this)"></span>
+                    <span class="badge filter bg-gradient-danger" data-color="danger"
+                          onclick="sidebarColor(this)"></span>
+                </div>
+            </a>
+            <!-- Sidenav Type -->
+            <div class="mt-3">
+                <h6 class="mb-0">Sidenav Type</h6>
+                <p class="text-sm">Choose between 2 different sidenav types.</p>
+            </div>
+            <div class="d-flex">
+                <button class="btn bg-gradient-primary w-100 px-3 mb-2 active" data-class="bg-transparent"
+                        onclick="sidebarType(this)">Transparent
+                </button>
+                <button class="btn bg-gradient-primary w-100 px-3 mb-2 ms-2" data-class="bg-white"
+                        onclick="sidebarType(this)">White
+                </button>
+            </div>
+            <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
+            <!-- Navbar Fixed -->
+            <div class="mt-3">
+                <h6 class="mb-0">Navbar Fixed</h6>
+            </div>
+            <div class="form-check form-switch ps-0">
+                <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed"
+                       onclick="navbarFixed(this)">
+            </div>
+            <hr class="horizontal dark my-sm-4">
+            <a class="btn bg-gradient-dark w-100" href="https://www.creative-tim.com/product/soft-ui-dashboard">Free
+                Download</a>
+            <a class="btn btn-outline-dark w-100"
+               href="https://www.creative-tim.com/learning-lab/bootstrap/license/soft-ui-dashboard">View
+                documentation</a>
+            <div class="w-100 text-center">
+                <a class="github-button" href="https://github.com/creativetimofficial/soft-ui-dashboard"
+                   data-icon="octicon-star" data-size="large" data-show-count="true"
+                   aria-label="Star creativetimofficial/soft-ui-dashboard on GitHub">Star</a>
+                <h6 class="mt-3">Thank you for sharing!</h6>
+                <a href="https://twitter.com/intent/tweet?text=Check%20Soft%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard"
+                   class="btn btn-dark mb-0 me-2" target="_blank">
+                    <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
+                </a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/soft-ui-dashboard"
+                   class="btn btn-dark mb-0 me-2" target="_blank">
+                    <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!--   Core JS Files   -->
+<script src="../../../static/assets/js/core/popper.min.js"></script>
+<script src="../../../static/assets/js/core/bootstrap.min.js"></script>
+<script src="../../../static/assets/js/plugins/perfect-scrollbar.min.js"></script>
+<script src="../../../static/assets/js/plugins/smooth-scrollbar.min.js"></script>
+<script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+</script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../../../static/assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+
+<!-- App js -->
+<script src="../../static/assets\js\app.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+<script>
+    const myModal = document.getElementById('myModal')
+    const myInput = document.getElementById('myInput')
+
+    myModal.addEventListener('shown.bs.modal', () => {
+        myInput.focus()
+    })
+</script>
+
+<script>
+    function displayImagePreview(input) {
+        var imagePreview = document.getElementById('imagePreview');
+        imagePreview.src = input.value;
+        var imagePreview2 = document.getElementById('imagePreview2');
+        imagePreview2.src = input.value;
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const modalToggleBtns = document.querySelectorAll('[data-bs-target="#exampleModalToggle2"]');
+        const form = document.querySelector('.modal-content form');
+
+        modalToggleBtns.forEach(function(modalToggleBtn) {
+            modalToggleBtn.addEventListener('click', function() {
+                const idThuongHieu = modalToggleBtn.getAttribute('data-id-thuong-hieu');
+                const tenThuongHieuInput = form.querySelector('[name="TenThuongHieu"]');
+                const anhInput = form.querySelector('[name="Anh"]');
+                const trangThaiSelect = form.querySelector('[name="TrangThai"]');
+                const moTaInput = form.querySelector('[name="MoTa"]');
+
+                // Lấy thông tin từ thuộc tính data-* và gán vào các ô input trong form
+                const tenThuongHieu = modalToggleBtn.getAttribute('data-ten-thuong-hieu');
+                const anh = modalToggleBtn.getAttribute('data-anh');
+                const trangThai = modalToggleBtn.getAttribute('data-trang-thai');
+                const moTa = modalToggleBtn.getAttribute('data-mo-ta');
+
+                tenThuongHieuInput.value = tenThuongHieu;
+                anhInput.value = anh;
+                trangThaiSelect.value = trangThai;
+                moTaInput.value = moTa;
+
+                form.action = form.action.replace('{id}', idThuongHieu);
+            });
+        });
+    });
+</script>
+
+<th:block id="js-resources">
+
+    <script th:inline="javascript">
+        function loadData(id) {
+            // Gửi yêu cầu AJAX để lấy dữ liệu theo id
+            $.get('/admin/thuong-hieu/view-thuong-hieu/' + id, function (data) {
+                // Cập nhật nội dung modal với dữ liệu lấy được
+                $('#exampleModalToggle2 .thuong-hieu').html(data);
+                // Hiển thị modal
+                $('#exampleModalToggle2').modal('show');
+            });
+        }
+    </script>
+</th:block>
+</body>
+</html>
