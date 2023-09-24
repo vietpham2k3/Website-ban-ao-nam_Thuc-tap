@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../../../static/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" th:href="@{/static/images/shop.png}">
-    <title>Quản Lý Hóa Đơn</title>
+    <title>Quản Lý Thương Hiệu</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     <!-- Nucleo Icons -->
@@ -679,7 +679,7 @@
                                                             </form>
 
 
-                                                            <form method="post" th:action="@{delete/{IdThuongHieu}(IdThuongHieu=${th.IdThuongHieu})}">
+                                                            <form method="post" th:action="@{delete/{id}(id=${th.IdThuongHieu})}">
                                                                 <button type="submit" style="background: none; border: none; padding: 0;">
                                                                     <i style="color: red;" class="fa-solid fa-trash fa-shake fa-lg"></i>
                                                                 </button>

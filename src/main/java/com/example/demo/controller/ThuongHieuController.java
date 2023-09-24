@@ -40,7 +40,7 @@ public class ThuongHieuController {
 //        thuongHieu.setTrangThai(0);
         thuongHieu.setNgayTao(new Date());
         thuongHieu.setNgayCapNhat(new Date());
-        thuongHieu.setNguoiCapNhat("Việt");
+        thuongHieu.setNguoiCapNhat("Việt Create");
 
         model.addAttribute("th", thuongHieu);
         service.save(thuongHieu);
@@ -77,8 +77,16 @@ public class ThuongHieuController {
 
     @PostMapping("delete/{id}")
     public String xoa(@PathVariable Integer id,Model model){
-        ThuongHieu thuongHieu = service.xoa(id);
+        ThuongHieu thuongHieu = service.detail(id);
+//        thuongHieu.setIdThuongHieu(id);
+        thuongHieu.setTrangThai(1);
+        thuongHieu.setNgayCapNhat(new Date());
+        thuongHieu.setNgayTao(thuongHieu.getNgayTao());
+        thuongHieu.setNguoiCapNhat("Việt Delete");
+
         model.addAttribute("th",thuongHieu);
+
+        service.save(thuongHieu);
 
         return "redirect:/admin/thuong-hieu/hien-thi-page";
     }

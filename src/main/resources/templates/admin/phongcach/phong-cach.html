@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../../../static/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" th:href="@{/static/images/shop.png}">
-    <title>Cập Nhật Thương Hiệu</title>
+    <title>Quản Lý Phong Cách</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     <!-- Nucleo Icons -->
@@ -427,7 +427,7 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-center">
-                        <h1 class="page-title" style="text-align: center; font-size: 200%;margin-bottom: 50px;font-weight: bold;">Cập Nhật Thương Hiệu</h1>
+                        <h1 class="page-title" style="text-align: center; font-size: 200%;margin-bottom: 50px;font-weight: bold;">Phong Cách</h1>
 
                     </div>
                 </div>
@@ -443,21 +443,53 @@
                                 <div class="col-xl-12">
                                     <div style="margin-left: 20px;" class="dataTables_filter">
 
+                                        <div style="height: 25px;"
+                                             class="col-2">
+                                            <a >
+                                                <button data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+                                                        height="22px"
+                                                        style="background:#0ad406;border-radius: 50px;border:1px solid black;justify-items: center;"
+                                                        type="button"
+                                                        class="btn btn-labeled shadow-button">
+                                                            <span style="margin-bottom: 3px;color: white;"
+                                                                  class="btn-icon">
+                                                                <i class="fa-solid fa-plus fa-beat fa-lg"></i>
+                                                            </span>
+                                                    <span style="margin-bottom: 3px;color: white;"
+                                                          class="separator">|</span>
+                                                    <span style="margin-bottom: 3px;color: white;font-size: 15px;font-weight: bold"
+                                                          ;
+                                                          class="btn-text">Thêm</span>
+                                                </button>
+                                            </a>
+                                        </div>
+
+                                        <!--                                        modal 1 dau-->
+                                        <div class="modal fade" id="exampleModalToggle" aria-hidden="true"
+                                             aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Thêm Phong Cách</h1>
+                                                        <button style="color: black;" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+
                                                         <form class="row form-row justify-content-between"
-                                                               th:object="${th}"
-                                                              th:action="@{/admin/thuong-hieu/update/{id}(id=${th.IdThuongHieu})}"
+                                                              th:object="${pc}"
+                                                              th:action="@{add}"
                                                               method="post">
 
                                                             <div class="col-12 row container">
 
-<!--                                                                input-->
+                                                                <!--                                                                input-->
                                                                 <div style="display: flex;justify-content:center">
 
                                                                     <label class="input">
                                                                         <input style="height:28px;border-radius: 8px;width: 150px"
                                                                                type="search"
                                                                                class="input__field"
-                                                                               th:field="*{TenThuongHieu}"
+                                                                               th:field="*{TenPhongCach}"
                                                                                required
                                                                         >
                                                                         <span style="font-size: 13px;font-weight: bold;"
@@ -469,34 +501,19 @@
                                                                     </label>
                                                                 </div>
 
-                                                                <div style="display: flex; justify-content: center; margin-top: 25px;">
-                                                                    <label class="input">
-                                                                        <input style="height: 28px; border-radius: 8px; width: 150px" type="text" th:field="*{Anh}"
-                                                                               class="input__field" oninput="displayImagePreview(this)" required th:value="${anh}">
-                                                                        <span style="font-size: 13px; font-weight: bold;" class="input__label">Ảnh:</span>
-                                                                        <div class="invalid-feedback">
-                                                                            Không được để trống!
-                                                                        </div>
-                                                                    </label>
-                                                                </div>
-
-                                                                <div style="display: flex; justify-content: center; margin-top: 10px;">
-                                                                    <img id="imagePreview" style="max-width: 150px; max-height: 150px;"
-                                                                         th:src="${anh}">
-                                                                </div>
 
                                                                 <div style="display: flex;justify-content:center; margin-top: 10px;">
 
-                                                                <label class="input">
-                                                                    <select style="height:28px;border-radius: 8px;width: 150px"
-                                                                            class="input__field" th:field="*{TrangThai}">
-                                                                        <option value="0">Đang hoạt động</option>
-                                                                        <option value="1">Ngừng hoạt động</option>
-                                                                    </select>
+                                                                    <label class="input">
+                                                                        <select style="height:28px;border-radius: 8px;width: 150px"
+                                                                                class="input__field" th:field="*{TrangThai}">
+                                                                            <option value="0">Đang hoạt động</option>
+                                                                            <option value="1">Ngừng hoạt động</option>
+                                                                        </select>
 
-                                                                    <span style="font-size: 13px;font-weight: bold;"
-                                                                          class="input__label">Trạng Thái:</span>
-                                                                </label>
+                                                                        <span style="font-size: 13px;font-weight: bold;"
+                                                                              class="input__label">Trạng Thái:</span>
+                                                                    </label>
                                                                 </div>
 
                                                                 <div style="display: flex;justify-content:center;margin-top: 25px;">
@@ -518,7 +535,7 @@
                                                                 </div>
 
                                                             </div>
-<!--                                                            //input-->
+                                                            <!--                                                            //input-->
 
                                                             <div style="height: 20px;display: flex;justify-content: flex-end;margin-bottom: 20px">
                                                                 <a >
@@ -534,23 +551,213 @@
                                                                               class="separator">|</span>
                                                                         <span style="margin-bottom: 3px;color: white;font-size: 15px;font-weight: bold"
                                                                               ;
-                                                                              class="btn-text"> Cập Nhật </span>
+                                                                              class="btn-text"> Thêm</span>
                                                                     </button>
                                                                 </a>
                                                             </div>
                                                         </form>
                                                     </div>
-<!--                                                    <div class="modal-footer">-->
-<!--&lt;!&ndash;                                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Update Thương Hiệu</button>&ndash;&gt;-->
-<!--                                                    </div>-->
+                                                    <!--                                                    <div class="modal-footer">-->
+                                                    <!--&lt;!&ndash;                                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Update Thương Hiệu</button>&ndash;&gt;-->
+                                                    <!--                                                    </div>-->
                                                 </div>
                                             </div>
                                         </div>
+                                        <!--                                        end modal1-->
+
+                                        <!--&lt;!&ndash;                                        modal 2&ndash;&gt;-->
+                                        <!--                                        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">-->
+                                        <!--                                            <div class="modal-dialog modal-dialog-centered">-->
+                                        <!--                                                <div class="modal-content">-->
+                                        <!--                                                    <div class="modal-header">-->
+                                        <!--                                                        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Modal 2</h1>-->
+                                        <!--                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                                        <!--                                                    </div>-->
+                                        <!--                                                    <div class="modal-body">-->
+                                        <!--                                                        Hide this modal and show the first with the button below.-->
+                                        <!--                                                    </div>-->
+                                        <!--                                                    <div class="modal-footer">-->
+                                        <!--                                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal">Back to first</button>-->
+                                        <!--                                                    </div>-->
+                                        <!--                                                </div>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
+                                        <!--&lt;!&ndash;                                        //end modal2&ndash;&gt;-->
 
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <!--                    <br>-->
+                    <!--                    <br>-->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card-box">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <section class="navbar-expand-lg navbar-light bg-light">
+                                            <table class="table" style="text-align:center;">
+                                                <thead>
+                                                <tr style="text-align: center;">
+                                                    <th>#</th>
+                                                    <th>Tên</th>
+                                                    <!--                                                    <th>Ảnh</th>-->
+                                                    <th>Ngày Tạo</th>
+                                                    <th>Ngày Cập Nhật</th>
+                                                    <th>Người Cập Nhật</th>
+                                                    <!--                                                                <th>Khuyến Mãi</th>-->
+                                                    <th>Mô Tả</th>
+                                                    <th>Trạng Thái</th>
+                                                    <th>Hành Động</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody style="text-align:center;">
+                                                <tr th:each="pc,index : ${listPC}">
+                                                    <td style="font-weight: bold;font-style: italic;"
+                                                        class="align-middle"
+                                                        th:text="${index.count}"></td>
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle"
+                                                        th:text="${pc.TenPhongCach}"></td>
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle"
+                                                        th:text="${#dates.format(pc.NgayTao, 'dd/MM/yyyy HH:mm')}"
+                                                    ></td>
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle"
+                                                        th:text="${#dates.format(pc.NgayCapNhat, 'dd/MM/yyyy HH:mm')}"
+                                                    ></td>
+
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle"
+                                                        th:text="${pc.NguoiCapNhat}"></td>
+
+                                                    <td style="font-size: 14px;font-weight: bold"
+                                                        class="align-middle"
+                                                        th:text="${pc.MoTa}"></td>
+
+                                                    <td class="align-middle">
+                                                        <span style="width: 200px; pointer-events: none; height: 30px; border-radius: 20px; display: flex; align-items: center; justify-content: center;margin-top: 15px;"
+                                                              th:if="${pc.TrangThai == 0}"
+                                                              class="btn btn-labeled shadow-button btn btn-warning status-pending">Đang hoạt động</span>
+                                                        <span style="width: 200px; pointer-events: none; height: 30px; border-radius: 20px; display: flex; align-items: center; justify-content: center;margin-top: 15px;"
+                                                              th:if="${pc.TrangThai != 0}"
+                                                              class="btn btn-labeled shadow-button btn btn-danger status-success">Ngừng hoạt động</span>
+                                                    </td>
+
+                                                    <td class="align-middle">
+
+                                                        <div style="display: flex;justify-content: space-around;" class="button-group">
+
+                                                            <form method="get" th:action="@{view-phong-cach/{id}(id=${pc.IdPhongCach})}">
+                                                                <button type="submit" style="background: none; border: none; padding: 0;">
+                                                                    <i style="color:#0c5460" class="fa-solid fa-pen fa-fade fa-lg"></i>
+                                                                </button>
+                                                            </form>
+
+
+                                                            <form method="post" th:action="@{delete/{id}(id=${pc.IdPhongCach})}">
+                                                                <button type="submit" style="background: none; border: none; padding: 0;">
+                                                                    <i style="color: red;" class="fa-solid fa-trash fa-shake fa-lg"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+
+                                                <tr th:if="${listPC.content.size() == 0}">
+                                                    <div class="col-sm-12">
+                                                        <td colspan="10"
+                                                            style="text-align: center;pointer-events:none;">
+                                                            <div style="background: whitesmoke;" class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-28 font__weight-light brk-library-rendered rendered show"
+                                                                 role="alert"
+                                                                 data-brk-library="component__alert">
+
+                                                                <div class="start-icon far fa-times-circle faa-pulse animated fa-times">
+                                                                    <strong style="font-family: Arial"
+                                                                            class="font__weight-semibold ">Không
+                                                                        tìm thấy dữ liệu !</strong></div>
+                                                            </div>
+                                                        </td>
+                                                    </div>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+
+                                        </section>
+                                    </div> <!-- end container-fluid -->
+
+                                </div> <!-- end content -->
+                            </div>
+                        </div>
+
+                        <!-- ============================================================== -->
+                        <!-- End Page content -->
+                        <!-- ============================================================== -->
+
+                    </div>
+                    <!-- END wrapper -->
+
+                    <!--&lt;!&ndash; Right Sidebar &ndash;&gt;-->
+                    <!-- Right bar overlay-->
+                    <div class="rightbar-overlay"></div>
+
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12" style="display: flex; justify-content: center">
+                            <nav aria-label="Page navigation example" class="flex">
+                                <ul class="pagination">
+                                    <li class="page-item" th:classappend="${listPC.number == 0} ? disabled">
+                                        <a class="page-link"
+                                           th:href="@{hien-thi-page(page=0)}">First</a>
+                                    </li>
+                                    <li class="page-item"
+                                        th:classappend="${listPC.number == 0} ? disabled">
+                                        <a class="page-link"
+                                           th:href="@{hien-thi-page(page=${listPC.number - 1})}">
+                                            <i class="fa-solid fa-angles-left fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"
+                                        th:each="pageNumber : ${#numbers.sequence(0, listPC.totalPages - 1)}">
+                                        <a class="page-link"
+                                           th:href="@{hien-thi-page(page=${pageNumber})}"
+                                           th:text="${pageNumber + 1}"
+                                           th:classappend="${pageNumber == listPC.number} ? active">
+                                        </a>
+                                    </li>
+                                    <li class="page-item"
+                                        th:classappend="${listPC.number == listPC.totalPages - 1} ? disabled">
+                                        <a class="page-link"
+                                           th:href="@{hien-thi-page(page=${listPC.number + 1})}">
+                                            <i class="fa-solid fa-angles-right fa-lg"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"
+                                        th:classappend="${listPC.number == listPC.totalPages - 1} ? disabled"><a
+                                            class="page-link"
+                                            th:href="@{hien-thi-page(page=${listPC.totalPages - 1})}">Last</a>
+                                    </li>
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+
+
+                    <!--<a href="javascript:void(0);" class="right-bar-toggle demos-show-btn">-->
+                    <!--    <i class="mdi mdi-settings-outline mdi-spin"></i> &nbsp;Choose Demos-->
+                    <!--</a>-->
+                </div>
+
+            </div>
+
+        </div>
+
+
 
         <!--    endNoidung-->
 

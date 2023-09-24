@@ -32,10 +32,4 @@ public class ThuongHieuService {
         return repository.findById(id).orElse(null);
     }
 
-    public ThuongHieu xoa(Integer id){
-        ThuongHieu thuongHieu = detail(id);
-        thuongHieu.setTrangThai(1);
-        thuongHieu.setNgayCapNhat(new Date());
-        return thuongHieu;
-    }
 }

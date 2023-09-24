@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../../../static/assets/img/apple-icon.png">
     <link rel="icon" type="image/png" th:href="@{/static/images/shop.png}">
-    <title>Cập Nhật Thương Hiệu</title>
+    <title>Cập Nhật Xuất Xứ</title>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
     <!-- Nucleo Icons -->
@@ -427,7 +427,7 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-center">
-                        <h1 class="page-title" style="text-align: center; font-size: 200%;margin-bottom: 50px;font-weight: bold;">Cập Nhật Thương Hiệu</h1>
+                        <h1 class="page-title" style="text-align: center; font-size: 200%;margin-bottom: 50px;font-weight: bold;">Cập Nhật Xuất Xứ</h1>
 
                     </div>
                 </div>
@@ -443,114 +443,99 @@
                                 <div class="col-xl-12">
                                     <div style="margin-left: 20px;" class="dataTables_filter">
 
-                                                        <form class="row form-row justify-content-between"
-                                                               th:object="${th}"
-                                                              th:action="@{/admin/thuong-hieu/update/{id}(id=${th.IdThuongHieu})}"
-                                                              method="post">
+                                        <form class="row form-row justify-content-between"
+                                              th:object="${xx}"
+                                              th:action="@{/admin/xuat-xu/update/{id}(id=${xx.IdXuatXu})}"
+                                              method="post">
 
-                                                            <div class="col-12 row container">
+                                            <div class="col-12 row container">
 
-<!--                                                                input-->
-                                                                <div style="display: flex;justify-content:center">
+                                                <!--                                                                input-->
+                                                <div style="display: flex;justify-content:center">
 
-                                                                    <label class="input">
-                                                                        <input style="height:28px;border-radius: 8px;width: 150px"
-                                                                               type="search"
-                                                                               class="input__field"
-                                                                               th:field="*{TenThuongHieu}"
-                                                                               required
-                                                                        >
-                                                                        <span style="font-size: 13px;font-weight: bold;"
-                                                                              class="input__label">Tên:</span>
+                                                    <label class="input">
+                                                        <input style="height:28px;border-radius: 8px;width: 150px"
+                                                               type="search"
+                                                               class="input__field"
+                                                               th:field="*{TenXuatXu}"
+                                                               required
+                                                        >
+                                                        <span style="font-size: 13px;font-weight: bold;"
+                                                              class="input__label">Tên:</span>
 
-                                                                        <div class="invalid-feedback">
-                                                                            Không được để trống!
-                                                                        </div>
-                                                                    </label>
-                                                                </div>
+                                                        <div class="invalid-feedback">
+                                                            Không được để trống!
+                                                        </div>
+                                                    </label>
+                                                </div>
 
-                                                                <div style="display: flex; justify-content: center; margin-top: 25px;">
-                                                                    <label class="input">
-                                                                        <input style="height: 28px; border-radius: 8px; width: 150px" type="text" th:field="*{Anh}"
-                                                                               class="input__field" oninput="displayImagePreview(this)" required th:value="${anh}">
-                                                                        <span style="font-size: 13px; font-weight: bold;" class="input__label">Ảnh:</span>
-                                                                        <div class="invalid-feedback">
-                                                                            Không được để trống!
-                                                                        </div>
-                                                                    </label>
-                                                                </div>
 
-                                                                <div style="display: flex; justify-content: center; margin-top: 10px;">
-                                                                    <img id="imagePreview" style="max-width: 150px; max-height: 150px;"
-                                                                         th:src="${anh}">
-                                                                </div>
+                                                <div style="display: flex;justify-content:center; margin-top: 10px;">
 
-                                                                <div style="display: flex;justify-content:center; margin-top: 10px;">
+                                                    <label class="input">
+                                                        <select style="height:28px;border-radius: 8px;width: 150px"
+                                                                class="input__field" th:field="*{TrangThai}">
+                                                            <option value="0">Đang hoạt động</option>
+                                                            <option value="1">Ngừng hoạt động</option>
+                                                        </select>
 
-                                                                <label class="input">
-                                                                    <select style="height:28px;border-radius: 8px;width: 150px"
-                                                                            class="input__field" th:field="*{TrangThai}">
-                                                                        <option value="0">Đang hoạt động</option>
-                                                                        <option value="1">Ngừng hoạt động</option>
-                                                                    </select>
+                                                        <span style="font-size: 13px;font-weight: bold;"
+                                                              class="input__label">Trạng Thái:</span>
+                                                    </label>
+                                                </div>
 
-                                                                    <span style="font-size: 13px;font-weight: bold;"
-                                                                          class="input__label">Trạng Thái:</span>
-                                                                </label>
-                                                                </div>
+                                                <div style="display: flex;justify-content:center;margin-top: 25px;">
+                                                    <label class="input">
+                                                        <input style="height:28px;border-radius: 8px;width: 150px"
+                                                               type="search"
+                                                               class="input__field"
+                                                               th:field="*{MoTa}"
+                                                               required
+                                                        >
+                                                        <span style="font-size: 13px;font-weight: bold;"
+                                                              class="input__label">Mô tả:</span>
 
-                                                                <div style="display: flex;justify-content:center;margin-top: 25px;">
-                                                                    <label class="input">
-                                                                        <input style="height:28px;border-radius: 8px;width: 150px"
-                                                                               type="search"
-                                                                               class="input__field"
-                                                                               th:field="*{MoTa}"
-                                                                               required
-                                                                        >
-                                                                        <span style="font-size: 13px;font-weight: bold;"
-                                                                              class="input__label">Mô tả:</span>
+                                                        <div class="invalid-feedback">
+                                                            Không được để trống!
+                                                        </div>
+                                                    </label>
 
-                                                                        <div class="invalid-feedback">
-                                                                            Không được để trống!
-                                                                        </div>
-                                                                    </label>
+                                                </div>
 
-                                                                </div>
+                                            </div>
+                                            <!--                                                            //input-->
 
-                                                            </div>
-<!--                                                            //input-->
-
-                                                            <div style="height: 20px;display: flex;justify-content: flex-end;margin-bottom: 20px">
-                                                                <a >
-                                                                    <button height="22px"
-                                                                            style="background:#0ad406;border-radius: 50px;border:1px solid black;justify-items: center;"
-                                                                            type="submit"
-                                                                            class="btn btn-labeled shadow-button">
+                                            <div style="height: 20px;display: flex;justify-content: flex-end;margin-bottom: 20px">
+                                                <a >
+                                                    <button height="22px"
+                                                            style="background:#0ad406;border-radius: 50px;border:1px solid black;justify-items: center;"
+                                                            type="submit"
+                                                            class="btn btn-labeled shadow-button">
                                                             <span style="margin-bottom: 3px;color: white;"
                                                                   class="btn-icon">
                                                                 <i class="fa-solid fa-plus fa-beat fa-lg"></i>
                                                             </span>
-                                                                        <span style="margin-bottom: 3px;color: white;"
-                                                                              class="separator">|</span>
-                                                                        <span style="margin-bottom: 3px;color: white;font-size: 15px;font-weight: bold"
-                                                                              ;
-                                                                              class="btn-text"> Cập Nhật </span>
-                                                                    </button>
-                                                                </a>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-<!--                                                    <div class="modal-footer">-->
-<!--&lt;!&ndash;                                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Update Thương Hiệu</button>&ndash;&gt;-->
-<!--                                                    </div>-->
-                                                </div>
+                                                        <span style="margin-bottom: 3px;color: white;"
+                                                              class="separator">|</span>
+                                                        <span style="margin-bottom: 3px;color: white;font-size: 15px;font-weight: bold"
+                                                              ;
+                                                              class="btn-text"> Cập Nhật </span>
+                                                    </button>
+                                                </a>
                                             </div>
-                                        </div>
-
+                                        </form>
                                     </div>
+                                    <!--                                                    <div class="modal-footer">-->
+                                    <!--&lt;!&ndash;                                                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Update Thương Hiệu</button>&ndash;&gt;-->
+                                    <!--                                                    </div>-->
                                 </div>
                             </div>
                         </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!--    endNoidung-->
 
