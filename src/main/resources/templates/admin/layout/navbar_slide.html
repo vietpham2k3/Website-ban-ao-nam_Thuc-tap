@@ -100,7 +100,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link dropdown" href="javascript: void(0);" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownTab">
+                <a class="nav-link dropdown" href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false" id="dropdownTab">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                         <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                             <title>office</title>
@@ -121,12 +121,15 @@
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownTab" id="dropdownMenu">
-                    <li class="nav-item"><a class="dropdown-item" href="/admin/san-pham/hien-thi">Sản Phẩm</a></li>
-                    <li class="nav-item"><a class="dropdown-item" href="#">Mục con 1</a></li>
-                    <li class="nav-item"><a class="dropdown-item" href="#">Mục con 2</a></li>
-                    <li class="nav-item"><a class="dropdown-item" href="#">Mục con 3</a></li>
+                    <li class="nav-item"><a class="dropdown-item" th:href="@{/admin/san-pham/hien-thi}">Sản Phẩm</a></li>
+                    <li class="nav-item"><a class="dropdown-item" th:href="@{/admin/thuong-hieu/hien-thi-page}">Thương Hiệu</a></li>
+                    <li class="nav-item"><a class="dropdown-item" th:href="@{/admin/xuat-xu/hien-thi-page}">Xuất Xứ</a></li>
+                    <li class="nav-item"><a class="dropdown-item" th:href="@{/admin/phong-cach/hien-thi-page}">Phong Cách</a></li>
+                    <li class="nav-item"><a class="dropdown-item" th:href="@{/admin/phan-loai/hien-thi-page}">Phân Loại</a></li>
+                    <li class="nav-item"><a class="dropdown-item" href="#">Mụccon</a></li>
                 </ul>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link " th:href="@{/index1}">
                     <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -281,20 +284,7 @@
         </ul>
     </div>
 
-    <script>
-        // Lắng nghe sự kiện khi nhấp vào tab
-        document.getElementById("dropdownTab").addEventListener("click", function(event) {
-            event.preventDefault(); // Ngăn chặn hành vi mặc định của tab
 
-            // Kiểm tra xem danh sách con đã được hiển thị hay chưa
-            var dropdownMenu = document.getElementById("dropdownMenu");
-            if (dropdownMenu.style.display === "block") {
-                dropdownMenu.style.display = "none"; // Ẩn danh sách con nếu đã hiển thị
-            } else {
-                dropdownMenu.style.display = "block"; // Hiển thị danh sách con nếu chưa hiển thị
-            }
-        });
-    </script>
     <script>
         const navside = document.querySelector('.navside');
         const tabs = navside.getElementsByClassName("nav-link");
@@ -324,6 +314,26 @@
                 }
             });
         }
+    </script>
+    <script>
+        // Lưu trạng thái danh sách con
+        let isDropdownOpen = false;
+
+        // Xử lý sự kiện click vào nav con
+        document.getElementById("dropdownTab").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            // Kiểm tra trạng thái danh sách con để quyết định có đóng hay không
+            if (isDropdownOpen) {
+                // Đóng danh sách con
+                document.getElementById("dropdownMenu").style.display = "none";
+                isDropdownOpen = false;
+            } else {
+                // Hiển thị danh sách con
+                document.getElementById("dropdownMenu").style.display = "block";
+                isDropdownOpen = true;
+            }
+        });
     </script>
 </nav>
 

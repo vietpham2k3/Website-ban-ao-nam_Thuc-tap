@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
-
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -28,8 +29,12 @@ public class ThuongHieu implements Serializable {
     @Column(name = "Anh")
     private String Anh;
     @Column(name = "NgayTao")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date NgayTao;
     @Column(name = "NgayCapNhat")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date NgayCapNhat;
     @Column(name = "NguoiCapNhat")
     private String NguoiCapNhat;
