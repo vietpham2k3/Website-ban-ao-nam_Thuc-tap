@@ -87,36 +87,36 @@
                            </div>
                            <div class="col-md-6">
                                <label>Danh Mục</label> <select ng-model="danhmuc">
-                               <option ng-repeat="dm in listDM" value="{{dm.idDanhMuc}}">
+                               <option ng-repeat="dm in listDM" value="{{dm.idDanhMuc}}" ng-if="dm.trangThai == 0">
                                {{dm.tenDanhMuc}}</option></select>
                            </div>
                            <div class="col-md-6">
                                <label>Phân Loại</label>
                              <select ng-model="phanloai">
-                               <option ng-repeat="pl in listPL" value="{{pl.idPhanLoai}}">
+                               <option ng-repeat="pl in listPL" value="{{pl.idPhanLoai}}" ng-if="pl.trangThai == 0">
                                    {{pl.tenPhanLoai}}</option></select>
                            </div>
                            <div class="col-md-6">
                                <label>Thương Hiệu</label> <select ng-model="thuonghieu">
-                               <option ng-repeat="th in listTH" value="{{th.idThuongHieu}}">
+                               <option ng-repeat="th in listTH" value="{{th.idThuongHieu}}" ng-if="th.trangThai == 0">
                                    {{th.tenThuongHieu}}</option></select>
                            </div>
                            <div class="col-md-6">
                                <label>Xuất Xứ</label>
                                <select ng-model="xuatxu">
-                                   <option ng-repeat="xx in listXX" value="{{xx.idXuatXu}}">
+                                   <option ng-repeat="xx in listXX" value="{{xx.idXuatXu}}" ng-if="xx.trangThai == 0">
                                        {{xx.tenXuatXu}}</option></select>
                            </div>
                            <div class="col-md-6">
-                               <label>Phong Cách</label> <span style="padding-left: 5px" ng-repeat="pc in listPC"><input id="PC{{pc.idPhongCach}}" type="checkbox" value="{{pc.idPhongCach}}"> {{pc.tenPhongCach}}</span>
+                               <label>Phong Cách</label> <span style="padding-left: 5px" ng-repeat="pc in listPC" ng-if="pc.trangThai == 0"><input id="PC{{pc.idPhongCach}}" type="checkbox" value="{{pc.idPhongCach}}"> {{pc.tenPhongCach}}</span>
                            </div>
                            <div class="col-md-6">
-                               <label>Chất Liệu</label> <span style="padding-left: 5px" ng-repeat="cl in listCL"><input id="CL{{cl.idChatLieu}}"  type="checkbox" value="{{cl.idChatLieu}}"> {{cl.tenChatLieu}}</span>
+                               <label>Chất Liệu</label> <span style="padding-left: 5px" ng-repeat="cl in listCL" ng-if="cl.trangThai == 0"><input id="CL{{cl.idChatLieu}}"  type="checkbox" value="{{cl.idChatLieu}}"> {{cl.tenChatLieu}}</span>
                            </div>
                            <div class="col-md-6">
                                <label>Màu Sắc</label>
                                <span ng-repeat="ms in listMS">
-                                    <input type="checkbox" id="{{ms.idMauSac}}" ng-click="checkbox(ms.idMauSac)">{{ms.tenMauSac}}
+                                    <span ng-if="ms.trangThai == 0"><input type="checkbox" id="{{ms.idMauSac}}" ng-click="checkbox(ms.idMauSac)">{{ms.tenMauSac}}</span>
                                </span>
 
                            </div>

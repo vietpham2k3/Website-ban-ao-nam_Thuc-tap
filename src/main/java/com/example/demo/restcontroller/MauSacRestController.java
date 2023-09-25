@@ -1,13 +1,12 @@
 package com.example.demo.restcontroller;
 
+import com.example.demo.entity.KichThuoc;
+import com.example.demo.entity.MauSac;
 import com.example.demo.service.MauSacService;
 import com.example.demo.service.XuatXuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
 @RestController
@@ -18,5 +17,21 @@ public class MauSacRestController {
     @GetMapping()
     public ResponseEntity<?> getAll(){
         return ResponseEntity.ok(service.getAll());
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getById(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(service.getById(id));
+    }
+    @PostMapping()
+    public ResponseEntity<?> add(@RequestBody MauSac mauSac){
+        return ResponseEntity.ok(service.add(mauSac));
+    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<?> update(@PathVariable("id") Integer id,@RequestBody MauSac mauSac){
+        return ResponseEntity.ok(service.update(id,mauSac));
+    }
+    @PutMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(service.delete(id));
     }
 }

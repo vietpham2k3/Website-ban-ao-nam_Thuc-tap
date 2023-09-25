@@ -64,7 +64,10 @@
                     if (checkBox.checked == true){
                         text.innerHTML += '<div ><label>Số lượng '+ listMS1[i].tenMauSac +'</label>';
                         for(let j = 0 ; j < listKT1.length; j++){
-                            text.innerHTML += '<span style="padding-left: 10px; padding-bottom: 10px">Size</span> '+listKT1[j].tenKichThuoc+' <input id="MS'+listMS1[i].idMauSac+'KT'+listKT1[j].idKichThuoc+'" type="number" value="0" style="width: 50px">';
+                            if (listKT1[j].trangThai == 0){
+                                text.innerHTML += '<span style="padding-left: 10px; padding-bottom: 10px">Size</span> '+listKT1[j].tenKichThuoc+' <input id="MS'+listMS1[i].idMauSac+'KT'+listKT1[j].idKichThuoc+'" type="number" value="0" style="width: 50px">';
+                            }
+
                         }
                         text.innerHTML += '</div>';
                     } else {
