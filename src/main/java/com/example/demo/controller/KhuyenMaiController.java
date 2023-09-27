@@ -22,7 +22,7 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin/khuyen-mai")
-public class VoucherController {
+public class KhuyenMaiController {
 
     @Autowired
     private KhuyenMaiService serKM;
@@ -35,12 +35,12 @@ public class VoucherController {
         return "/admin/khuyenmai/khuyen-mai";
     }
 
-    @GetMapping("/{id}")
-    public String getOne(@PathVariable("id") String id,
-                          Model model) {
-      model.addAttribute("km",serKM.getOne(id));
-        return "/admin/khuyenmai/khuyen-mai";
-    }
+//    @GetMapping("/{id}")
+//    public String getOne(@PathVariable("id") String id,
+//                          Model model) {
+//      model.addAttribute("km",serKM.getOne(id));
+//        return "/admin/khuyenmai/khuyen-mai";
+//    }
 
     @PostMapping("/add")
     public String add(@ModelAttribute("khuyenMai") KhuyenMai km,
@@ -50,12 +50,18 @@ public class VoucherController {
 
         }
 
-    @PostMapping("/update/{id} ")
-    public String update(@ModelAttribute("khuyenMai") KhuyenMai km,
-                      BindingResult bindingResult,
-                         @PathVariable("id") String id) {
+    @GetMapping("/view-update/{id}")
+    public String viewUpdate(@PathVariable("id") String id,
+                             Model model){
+        KhuyenMai km = serKM.getOne(id);
+        model.addAttribute("details",km);
+        return "/admin/khuyenmai/update";
+    }
 
-        serKM.update(km,id);
+    @PostMapping("/update")
+    public String update(@ModelAttribute("khuyenMai") KhuyenMai km,
+                      BindingResult bindingResult) {
+        serKM.update(km);
         return "redirect:/admin/khuyen-mai/hien-thi";
 
     }

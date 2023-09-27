@@ -50,20 +50,18 @@ public class KhuyenMaiService {
         return optionalKhuyenMai.get();
 
     }
-    public KhuyenMai update(KhuyenMai km, String id) {
-        KhuyenMai getOne = res.findById(id).get();
+    public KhuyenMai update(KhuyenMai km) {
+        KhuyenMai khuyenMai = res.getOne(km.getIdKhuyenMai());
+        khuyenMai.setMaKhuyenMai(km.getMaKhuyenMai());
+        khuyenMai.setTenKhuyenMai(km.getTenKhuyenMai());
+        khuyenMai.setChietKhau(km.getChietKhau());
+        khuyenMai.setNgayBatDau(km.getNgayBatDau());
+        khuyenMai.setNgayKetThuc(km.getNgayKetThuc());
+        khuyenMai.setNgayTao(km.getNgayTao());
+        khuyenMai.setNguoiCapNhat(km.getNguoiCapNhat());
+        khuyenMai.setTrangThai(km.getTrangThai());
 
-        KhuyenMai km1 = getOne.builder()
-                .MaKhuyenMai(km.getMaKhuyenMai())
-                .TenKhuyenMai(km.getTenKhuyenMai())
-                .ChietKhau(km.getChietKhau())
-                .NgayBatDau(km.getNgayBatDau())
-                .NgayKetThuc(km.getNgayKetThuc())
-                .NgayTao(km.getNgayTao())
-                .NguoiCapNhat(km.getNguoiCapNhat())
-                .build();
-
-        return km1;
+        return res.save(khuyenMai);
     }
 
     public void delete(KhuyenMai khuyenMai){

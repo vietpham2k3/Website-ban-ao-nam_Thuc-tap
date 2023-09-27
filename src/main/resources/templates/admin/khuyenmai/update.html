@@ -64,96 +64,52 @@
 </aside>
 
 <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-    <div class="navbar-custom" th:insert="admin/layout/navbar_header.html"> :: header"></div>
+    <div class="navbar-custom" th:insert="admin/layout/navbar_header.html"> </div>
 
     <!--noidung-->
     <div class="container-fluid py-4" >
         <div> Quản Lý Voucher</div>
-        <div> <a onclick="openModal()"><button class="btn btn-success">Add</button></a> </div>
+
+        <!-- Your form content goes here -->
+        <form id="updateForm" th:action="@{/admin/khuyen-mai/update}" method="post">
+            <h2>Update khuyến mại</h2>
+
+            <label for="MaKhuyenMai">ID Khuyến mại:</label>
+            <input type="text" id="MaKhuyenMai" readonly="true" name="IdKhuyenMai" th:value="${details.IdKhuyenMai}">
+
+            <!-- Form fields go here -->
+            <label for="MaKhuyenMai">Mã Khuyến mại:</label>
+            <input type="text" id="MaKhuyenMai" name="MaKhuyenMai" th:value="${details.MaKhuyenMai}">
+
+            <label for="TenKhuyenMai">Tên Khuyến mại:</label>
+            <input type="text" id="TenKhuyenMai" name="TenKhuyenMai" th:value="${details.TenKhuyenMai}">
+
+            <label for="ChietKhau">Chiết khấu:</label>
+            <input type="text" id="ChietKhau" name="ChietKhau" th:value="${details.ChietKhau}">
+
+            <label for="NgayBatDau">Ngày bắt đầu:</label>
+            <input type="date" id="NgayBatDau" name="NgayBatDau" th:value="${details.NgayBatDau}">
+
+            <label for="NgayKetThuc">Ngày kết thúc:</label>
+            <input type="date" id="NgayKetThuc" name="NgayKetThuc" th:value="${details.NgayKetThuc}">
 
 
-<!--        ADD-->
-        <!-- Modal -->
-        <div id="addModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal()">&times;</span>
-                <!-- Your form content goes here -->
-                <form id="addForm" modelAttribute="khuyenMai" action="/admin/khuyen-mai/add" method="post">
-                    <h2>Thêm mã khuyến mại</h2>
+            <label for="NgayTao">Ngày tạo:</label>
+            <input type="date" id="NgayTao" name="NgayTao" th:value="${details.NgayTao}">
 
-                    <!-- Form fields go here -->
-                    <label for="MaKhuyenMai">Mã Khuyến mại:</label>
-                    <input type="text" id="MaKhuyenMai" name="MaKhuyenMai">
+            <br>
+            <label for="NguoiCapNhat">Người cập nhật:</label>
+            <input type="text" id="NguoiCapNhat" name="NguoiCapNhat"th:value="${details.NguoiCapNhat}">
 
-                    <label for="TenKhuyenMai">Tên Khuyến mại:</label>
-                    <input type="text" id="TenKhuyenMai" name="TenKhuyenMai">
-
-                    <label for="ChietKhau">Chiết khấu:</label>
-                    <input type="text" id="ChietKhau" name="ChietKhau">
-
-                    <label for="NgayBatDau">Ngày bắt đầu:</label>
-                    <input type="date" id="NgayBatDau" name="NgayBatDau">
-
-                    <label for="NgayKetThuc">Ngày kết thúc:</label>
-                    <input type="date" id="NgayKetThuc" name="NgayKetThuc">
+            <label> Trạng thái</label>
+            <input type="radio" name="TrangThai" value="1" th:checked="${details.TrangThai == 1 }" /> Hoạt động
+            <input type="radio" name="TrangThai" value="0" th:checked="${details.TrangThai == 0}" /> Ngừng hoạt động
 
 
-                    <label for="NgayTao">Ngày tạo:</label>
-                    <input type="date" id="NgayTao" name="NgayTao">
-
-                    <br>
-                    <label for="NguoiCapNhat">Người cập nhật:</label>
-                    <input type="text" id="NguoiCapNhat" name="NguoiCapNhat">
-
-                    <label> Trạng thái</label>
-                    <input th:type="radio" name="TrangThai" value="1" > Hoạt động
-                    <input th:type="radio" name="TrangThai" value="0"> Ngừng hoạt động
-
-                    <br>
-                    <!-- Add more form fields as needed -->
-                    <button type="submit">Add</button>
-                </form>
-            </div>
-        </div>
-
-        <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">STT</th>
-                <th scope="col">Mã khuyến mại</th>
-                <th scope="col">Tên Khuyến mại</th>
-                <th scope="col">Chiết khấu</th>
-                <th scope="col">Ngày bắt đầu</th>
-                <th scope="col">Ngày kết thúc</th>
-                <th scope="col">Ngày Tạo</th>
-                <th scope="col">Người cập nhật</th>
-                <th scope="col">Trạng thái</th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-
-            <tr th:each="km,index : ${listKM}">
-                <td th:text="${index.index + 1}"></td>
-                <td th:text="${km.MaKhuyenMai}"></td>
-                <td th:text="${km.TenKhuyenMai}"></td>
-                <td th:text="${km.ChietKhau}"></td>
-                <td th:text="${km.NgayBatDau}"></td>
-                <td th:text="${km.NgayKetThuc}"></td>
-                <td th:text="${km.NgayTao}"></td>
-                <td th:text="${km.NguoiCapNhat}"></td>
-                <td th:text="${km.TrangThai==1?'Hoạt động':'Ngừng hoạt động'}"></td>
-                <td>
-                    <a class="btn btn-info" th:href="@{/admin/khuyen-mai/view-update/{IdKhuyenMai}(IdKhuyenMai=${km.IdKhuyenMai})}" >Update</a>
-
-                    <a class="btn btn-danger" th:href="@{/admin/khuyen-mai/remove/{IdKhuyenMai}(IdKhuyenMai=${km.IdKhuyenMai})}" >Remove</a>
-
-
-                </td>
-
-            </tr>
-            </tbody>
-        </table>
+            <br>
+            <!-- Add more form fields as needed -->
+            <button type="submit">Update</button>
+        </form>
 
         <script src="../../../static/js/sp.js"></script>
         <!--    endNoidung-->
@@ -307,42 +263,10 @@
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="../../../static/assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
 
-<!--modal add-->
-<script>// Get the modal and button elements
-const modal = document.getElementById("addModal");
-const addButton = document.querySelector(".btn-success");
 
-// Function to open the modal
-function openModal() {
-    modal.style.display = "block";
-}
-
-// Function to close the modal
-function closeModal() {
-    modal.style.display = "none";
-}
-
-// Attach a click event listener to the "Add" button
-addButton.addEventListener("click", openModal);
-
-// Close the modal when the close button or outside the modal is clicked
-window.addEventListener("click", function (event) {
-    if (event.target === modal) {
-        closeModal();
-    }
-});
-
-// Handle form submission (you can customize this part)
-// const addForm = document.getElementById("addForm");
-// addForm.addEventListener("submit", function (event) {
-//     event.preventDefault();
-//     // Add your form submission logic here
-//     closeModal(); // Close the modal after submission
-// });
-</script>
 <!--//modal update-->
 
-<script>
+<!-- <script>
     function openUpdateModal(id) {
         // Use JavaScript to populate the modal fields with existing data
         // You can use AJAX to fetch the existing data for the specified ID
@@ -370,7 +294,7 @@ window.addEventListener("click", function (event) {
             }
         });
     }
-</script>
+</script> -->
 
 </body>
 </html>
