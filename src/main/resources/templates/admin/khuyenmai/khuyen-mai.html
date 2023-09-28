@@ -98,9 +98,6 @@
                     <input type="date" id="NgayKetThuc" name="NgayKetThuc">
 
 
-                    <label for="NgayTao">Ngày tạo:</label>
-                    <input type="date" id="NgayTao" name="NgayTao">
-
                     <br>
                     <label for="NguoiCapNhat">Người cập nhật:</label>
                     <input type="text" id="NguoiCapNhat" name="NguoiCapNhat">
@@ -146,7 +143,8 @@
                 <td>
                     <a class="btn btn-info" th:href="@{/admin/khuyen-mai/view-update/{IdKhuyenMai}(IdKhuyenMai=${km.IdKhuyenMai})}" >Update</a>
 
-                    <a class="btn btn-danger" th:href="@{/admin/khuyen-mai/remove/{IdKhuyenMai}(IdKhuyenMai=${km.IdKhuyenMai})}" >Remove</a>
+                    <a class="btn btn-danger" th:href="@{/admin/khuyen-mai/remove/{IdKhuyenMai}(IdKhuyenMai=${km.IdKhuyenMai})}"
+                       onclick="return confirm('Bạn có muốn xóa không?')">Remove</a>
 
 
                 </td>

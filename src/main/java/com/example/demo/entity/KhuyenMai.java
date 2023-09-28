@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.type.DateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -54,7 +56,7 @@ public class KhuyenMai implements Serializable {
     private String NgayKetThuc;
 
     @Column(name = "NgayTao")
-    private String NgayTao;
+    private Date NgayTao;
 
     @Column(name = "NgayCapNhat")
     private String NgayCapNhat;
