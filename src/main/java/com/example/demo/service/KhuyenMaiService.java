@@ -1,17 +1,15 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.HoaDon;
 import com.example.demo.entity.KhuyenMai;
-import com.example.demo.repository.HoaDonRepository;
 import com.example.demo.repository.KhuyenMaiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class KhuyenMaiService {
@@ -30,13 +28,17 @@ public class KhuyenMaiService {
 
 
     public KhuyenMai add(KhuyenMai km) {
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY); // Giờ hiện tại (24 giờ)
+        int minute = cal.get(Calendar.MINUTE);
+
         KhuyenMai km1 = KhuyenMai.builder()
                 .MaKhuyenMai(km.getMaKhuyenMai())
                 .TenKhuyenMai(km.getTenKhuyenMai())
                 .ChietKhau(km.getChietKhau())
                 .NgayBatDau(km.getNgayBatDau())
                 .NgayKetThuc(km.getNgayKetThuc())
-                .NgayTao(km.getNgayTao())
+                .NgayTao(cal.getTime())
                 .NguoiCapNhat(km.getNguoiCapNhat())
                 .TrangThai(km.getTrangThai())
                 .build();
@@ -51,13 +53,17 @@ public class KhuyenMaiService {
 
     }
     public KhuyenMai update(KhuyenMai km) {
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY); // Giờ hiện tại (24 giờ)
+        int minute = cal.get(Calendar.MINUTE);
+
         KhuyenMai khuyenMai = res.getOne(km.getIdKhuyenMai());
         khuyenMai.setMaKhuyenMai(km.getMaKhuyenMai());
         khuyenMai.setTenKhuyenMai(km.getTenKhuyenMai());
         khuyenMai.setChietKhau(km.getChietKhau());
         khuyenMai.setNgayBatDau(km.getNgayBatDau());
         khuyenMai.setNgayKetThuc(km.getNgayKetThuc());
-        khuyenMai.setNgayTao(km.getNgayTao());
+        khuyenMai.setNgayTao(cal.getTime());
         khuyenMai.setNguoiCapNhat(km.getNguoiCapNhat());
         khuyenMai.setTrangThai(km.getTrangThai());
 
