@@ -1,5 +1,4 @@
-    let url = "/api/sanpham/phantrang";
-    let url1 = "/api/sanpham";
+    let url = "/api/sanpham";
     let urldanhmuc = "/api/danhmuc";
     let urlthuonghieu = "/api/thuonghieu";
     let urlphanloai = "/api/phanloai";
@@ -13,7 +12,7 @@
         $scope.list = [];
 
         $http.get(url).then(function (response) {
-            $scope.list = response.data.content;
+            $scope.list = response.data;
         });
 
         $scope.listDM = [];
@@ -81,6 +80,10 @@
         //add san pham
         $scope.add = function(){
             var fileanh = document.getElementById("fileUpload").files;
+            if (fileanh.length == 0){
+                Swal.fire('Vui lòng thêm ảnh cho sản phẩm', '', 'error');
+                return;
+            }
             var reader = new FileReader();
             $http.post("/api/sanpham",{
                 maSanPham : $scope.masanpham,
@@ -182,16 +185,27 @@
 
         //delete san pham
         $scope.delete = function(idCTSP){
-            var check = window.confirm("Bạn chắc chắn muốn xóa sản phẩm ?");
-            if(check === true){
-                $http.put("/api/ctsp/" +idCTSP).then(function(response){
-                    if(response.status === 200){
-                        alert("Xóa thành công !");
-                        window.location.reload();
+            Swal.fire({
+                title: 'Bạn có chắc muốn xóa ?',
+                showCancelButton: true,
+                confirmButtonText: 'Xóa',
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    $http.put("/api/ctsp/" +idCTSP).then(function(response){
+                        if (response.status === 200){
+                            Swal.fire('Xóa thành công !', '', 'success')
+                            setTimeout(() => {
+                                location.href = "/admin/san-pham/hien-thi";
+                            }, 1500);
+                        }
+                        else{
+                            Swal.fire('Xóa thất bại !', '', 'error')
+                        }
+                    })
+                }
+            })
 
-                    }
-                })
-            }
 
         }
 
@@ -352,7 +366,153 @@
             })
 
         }
+        // pagation
+        $scope.pager = {
+            page: 0,
+            size: 5,
+            get items() {
+                var start = this.page * this.size;
+                return $scope.list.slice(start, start + this.size);
+            },
+            get count() {
+                return Math.ceil(1.0 * $scope.list.length / this.size);
+            },
 
+            first() {
+                this.page = 0;
+            },
+            prev() {
+                this.page--;
+                if (this.page < 0) {
+                    this.last();
+                }
+            },
+            next() {
+                this.page++;
+                if (this.page >= this.count) {
+                    this.first();
+                }
+            },
+            last() {
+                this.page = this.count - 1;
+            }
+        }
+
+        //export exel
+        $scope.exportToExcel = function () {
+            Swal.fire({
+                title: 'Bạn có chắc muốn xuất Exel ?',
+                showCancelButton: true,
+                confirmButtonText: 'Xuất',
+            }).then((result) => {
+                if (result.isConfirmed){
+                    // Chuyển dữ liệu thành một mảng các đối tượng JSON
+                    var dataArray = $scope.list.map(function (item) {
+                        var Materials = item.chatLieu_ctspList.map(function (detail){
+                            return detail.chatLieu.tenChatLieu;
+                        }).join(', ');
+                        var Styles = item.phongCach_ctspList.map(function (detail){
+                            return detail.phongCach.tenPhongCach;
+                        }).join(', ');
+                        var Images = item.sanPham.anhs.map(function (image){
+                            return image.link ;
+                        }).join(', ');
+                        var Color_Size = item.mauSac_kichThuoc_ctspList.map(function (size){
+                            return 'Color : ' + size.mauSac.tenMauSac + ' { Size ' + size.kichThuoc.tenKichThuoc + ' | Quantity : ' + size.soLuong + '}';
+                        }).join(', ');
+                        return {
+                            Code: item.sanPham.maSanPham,
+                            Name: item.sanPham.tenSanPham,
+                            Images : Images,
+                            Price : item.giaBan,
+                            Description : item.moTa,
+                            Discount : item.giamGia,
+                            Category : item.danhMuc.tenDanhMuc,
+                            Brand : item.thuongHieu.tenThuongHieu,
+                            Origin : item.xuatXu.tenXuatXu,
+                            Classify : item.phanLoai.tenPhanLoai,
+                            Materials :  Materials,
+                            QuantityByColor_Sizes : Color_Size,
+                            Style : Styles
+                        };
+                    });
+
+                    // Tạo một workbook mới
+                    var workbook = XLSX.utils.book_new();
+
+                    // Tạo một worksheet từ dữ liệu
+                    var worksheet = XLSX.utils.json_to_sheet(dataArray);
+
+                    // Thêm worksheet vào workbook
+                    XLSX.utils.book_append_sheet(workbook, worksheet, 'Data Sheet');
+
+                    // Xuất tệp Excel
+                    XLSX.writeFile(workbook, 'data'+ new Date()+'.xlsx');
+                    Swal.fire("Xuất file exel thành công !","","success");
+                }
+            })
+
+        }
+        // search by name
+        $scope.search = function (){
+            var name = document.getElementById("name").value;
+            if (name.trim().length === 0){
+                Swal.fire("Nhập tên trước khi tìm kiếm...","","error");
+            }
+            else{
+                $http.get("/api/ctsp/search/"+name).then(function (search){
+                    $scope.list = search.data;
+                    $scope.pager.first();
+                })
+            }
+
+        }
+
+        //filter
+        $scope.filter = function (){
+            let idCategory = document.getElementById("danhmuc").value;
+            let idMaterial = document.getElementById("chatlieu").value;
+            let idColor = document.getElementById("mausac").value;
+            let idSize = document.getElementById("kichthuoc").value;
+            let idBrand = document.getElementById("thuonghieu").value;
+            let idPhanLoai = document.getElementById("phanloai").value;
+            let idXuatXu = document.getElementById("xuatxu").value;
+            let idPhongCach = document.getElementById("phongcach").value;
+
+            let min = document.getElementById("rangeMin").value;
+            let max = document.getElementById("rangeMax").value;
+            let idcate = (idCategory != '') ? idCategory : null;
+            let idbrad = (idBrand != '') ? idBrand : null;
+            let idmate = (idMaterial != '') ? idMaterial : null;
+            let idpl = (idPhanLoai != '') ? idPhanLoai : null;
+            let idxx = (idXuatXu != '') ? idXuatXu: null;
+            let idcolor = (idColor != '') ? idColor : null;
+            let idsize = (idSize != '') ? idSize : null;
+            let idpc = (idPhongCach != '') ? idPhongCach : null;
+
+
+            var params = {
+                idcategory : idcate ,
+                idmaterial : idmate,
+                idcolor : idcolor,
+                idsize : idsize,
+                idbrand : idbrad,
+                idphanloai : idpl,
+                idxuatxu : idxx,
+                idphongcach : idpc,
+                min : min,
+                max : max
+            }
+            $http({
+                method : 'GET',
+                url : '/api/ctsp/filter',
+                params : params
+            }).then(function (resp){
+                $scope.list = resp.data;
+                $scope.pager.first();
+                Swal.fire("Lọc thành công !","","success");
+            });
+        }
 
 
 

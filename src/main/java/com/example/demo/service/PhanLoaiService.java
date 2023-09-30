@@ -16,7 +16,7 @@ public class PhanLoaiService {
     @Autowired
     private PhanLoaiRepository repository;
     public List<PhanLoai> getAll(){
-        return  repository.findAll();
+        return  repository.getAll();
     }
 
     public Page<PhanLoai> pagePL(Pageable pageable){

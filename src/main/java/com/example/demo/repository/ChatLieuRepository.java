@@ -14,5 +14,6 @@ import java.util.UUID;
 
 @Repository
 public interface ChatLieuRepository extends JpaRepository<ChatLieu,Integer> {
-
+    @Query(value = "Select e from ChatLieu e where e.TrangThai = 0")
+    public List<ChatLieu> getAll();
 }

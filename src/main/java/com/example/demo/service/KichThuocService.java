@@ -15,7 +15,7 @@ public class KichThuocService {
     @Autowired
     private KichThuocRepository repository;
     public List<KichThuoc> getAll(){
-        return  repository.findAll();
+        return  repository.getAll();
     }
     public KichThuoc add(KichThuoc kichThuoc){
         return repository.save(kichThuoc);

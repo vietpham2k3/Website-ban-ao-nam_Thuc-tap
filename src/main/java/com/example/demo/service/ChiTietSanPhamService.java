@@ -23,7 +23,7 @@ public class ChiTietSanPhamService {
 
 
     public List<ChiTietSanPham> getAll(){
-        return repository.findAll();
+        return repository.getAllCTSP();
     }public List<ChiTietSanPham> getAll1(){
         return repository.findAll();
     }
@@ -71,6 +71,12 @@ public class ChiTietSanPhamService {
         chiTietSanPham.setMoTa(request.getMoTa());
         chiTietSanPham.setGiamGia(request.getGiamGia());
         return repository.saveAndFlush(chiTietSanPham);
+    }
+    public List<ChiTietSanPham> getAllbyProductName(String name){
+        return repository.getByName('%'+name+'%');
+    }
+    public List<ChiTietSanPham> getAllbyFilter(Integer IdColor,Integer IdSize,Integer IdMaterial,Integer IdCategory, Integer IdBrand , Integer IdPhanLoai, Integer IdXuatXu,Integer IdPhongCach,Double min , Double max){
+        return repository.getAllByFilter(IdColor,IdSize,IdMaterial,IdCategory,IdBrand,IdPhanLoai,IdXuatXu,IdPhongCach,min,max);
     }
 
 

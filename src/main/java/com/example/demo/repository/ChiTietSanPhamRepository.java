@@ -38,4 +38,15 @@ public interface ChiTietSanPhamRepository extends JpaRepository<ChiTietSanPham, 
 
     @Query(value = "Select e from ChiTietSanPham e where  e.IdCTSP = :id")
     public ChiTietSanPham getCTSP(@Param("id") UUID id);
+    @Query(value = "Select e from ChiTietSanPham e where e.TrangThai = 0")
+    public List<ChiTietSanPham> getAllCTSP();
+    @Query(value = "Select e from ChiTietSanPham e where e.sanPham.TenSanPham like :name")
+    public List<ChiTietSanPham> getByName(@Param("name") String name);
+    @Query(value = "Select e from ChiTietSanPham e join ChatLieu_CTSP m on m.chiTietSanPham.IdCTSP = e.IdCTSP\n" +
+            "join ChatLieu ma on ma.IdChatLieu = m.chatLieu.IdChatLieu join MauSac_KichThuoc_CTSP p on p.chiTietSanPham.IdCTSP = e.IdCTSP\n" +
+            "join MauSac c on c.IdMauSac = p.mauSac.IdMauSac\n" +
+            "join KichThuoc s on s.IdKichThuoc = p.kichThuoc.IdKichThuoc join PhongCach_CTSP pctsp on pctsp.chiTietSanPham.IdCTSP = e.IdCTSP join PhongCach pc on pc.IdPhongCach = pctsp.phongCach.IdPhongCach where (ma.IdChatLieu = :idmaterial or :idmaterial is null) and (c.IdMauSac = :idcolor or :idcolor is null) and (s.IdKichThuoc = :idsize or :idsize is null) and (e.danhMuc.IdDanhMuc = :idcategory or :idcategory is null) and (e.thuongHieu.IdThuongHieu = :idbrand or :idbrand is null) and (e.phanLoai.IdPhanLoai = :idphanloai or :idphanloai is null)" +
+            " and (e.xuatXu.IdXuatXu = :idxuatxu or :idxuatxu is null) and (pc.IdPhongCach = :idphongcach or :idphongcach is null) and e.GiaBan >= :min and e.GiaBan <= :max and e.TrangThai = 0 Order by e.NgayTao desc")
+    public List<ChiTietSanPham> getAllByFilter(@Param("idcolor") Integer IdColor , @Param("idsize") Integer IdSize,@Param("idmaterial") Integer IdMaterial,@Param("idcategory") Integer IdCategory , @Param("idbrand") Integer IdBrand ,@Param("idphanloai") Integer IdPhanLoai,@Param("idxuatxu") Integer IdXuatXu,@Param("idphongcach") Integer IdPhongCach,@Param("min") Double min ,@Param("max") Double max);
+
 }

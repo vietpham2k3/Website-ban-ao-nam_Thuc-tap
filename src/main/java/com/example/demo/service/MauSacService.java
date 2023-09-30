@@ -16,7 +16,7 @@ public class MauSacService {
     @Autowired
     private MauSacRepository repository;
     public List<MauSac> getAll(){
-        return  repository.findAll();
+        return  repository.getAll();
     }
 
     public MauSac add(MauSac mauSac){

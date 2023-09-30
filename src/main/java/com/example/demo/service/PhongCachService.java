@@ -16,7 +16,7 @@ public class PhongCachService {
     @Autowired
     private PhongCachRepository repository;
     public List<PhongCach> getAll(){
-        return  repository.findAll();
+        return  repository.getAll();
     }
 
     public Page<PhongCach> pagePC(Pageable pageable){

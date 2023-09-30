@@ -17,7 +17,7 @@ public class ThuongHieuService {
     @Autowired
     private ThuongHieuRepository repository;
     public List<ThuongHieu> getAll(){
-        return  repository.findAll();
+        return  repository.getAll();
     }
 
     public Page<ThuongHieu> pageTH(Pageable pageable){

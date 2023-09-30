@@ -17,7 +17,7 @@ public class DanhMucService {
     private DanhMucRepository repository;
 
     public List<DanhMuc> getAll(){
-        return  repository.findAll();
+        return  repository.getAll();
     }
 
     public Page<DanhMuc> phanTrang(Integer page, Integer size){
