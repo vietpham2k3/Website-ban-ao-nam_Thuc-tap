@@ -14,6 +14,6 @@ public class ChatLieuService {
     @Autowired
     private ChatLieuRepository repository;
     public List<ChatLieu> getAll(){
-        return  repository.findAll();
+        return  repository.getAll();
     }
 }

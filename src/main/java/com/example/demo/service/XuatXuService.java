@@ -16,7 +16,7 @@ public class XuatXuService {
     @Autowired
     private XuatXuRepository repository;
     public List<XuatXu> getAll(){
-        return  repository.findAll();
+        return  repository.getAll();
     }
 
     public Page<XuatXu> pageXX(Pageable pageable){

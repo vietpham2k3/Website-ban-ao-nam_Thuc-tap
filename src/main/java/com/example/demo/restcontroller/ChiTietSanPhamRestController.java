@@ -35,4 +35,23 @@ public class ChiTietSanPhamRestController {
     public ResponseEntity<?> update(@RequestBody ChiTietSanPhamRequest chiTietSanPham, @PathVariable("id")UUID id){
         return ResponseEntity.ok(service.update(chiTietSanPham,id));
     }
+    @GetMapping("/search/{name}")
+    public ResponseEntity<?> getAllByProductName(@PathVariable("name") String name){
+        return ResponseEntity.ok(service.getAllbyProductName(name));
+    }
+    @GetMapping("/filter")
+    public ResponseEntity<?> getAllByFilter(@RequestParam(name = "idcategory",required = false) Integer IdCategory,
+                                            @RequestParam(name = "idmaterial",required = false) Integer IdMaterial,
+                                            @RequestParam(name = "idcolor",required = false) Integer IdColor,
+                                            @RequestParam(name = "idsize",required = false) Integer IdSize,
+                                            @RequestParam(name = "idbrand",required = false) Integer IdBrand,
+                                            @RequestParam(name = "idphanloai",required = false) Integer IdPhanLoai,
+                                            @RequestParam(name = "idxuatxu",required = false) Integer IdXuatXu,
+                                            @RequestParam(name = "idphongcach",required = false) Integer IdPhongCach,
+                                            @RequestParam("min") Double min,
+                                            @RequestParam("max") Double max){
+
+        return ResponseEntity.ok(service.getAllbyFilter(IdColor,IdSize,IdMaterial,IdCategory,IdBrand,IdPhanLoai,IdXuatXu,IdPhongCach,min,max));
+    }
+
 }
