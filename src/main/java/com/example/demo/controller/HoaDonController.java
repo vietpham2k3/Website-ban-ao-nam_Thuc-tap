@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.HoaDon;
 import com.example.demo.entity.KhachHang;
+import com.example.demo.entity.LichSuHoaDon;
 import com.example.demo.service.*;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.poi.ss.usermodel.Cell;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -35,6 +37,7 @@ public class HoaDonController {
     @Autowired public NhanVienService serNV;
     @Autowired public HinhThucThanhToanService serHTTT;
     @Autowired public DiaChiService serDC;
+    @Autowired public LichSuHoaDonService serLSHD;
 
     @GetMapping("hien-thi")
     public String hienThi(@RequestParam(defaultValue = "0") int page, Model model){
@@ -97,6 +100,12 @@ public class HoaDonController {
         model.addAttribute("listKH", serKH.getAll());
         model.addAttribute("listHTTT", serHTTT.getAll());
 
+        HoaDon hoaDon = serHD.detail(id);
+        model.addAttribute("listHD", hoaDon);
+
+        List<LichSuHoaDon> listLSHD = serLSHD.findAllLichSuHoaDonById(id);
+        model.addAttribute("listLSHD",listLSHD);
+
         return "/admin/hoadon/hoa-don-chi-tiet";
     }
 
@@ -158,5 +167,101 @@ public class HoaDonController {
         workbook.close();
     }
 
+    @PostMapping("huy-don/{id}")
+    public String huyDon(@PathVariable(name = "id") Integer id, @RequestParam("ghiChu") String ghiChu
+            , @ModelAttribute("listLshd") LichSuHoaDon lshd,
+                         RedirectAttributes redirectAttributes, Model model) {
+        HoaDon hoaDon = serHD.detail(id);
+        model.addAttribute("listHD", hoaDon);
+        LichSuHoaDon lichSuHoaDon = new LichSuHoaDon();
+
+        lichSuHoaDon.setTrangThai(2);
+        hoaDon.setTrangThai(2);
+        Date date = new Date();
+        lichSuHoaDon.setNgayCapNhat(date);
+        hoaDon.setNgayCapNhat(date);
+
+        lichSuHoaDon.setGhiChu(ghiChu);
+
+        lichSuHoaDon.setHoaDon(hoaDon);
+
+        serHD.res.save(hoaDon);
+        serLSHD.createLichSuDonHang(lichSuHoaDon);
+//        redirectAttributes.addAttribute("id", hoaDon.getId());
+        return "redirect:/admin/hoa-don/view-hdct/" + id;
+    }
+
+    @PostMapping("xac-nhan-don/{id}")
+    public String xacNhanDonHang(@PathVariable(name = "id") Integer id,@RequestParam("ghiChu") String ghiChu
+            , @ModelAttribute("listLshd") LichSuHoaDon lshd,
+                                 RedirectAttributes redirectAttributes, Model model) {
+        HoaDon hoaDon = serHD.detail(id);
+        model.addAttribute("listHD", hoaDon);
+
+        LichSuHoaDon lichSuHoaDon = new LichSuHoaDon();
+        lichSuHoaDon.setTrangThai(1);
+        hoaDon.setTrangThai(1);
+        Date date = new Date();
+        lichSuHoaDon.setNgayCapNhat(date);
+        hoaDon.setNgayCapNhat(date);
+
+        lichSuHoaDon.setHoaDon(hoaDon);
+
+        lichSuHoaDon.setGhiChu(ghiChu);
+
+        serHD.res.save(hoaDon);
+        serLSHD.createLichSuDonHang(lichSuHoaDon);
+
+//        redirectAttributes.addAttribute("id", hoaDon.getId());
+        return "redirect:/admin/hoa-don/view-hdct/" + id;
+    }
+
+    @PostMapping("xac-nhan-giao-hang/{id}")
+    public String xacNhanGiaoHang(@PathVariable(name = "id") Integer id, @RequestParam("ghiChu") String ghiChu
+            ,@ModelAttribute("listLshd") LichSuHoaDon lshd,
+                                  RedirectAttributes redirectAttributes, Model model) {
+        HoaDon hoaDon = serHD.detail(id);
+        model.addAttribute("listHD", hoaDon);
+        LichSuHoaDon lichSuHoaDon = new LichSuHoaDon();
+        lichSuHoaDon.setTrangThai(4);
+        hoaDon.setTrangThai(4);
+        Date date = new Date();
+        lichSuHoaDon.setNgayCapNhat(date);
+        hoaDon.setNgayCapNhat(date);
+
+        lichSuHoaDon.setGhiChu(ghiChu);
+
+        lichSuHoaDon.setHoaDon(hoaDon);
+
+        serHD.res.save(hoaDon);
+        serLSHD.createLichSuDonHang(lichSuHoaDon);
+//        redirectAttributes.addAttribute("id", hoaDon.getId());
+        return "redirect:/admin/hoa-don/view-hdct/" + id;
+
+    }
+
+    @PostMapping("xac-nhan-thanh-toan/{id}")
+    public String xacNhanThanhToan(@PathVariable(name = "id") Integer id,@RequestParam("ghiChu") String ghiChu
+            , @ModelAttribute("listLshd") LichSuHoaDon lshd,
+                                   RedirectAttributes redirectAttributes, Model model) {
+        HoaDon hoaDon = serHD.detail(id);
+        model.addAttribute("listHD", hoaDon);
+        LichSuHoaDon lichSuHoaDon = new LichSuHoaDon();
+        lichSuHoaDon.setTrangThai(7);
+        hoaDon.setTrangThai(7);
+        Date date = new Date();
+        lichSuHoaDon.setNgayCapNhat(date);
+        hoaDon.setNgayCapNhat(date);
+
+        lichSuHoaDon.setGhiChu(ghiChu);
+
+        lichSuHoaDon.setHoaDon(hoaDon);
+
+        serHD.res.save(hoaDon);
+        serLSHD.createLichSuDonHang(lichSuHoaDon);
+
+//        redirectAttributes.addAttribute("id", hoaDon.getId());
+        return "redirect:/admin/hoa-don/view-hdct/" + id;
+    }
 
 }

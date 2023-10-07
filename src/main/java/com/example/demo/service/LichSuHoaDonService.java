@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class LichSuHoaDonServiceImpl implements LichSuHoaDonService {
+public class LichSuHoaDonService {
     @Autowired
     private LichSuHoaDonRepository lichSuHoaDonRepository;
 
@@ -19,10 +19,10 @@ public class LichSuHoaDonServiceImpl implements LichSuHoaDonService {
     }
 
     public LichSuHoaDon detail(UUID id) {
-        return lichSuHoaDonRepository.findLichSuHoaDonById(id);
+        return lichSuHoaDonRepository.findById(id).orElse(null);
     }
 
-    public List<LichSuHoaDon> findAllLichSuHoaDonById(UUID id) {
+    public List<LichSuHoaDon> findAllLichSuHoaDonById(Integer id) {
         return lichSuHoaDonRepository.findLichSuHoaDonByHoaDonId(id);
     }
 
