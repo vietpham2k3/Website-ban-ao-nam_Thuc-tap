@@ -1,27 +1,409 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:thnum="http://www.thymeleaf.org/extras/numbers">
 
   <head>
-
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="apple-touch-icon" sizes="76x76" href="../../../static/assets/img/apple-icon.png">
+      <link rel="icon" type="image/png" th:href="@{/static/images/shop.png}">
+      <title>Trang chủ</title>
+      <!--     Fonts and icons     -->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+      <!-- Nucleo Icons -->
+      <link href="../../../static/assets/css/nucleo-icons.css" rel="stylesheet"/>
+      <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>
+      <!-- Font Awesome Icons -->
+      <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+      <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>
+      <!-- CSS Files -->
+      <link id="pagestyle" href="../../../static/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet"/>
 
-    <title>Hexashop Ecommerce</title>
+      <!-- App css -->
+      <script src="https://kit.fontawesome.com/52ef4965e2.js" crossorigin="anonymous"></script>
+
+      <!-- Bootstrap 5 CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+
+      <!-- Nepcha Analytics (nepcha.com) -->
+      <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+      <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+      <style>
+          @import url('https://rsms.me/inter/inter.css');
+
+          :root {
+              --color-light: white;
+              --color-dark: #212121;
+              --color-signal: #fab700;
+
+              --color-background: var(--color-light);
+              --color-text: var(--color-dark);
+              --color-accent: var(--color-signal);
+
+              --size-bezel: .05rem;
+              --size-radius: 1px;
+
+              /*line-height: 1.4;*/
+
+              font-family: 'Inter', sans-serif;
+              font-size: calc(.6rem + .4vw);
+              color: var(--color-text);
+              background: none;
+              /*font-weight: 300;*/
+              padding: 0 calc(var(--size-bezel) * 3);
+          }
+
+          .input {
+              position: relative;
+          }
+
+          .input__label {
+              position: absolute;
+              left: 0;
+              top: 0;
+              padding: calc(var(--size-bezel) * 0.75) calc(var(--size-bezel) * .5);
+              margin: calc(var(--size-bezel) * 0.75 + 3px) calc(var(--size-bezel) * .5);
+              background: pink;
+              white-space: nowrap;
+              transform: translate(0, 0);
+              transform-origin: 0 0;
+              background: var(--color-background);
+              transition: transform 120ms ease-in;
+              font-weight: bold;
+              /*line-height: 1.2;*/
+          }
+
+          .input__field {
+              box-sizing: border-box;
+              display: block;
+              width: 100%;
+              border: 3px solid currentColor;
+              padding: calc(var(--size-bezel) * 1.5) var(--size-bezel);
+              color: currentColor;
+              background: transparent;
+              border-radius: var(--size-radius);
+          }
+
+          .input__field:not(:placeholder-shown) + .input__label {
+              transform: translate(.25rem, -65%) scale(.8);
+              color: var(--color-accent);
+          }
+
+          .button-group {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+          }
+
+          .export-form {
+              margin: 0;
+              padding: 0;
+          }
+
+          .export-button {
+              border: none;
+              background: none;
+              padding: 0;
+              cursor: pointer;
+          }
+
+          .export-button a {
+              text-decoration: none;
+          }
+
+          .export-button img {
+              vertical-align: middle;
+          }
+
+          .search-date-input {
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              padding: 6px;
+              font-size: 14px;
+              /*Thêm các thuộc tính khác tùy chỉnh kiểu dáng*/
+          }
+
+          .search-button {
+              position: relative;
+              overflow: hidden;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+          }
+
+          .search-button:hover {
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+          }
+
+          .search-button .btn-icon,
+          .search-button .separator,
+          .search-button .btn-text {
+              display: inline-block;
+              vertical-align: middle;
+          }
+
+          .search-button .separator {
+              margin: 0 5px;
+          }
+
+          .search-button .btn-icon i {
+              color: white;
+          }
+
+          .search-button .btn-text {
+              font-weight: bold;
+              color: white;
+          }
+
+          .search-button {
+              background-color: blue;
+              color: white;
+              border-color: blue;
+          }
+
+          .search-button .btn-icon,
+          .search-button .separator,
+          .search-button .btn-text {
+              display: inline-block;
+              vertical-align: middle;
+          }
+
+          .search-button .separator {
+              margin: 0 5px;
+              color: white;
+          }
+
+          .search-button .btn-icon i {
+              color: white;
+          }
+
+          .search-button .btn-text {
+              font-weight: bold;
+          }
+
+          .shadow-button {
+              position: relative;
+              box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+              transition: box-shadow 0.3s ease;
+          }
+
+          .shadow-button:hover {
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+          }
+      </style>
+
+      <style>
+          .alert > .start-icon {
+              margin-right: 0;
+              min-width: 20px;
+              text-align: center;
+          }
+
+          .alert > .start-icon {
+              margin-right: 5px;
+          }
+
+          .greencross {
+              font-size: 18px;
+              color: #25ff0b;
+              text-shadow: none;
+          }
+
+          .alert-simple.alert-success {
+              border: 1px solid rgba(36, 241, 6, 0.46);
+              background-color: rgba(7, 149, 66, 0.12156862745098039);
+              box-shadow: 0px 0px 2px #259c08;
+              color: #0ad406;
+              text-shadow: 2px 1px #00040a;
+              transition: 0.5s;
+              cursor: pointer;
+          }
+
+          .alert-success:hover {
+              background-color: rgba(7, 149, 66, 0.35);
+              transition: 0.5s;
+          }
+
+          .alert-simple.alert-info {
+              border: 1px solid rgba(6, 44, 241, 0.46);
+              background-color: rgba(7, 73, 149, 0.12156862745098039);
+              box-shadow: 0px 0px 2px #0396ff;
+              color: #0396ff;
+              text-shadow: 2px 1px #00040a;
+              transition: 0.5s;
+              cursor: pointer;
+          }
+
+          .alert-info:hover {
+              background-color: rgba(7, 73, 149, 0.35);
+              transition: 0.5s;
+          }
+
+          .blue-cross {
+              font-size: 18px;
+              color: #0bd2ff;
+              text-shadow: none;
+          }
+
+          .alert-simple.alert-warning {
+              border: 1px solid rgba(241, 142, 6, 0.81);
+              background-color: rgba(220, 128, 1, 0.16);
+              box-shadow: 0px 0px 2px #ffb103;
+              color: #ffb103;
+              text-shadow: 2px 1px #00040a;
+              transition: 0.5s;
+              cursor: pointer;
+          }
+
+          .alert-warning:hover {
+              background-color: rgba(220, 128, 1, 0.33);
+              transition: 0.5s;
+          }
+
+          .warning {
+              font-size: 18px;
+              color: #ffb40b;
+              text-shadow: none;
+          }
+
+          .alert-simple.alert-danger {
+              border: 1px solid rgba(241, 6, 6, 0.81);
+              background-color: rgba(220, 17, 1, 0.16);
+              box-shadow: 0px 0px 2px #ff0303;
+              color: #ff0303;
+              text-shadow: 2px 1px #00040a;
+              transition: 0.5s;
+              cursor: pointer;
+          }
+
+          .alert-danger:hover {
+              background-color: rgba(220, 17, 1, 0.33);
+              transition: 0.5s;
+          }
+
+          .danger {
+              font-size: 18px;
+              color: #ff0303;
+              text-shadow: none;
+          }
+
+          .alert-simple.alert-primary {
+              border: 1px solid rgba(6, 241, 226, 0.81);
+              background-color: rgba(1, 204, 220, 0.16);
+              box-shadow: 0px 0px 2px #03fff5;
+              color: #03d0ff;
+              text-shadow: 2px 1px #00040a;
+              transition: 0.5s;
+              cursor: pointer;
+          }
+
+          .alert-primary:hover {
+              background-color: rgba(1, 204, 220, 0.33);
+              transition: 0.5s;
+          }
+
+          .alertprimary {
+              font-size: 18px;
+              color: #03d0ff;
+              text-shadow: none;
+          }
+
+          .square_box {
+              position: absolute;
+              -webkit-transform: rotate(45deg);
+              -ms-transform: rotate(45deg);
+              transform: rotate(45deg);
+              border-top-left-radius: 45px;
+              opacity: 0.302;
+          }
+
+          .square_box.box_three {
+              background-image: -moz-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+              background-image: -webkit-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+              background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+              opacity: 0.059;
+              left: -80px;
+              top: -60px;
+              width: 500px;
+              height: 500px;
+              border-radius: 45px;
+          }
+
+          .square_box.box_four {
+              background-image: -moz-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+              background-image: -webkit-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+              background-image: -ms-linear-gradient(-90deg, #290a59 0%, #3d57f4 100%);
+              opacity: 0.059;
+              left: 150px;
+              top: -25px;
+              width: 550px;
+              height: 550px;
+              border-radius: 45px;
+          }
+
+          .alert:before {
+              content: '';
+              position: absolute;
+              width: 0;
+              height: calc(100% - 44px);
+              border-left: 1px solid;
+              border-right: 2px solid;
+              border-bottom-right-radius: 3px;
+              border-top-right-radius: 3px;
+              left: 0;
+              top: 50%;
+              transform: translate(0, -50%);
+              height: 20px;
+          }
+
+          .fa-times {
+              -webkit-animation: blink-1 2s infinite both;
+              animation: blink-1 2s infinite both;
+          }
 
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+          /**
+           * ----------------------------------------
+           * animation blink-1
+           * ----------------------------------------
+           */
+          @-webkit-keyframes blink-1 {
+              0%,
+              50%,
+              100% {
+                  opacity: 1;
+              }
+              25%,
+              75% {
+                  opacity: 0;
+              }
+          }
 
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+          @keyframes blink-1 {
+              0%,
+              50%,
+              100% {
+                  opacity: 1;
+              }
+              25%,
+              75% {
+                  opacity: 0;
+              }
+          }
+      </style>
 
-    <link rel="stylesheet" href="assets/css/templatemo-hexashop.css">
+<!--    &lt;!&ndash; Additional CSS Files &ndash;&gt;-->
+<!--      <link href="../../../static/assets/css/nucleo-icons.css" rel="stylesheet"/>-->
+<!--      <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>-->
+<!--      <link href="../../../static/css/sanpham.css" rel="stylesheet"/>-->
 
-    <link rel="stylesheet" href="assets/css/owl-carousel.css">
+      <link rel="stylesheet" type="text/css" href="../../static/assets2/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="assets/css/lightbox.css">
+      <link rel="stylesheet" type="text/css" href="../../static/assets2/css/font-awesome.css">
+
+      <link rel="stylesheet" href="../../static/assets2/css/templatemo-hexashop.css">
+
+      <link rel="stylesheet" href="../../static/assets2/css/owl-carousel.css">
+
+      <link rel="stylesheet" href="../../static/assets2/css/lightbox.css">
 <!--
 
 TemplateMo 571 Hexashop
@@ -51,13 +433,13 @@ https://templatemo.com/tm-571-hexashop
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">
-                            <img src="assets/images/logo.png">
+                        <a th:href="@{/client/home}" class="logo">
+                            <img src="../../static/assets2/images/logo.png">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a th:href="@{/client/home}" class="active">Home</a></li>
                             <li class="scroll-to-section"><a href="#men">Áo Nam</a></li>
                             <li class="scroll-to-section"><a href="#women">Mùa Đông</a></li>
                             <li class="scroll-to-section"><a href="#kids">Mùa Hè </a></li>
@@ -115,12 +497,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a th:href="@{/client/detail}"><i class="fa fa-eye"></i></a></li>
+                                            <li><a th:href="@{/client/detail}"><i class="fa fa-star"></i></a></li>
+                                            <li><a th:href="@{/client/detail}"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men1.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men1.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Classic Spring</h4>
@@ -138,12 +520,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men1.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men1.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Air Force 1 X</h4>
@@ -161,12 +543,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men1.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men1.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Love Nana ‘20</h4>
@@ -184,12 +566,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men1.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men1.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Classic Spring</h4>
@@ -232,12 +614,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men3.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men3.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>New Green Jacket</h4>
@@ -255,12 +637,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men3.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men3.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Classic Dress</h4>
@@ -278,12 +660,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men3.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men3.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Spring Collection</h4>
@@ -301,12 +683,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men3.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men3.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Classic Spring</h4>
@@ -349,12 +731,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men3.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men3.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>School Collection</h4>
@@ -372,12 +754,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men3.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men3.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Summer Cap</h4>
@@ -395,12 +777,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men3.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men3.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Classic Kid</h4>
@@ -418,12 +800,12 @@ https://templatemo.com/tm-571-hexashop
                                 <div class="thumb">
                                     <div class="hover-content">
                                         <ul>
-                                            <li><a href="single-product.html"><i class="fa fa-eye"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="single-product.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
                                         </ul>
                                     </div>
-                                    <img src="assets/images/Men3.jpg" alt="">
+                                    <img src="../../static/assets2/images/Men3.jpg" alt="">
                                 </div>
                                 <div class="down-content">
                                     <h4>Classic Spring</h4>
@@ -459,7 +841,7 @@ https://templatemo.com/tm-571-hexashop
                         <p>There are 5 pages included in this HexaShop Template and we are providing it to you for absolutely free of charge at our TemplateMo website. There are web development costs for us.</p>
                         <p>If this template is beneficial for your website or business, please kindly <a rel="nofollow" href="https://paypal.me/templatemo" target="_blank">support us</a> a little via PayPal. Please also tell your friends about our great website. Thank you.</p>
                         <div class="main-border-button">
-                            <a href="single-product.html">Discover More</a>
+                            <a href="detailSP.html">Discover More</a>
                         </div>
                     </div>
                 </div>
@@ -474,12 +856,12 @@ https://templatemo.com/tm-571-hexashop
                             </div>
                             <div class="col-lg-6">
                                 <div class="first-image">
-                                    <img src="assets/images/team-member-02.jpg" alt="">
+                                    <img src="../../static/assets2/images/team-member-02.jpg" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="second-image">
-                                    <img src="assets/images/team-member-03.jpg" alt="">
+                                    <img src="../../static/assets2/images/team-member-03.jpg" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -556,7 +938,7 @@ https://templatemo.com/tm-571-hexashop
                 <div class="col-lg-3">
                     <div class="first-item">
                         <div class="logo">
-                            <img src="assets/images/white-logo.png" alt="hexashop ecommerce templatemo">
+                            <img src="../../static/assets2/images/white-logo.png" alt="hexashop ecommerce templatemo">
                         </div>
                         <ul>
                             <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
@@ -610,26 +992,26 @@ https://templatemo.com/tm-571-hexashop
     
 
     <!-- jQuery -->
-    <script src="assets/js/jquery-2.1.0.min.js"></script>
+    <script src="../../static/assets2/js/jquery-2.1.0.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="assets/js/popper.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="../../static/assets2/js/popper.js"></script>
+    <script src="../../static/assets2/js/bootstrap.min.js"></script>
 
     <!-- Plugins -->
-    <script src="assets/js/owl-carousel.js"></script>
-    <script src="assets/js/accordions.js"></script>
-    <script src="assets/js/datepicker.js"></script>
-    <script src="assets/js/scrollreveal.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/imgfix.min.js"></script> 
-    <script src="assets/js/slick.js"></script> 
-    <script src="assets/js/lightbox.js"></script> 
-    <script src="assets/js/isotope.js"></script> 
+    <script src="../../static/assets2/js/owl-carousel.js"></script>
+    <script src="../../static/assets2/js/accordions.js"></script>
+    <script src="../../static/assets2/js/datepicker.js"></script>
+    <script src="../../static/assets2/js/scrollreveal.min.js"></script>
+    <script src="../../static/assets2/js/waypoints.min.js"></script>
+    <script src="../../static/assets2/js/jquery.counterup.min.js"></script>
+    <script src="../../static/assets2/js/imgfix.min.js"></script>
+    <script src="../../static/assets2/js/slick.js"></script>
+    <script src="../../static/assets2/js/lightbox.js"></script>
+    <script src="../../static/assets2/js/isotope.js"></script>
     
     <!-- Global Init -->
-    <script src="assets/js/custom.js"></script>
+    <script src="../../static/assets2/js/custom.js"></script>
 
     <script>
 

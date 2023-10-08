@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:thnum="http://www.thymeleaf.org/extras/numbers">
 
   <head>
 
@@ -13,15 +13,15 @@
 
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../static/assets2/css/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../../static/assets2/css/font-awesome.css">
 
-    <link rel="stylesheet" href="assets/css/templatemo-hexashop.css">
+    <link rel="stylesheet" href="../../static/assets2/css/templatemo-hexashop.css">
 
-    <link rel="stylesheet" href="assets/css/owl-carousel.css">
+    <link rel="stylesheet" href="../../static/assets2/css/owl-carousel.css">
 
-    <link rel="stylesheet" href="assets/css/lightbox.css">
+    <link rel="stylesheet" href="../../static/assets2/css/lightbox.css">
 <!--
 
 TemplateMo 571 Hexashop
@@ -51,22 +51,22 @@ https://templatemo.com/tm-571-hexashop
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="index.html" class="logo">
-                            <img src="assets/images/logo.png">
+                        <a th:href="@{/client/home}" class="logo">
+                            <img src="../../static/assets2/images/logo.png">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="index.html" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="index.html">Men's</a></li>
-                            <li class="scroll-to-section"><a href="index.html">Mua Dong </a></li>
-                            <li class="scroll-to-section"><a href="index.html">Mua He</a></li>
+                            <li class="scroll-to-section"><a th:href="@{/client/home}" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="home.html">Men's</a></li>
+                            <li class="scroll-to-section"><a href="home.html">Mua Dong </a></li>
+                            <li class="scroll-to-section"><a href="home.html">Mua He</a></li>
                             <li class="submenu">
                                 <a href="javascript:;">Pages</a>
                                 <ul>
                                     <li><a href="about.html">About Us</a></li>
                                     <li><a href="products.html">Products</a></li>
-                                    <li><a href="single-product.html">Single Product</a></li>
+                                    <li><a href="detailSP.html">Single Product</a></li>
                                     <li><a href="contact.html">Contact Us</a></li>
                                 </ul>
                             </li>
@@ -79,7 +79,7 @@ https://templatemo.com/tm-571-hexashop
                                     <li><a rel="nofollow" href="https://templatemo.com/page/4" target="_blank">Template Page 4</a></li>
                                 </ul>
                             </li>
-                            <li class="scroll-to-section"><a href="index.html">Explore</a></li>
+                            <li class="scroll-to-section"><a href="home.html">Explore</a></li>
                         </ul>        
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -114,8 +114,8 @@ https://templatemo.com/tm-571-hexashop
             <div class="row">
                 <div class="col-lg-8">
                 <div class="left-images">
-                    <img src="assets/images/Men5.jpg" alt="">
-                    <img src="assets/images/single-product-02.jpg" alt="">
+                    <img src="../../static/assets2/images/Men5.jpg" alt="">
+                    <img src="../../static/assets2/images/single-product-02.jpg" alt="">
                 </div>
             </div>
             <div class="col-lg-4">
@@ -161,7 +161,7 @@ https://templatemo.com/tm-571-hexashop
                 <div class="col-lg-3">
                     <div class="first-item">
                         <div class="logo">
-                            <img src="assets/images/white-logo.png" alt="hexashop ecommerce templatemo">
+                            <img src="../../static/assets2/images/white-logo.png" alt="hexashop ecommerce templatemo">
                         </div>
                         <ul>
                             <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
@@ -215,27 +215,27 @@ https://templatemo.com/tm-571-hexashop
     
 
     <!-- jQuery -->
-    <script src="assets/js/jquery-2.1.0.min.js"></script>
+    <script src="../../static/assets2/js/jquery-2.1.0.min.js"></script>
 
     <!-- Bootstrap -->
-    <script src="assets/js/popper.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="../../static/assets2/js/popper.js"></script>
+    <script src="../../static/assets2/js/bootstrap.min.js"></script>
 
     <!-- Plugins -->
-    <script src="assets/js/owl-carousel.js"></script>
-    <script src="assets/js/accordions.js"></script>
-    <script src="assets/js/datepicker.js"></script>
-    <script src="assets/js/scrollreveal.min.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/jquery.counterup.min.js"></script>
-    <script src="assets/js/imgfix.min.js"></script> 
-    <script src="assets/js/slick.js"></script> 
-    <script src="assets/js/lightbox.js"></script> 
-    <script src="assets/js/isotope.js"></script> 
-    <script src="assets/js/quantity.js"></script>
+    <script src="../../static/assets2/js/owl-carousel.js"></script>
+    <script src="../../static/assets2/js/accordions.js"></script>
+    <script src="../../static/assets2/js/datepicker.js"></script>
+    <script src="../../static/assets2/js/scrollreveal.min.js"></script>
+    <script src="../../static/assets2/js/waypoints.min.js"></script>
+    <script src="../../static/assets2/js/jquery.counterup.min.js"></script>
+    <script src="../../static/assets2/js/imgfix.min.js"></script>
+    <script src="../../static/assets2/js/slick.js"></script>
+    <script src="../../static/assets2/js/lightbox.js"></script>
+    <script src="../../static/assets2/js/isotope.js"></script>
+    <script src="../../static/assets2/js/quantity.js"></script>
     
     <!-- Global Init -->
-    <script src="assets/js/custom.js"></script>
+    <script src="../../static/assets2/js/custom.js"></script>
 
     <script>
 
