@@ -17,4 +17,9 @@ public class TrangChuController {
     public String detail(){
         return "/Client/detailSP";
     }
+
+    @GetMapping("/cart")
+    public String cart(){
+        return "/Client/cart";
+    }
 }
