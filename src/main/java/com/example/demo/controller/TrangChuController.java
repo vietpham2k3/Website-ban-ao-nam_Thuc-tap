@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/client/")
+@RequestMapping("/client")
 public class TrangChuController {
 
     @GetMapping("/home")
@@ -21,5 +21,10 @@ public class TrangChuController {
     @GetMapping("/cart")
     public String cart(){
         return "/Client/cart";
+    }
+
+    @GetMapping("/thanh-toan")
+    public String checkout(){
+        return "/Client/checkout";
     }
 }
