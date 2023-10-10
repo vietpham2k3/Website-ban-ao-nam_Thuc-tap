@@ -27,4 +27,9 @@ public class TrangChuController {
     public String checkout(){
         return "/Client/checkout";
     }
+
+    @GetMapping("/product")
+    public String product(){
+        return"/Client/product";
+    }
 }

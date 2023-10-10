@@ -1,0 +1,41 @@
+.contact{
+    text-align: center;
+
+}
+.row{
+    margin-top: 20px;
+}
+.material-icons{
+    height: 10px;;
+    margin: 10px;
+}
+.form-control{
+    margin-top: 11px;
+    border: 1px solid #0d0c0d;
+}
+.btn{
+    margin-top: 6px;
+    background-color: black;
+    color: white;
+}
+.imgage img{
+    height: 300px;
+    width: 100%;
+}
+.imgage{
+    margin-top: 10px;
+}
+.text{
+    text-align: center;
+}
+.search{
+    width: 260px;
+    display: flex;
+    height: 50px;
+    margin-top: 20px;
+
+}
+.test{
+    border-radius: 2px;
+}
+
