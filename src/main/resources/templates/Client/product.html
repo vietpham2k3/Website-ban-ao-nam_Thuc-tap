@@ -17,6 +17,8 @@
     <!-- CSS Files -->
     <link id="pagestyle" href="../../../static/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet"/>
 
+    <!-- Đường dẫn đến tệp CSS của Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- App css -->
     <script src="https://kit.fontawesome.com/52ef4965e2.js" crossorigin="anonymous"></script>
 
@@ -81,105 +83,125 @@
     </div>
 </header>
 <!-- ***** Header Area End ***** -->
-<br>
-<div class="site-wrap">
-
-    <div class="container">
-        <div class="filter">
-            <div class="search">
-                <input class="test " id="myInput" type="text" placeholder="Search.." fa fa-search style="font-size:24px">
-                <button type="submit" class="btn btn-primary"> <i class="fas fa-search"></i></button>
-            </div>
-            <br>
-            <ul class="list-group" id="myList">
-                <button type="submit" class="btn btn-primary">Loại Áo</button>
-                <button type="submit" class="btn btn-primary">Màu Áo</button>
-                <button type="submit" class="btn btn-primary">Size</button>
-                <button type="submit" class="btn btn-primary">Chất Liệu</button>
-                <button type="submit" class="btn btn-primary">Phong Cách</button>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">
-                        Sản Phẩm Mới Nhất
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                    <label class="form-check-label" for="flexCheckChecked">
-                        Sản Phẩm Bán Chạy Nhất
-                    </label>
-                </div>
+<br><br><br>
+<br><br>
+<br><br>
+<!--//1-->
+<div class="row">
+    <div class="container col-3">
+        <div class="dropdown">
+            <a class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+               aria-expanded="false">
+                Lọc sản phẩm
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="#">Loại Áo</a></li>
+                <li><a class="dropdown-item" href="#">Màu Áo</a></li>
+                <li><a class="dropdown-item" href="#">Size</a></li>
+                <li><a class="dropdown-item" href="#">Chất Liệu</a></li>
+                <li><a class="dropdown-item" href="#">Phong Cách</a></li>
             </ul>
         </div>
-        <div class="col-12 col-sm-6 col-md-4  imgage">
-            <div class="imgage">
-                <img src="../../static/assets4/images/cloth_2.jpg">
+
+        <div class="filter">
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                <label class="form-check-label" for="flexCheckDefault">
+                    Sản Phẩm Mới Nhất
+                </label>
             </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4  imgage">
-            <div class="imgage">
-                <img src="../../static/assets4/images/cloth_2.jpg">
-            </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4  imgage">
-            <div class="imgage">
-                <img src="../../static/assets4/images/cloth_2.jpg">
-            </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4  imgage">
-            <div class="imgage">
-                <img src="../../static/assets4/images/cloth_2.jpg">
-            </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4  imgage">
-            <div class="imgage">
-                <img src="../../static/assets4/images/cloth_2.jpg">
-            </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-md-4  imgage">
-            <div class="imgage">
-                <img src="../../static/assets4/images/cloth_2.jpg">
-            </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked/>
+                <label class="form-check-label" for="flexCheckChecked">
+                    Sản Phẩm Bán Chạy Nhất
+                </label>
             </div>
         </div>
     </div>
 
+    <div class="row col-9">
+        <div class="col-3">
+            <div class="imgage">
+                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
+            </div>
+            <div class="text">
+                <h4>Sản Phẩm Mới Về</h4>
+                <i class="material-icons">&#xe8cc;</i>
+                <i class="material-icons">&#xe417;</i>
+                <i style="font-size:20px" class="fa">&#xf004;</i>
+            </div>
+        </div>
+        <div style="margin-left: 80px" class="col-3">
+            <div class="imgage">
+                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
+            </div>
+            <div class="text">
+                <h4>Sản Phẩm Mới Về</h4>
+                <i class="material-icons">&#xe8cc;</i>
+                <i class="material-icons">&#xe417;</i>
+                <i style="font-size:20px" class="fa">&#xf004;</i>
+            </div>
+        </div>
+
+        <div style="margin-left: 80px" class="col-3">
+            <div class="imgage">
+                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
+            </div>
+            <div class="text">
+                <h4>Sản Phẩm Mới Về</h4>
+                <i class="material-icons">&#xe8cc;</i>
+                <i class="material-icons">&#xe417;</i>
+                <i style="font-size:20px" class="fa">&#xf004;</i>
+            </div>
+        </div>
+
+    </div>
 </div>
+<!--//2-->
+<div class="row">
+    <div class="container col-3">
+    </div>
+
+    <div class="row col-9">
+        <div class="col-3">
+            <div class="imgage">
+                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
+            </div>
+            <div class="text">
+                <h4>Sản Phẩm Mới Về</h4>
+                <i class="material-icons">&#xe8cc;</i>
+                <i class="material-icons">&#xe417;</i>
+                <i style="font-size:20px" class="fa">&#xf004;</i>
+            </div>
+        </div>
+        <div style="margin-left: 80px" class="col-3">
+            <div class="imgage">
+                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
+            </div>
+            <div class="text">
+                <h4>Sản Phẩm Mới Về</h4>
+                <i class="material-icons">&#xe8cc;</i>
+                <i class="material-icons">&#xe417;</i>
+                <i style="font-size:20px" class="fa">&#xf004;</i>
+            </div>
+        </div>
+
+        <div style="margin-left: 80px" class="col-3">
+            <div class="imgage">
+                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
+            </div>
+            <div class="text">
+                <h4>Sản Phẩm Mới Về</h4>
+                <i class="material-icons">&#xe8cc;</i>
+                <i class="material-icons">&#xe417;</i>
+                <i style="font-size:20px" class="fa">&#xf004;</i>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 <!-- ***** Footer Start ***** -->
 <footer>
@@ -288,5 +310,7 @@
 <script src="../../static/assets3/js/jquery.magnific-popup.min.js"></script>
 <script src="../../static/assets3/js/aos.js"></script>
 <script src="../../static/assets3/js/main.js"></script>
+<!-- Đường dẫn đến tệp JavaScript của Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
