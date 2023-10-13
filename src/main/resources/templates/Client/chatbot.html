@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        /* chatbot.css */
+        #chat-container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f5f5f5;
+        }
+
+        #chat-messages {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .message {
+            padding: 5px;
+            margin: 5px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        #user-input {
+            width: 70%;
+            padding: 5px;
+        }
+
+        #send-button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #send-button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+<body>
+<div id="chat-container">
+    <div id="chat-messages">
+        <div class="message" th:each="message : ${messages}">
+            <span th:text="${message}"></span>
+        </div>
+    </div>
+    <input type="text" id="user-input" placeholder="Nhập tin nhắn..." />
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chatbotModal">
+        Mở Chatbot
+    </button>
+    <div class="modal fade" id="chatbotModal" tabindex="-1" role="dialog" aria-labelledby="chatbotModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="chatbotModalLabel">Chatbot</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Đặt iframe hoặc include trang chatbot ở đây -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="send-button" onclick="sendMessage(document.getElementById('user-input').value)">Gửi</button>
+</div>
+<script>
+    // chatbot.js
+    function sendMessage(userMessage) {
+        var botResponse;
+
+        if (userMessage.toLowerCase() === 'xin chào') {
+            botResponse = 'Xin chào! Bạn cần giúp đỡ gì không?';
+        } else if (userMessage.toLowerCase() === 'tạm biệt') {
+            botResponse = 'Tạm biệt! Hãy quay lại nếu bạn cần sự trợ giúp.';
+        } else {
+            botResponse = 'Tôi không hiểu. Bạn có thể nói lại được không?';
+        }
+
+        var chatMessages = document.getElementById('chat-messages');
+        var messageElement = document.createElement('div');
+        messageElement.className = 'message';
+        messageElement.innerText = 'Bạn: ' + userMessage;
+        chatMessages.appendChild(messageElement);
+
+        var botMessageElement = document.createElement('div');
+        botMessageElement.className = 'message';
+        botMessageElement.innerText = 'Chatbot: ' + botResponse;
+        chatMessages.appendChild(botMessageElement);
+
+        document.getElementById('user-input').value = ''; // Xóa nội dung đã nhập
+    }
+</script>
+</body>
+</html>
