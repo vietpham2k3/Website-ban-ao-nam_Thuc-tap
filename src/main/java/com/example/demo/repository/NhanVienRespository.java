@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.entity.KhachHang;
 import com.example.demo.entity.NhanVien;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,4 +17,9 @@ public interface NhanVienRespository extends JpaRepository<NhanVien, UUID> {
 
     @Query(value = "select e from NhanVien e where e.TrangThai = 0")
     public List<NhanVien> getAll();
+
+    @Query(value = "SELECT * FROM NhanVien Where MaNhanVien= :MaNhanVien AND MatKhau= :MatKhau", nativeQuery = true)
+    public NhanVien findByMaNhanVienAndMatKhau(@Param("MaNhanVien") String MaNhanVien,
+                                               @Param("MatKhau") String MatKhau);
+
 }
