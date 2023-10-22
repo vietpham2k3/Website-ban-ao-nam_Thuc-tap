@@ -16,4 +16,5 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer> {
     @Query("SELECT DISTINCT s FROM SanPham s JOIN FETCH s.chiTietSanPhams JOIN FETCH s.danhGias")
     List<SanPham> getAll();
 
+
 }
