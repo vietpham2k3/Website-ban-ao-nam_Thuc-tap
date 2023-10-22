@@ -582,7 +582,7 @@
         }
         /* Tạo một chữ với hiệu ứng màu cầu vồng */
         .rainbow-text {
-            background: -webkit-linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+            background: -webkit-linear-gradient(45deg, red, orange, yellow, green);
             -webkit-background-clip: text;
             color: transparent;
             font-size: 36px;
@@ -1523,6 +1523,7 @@
 
             if (
                 val.indexOf("xin chào") > -1 ||
+                val.indexOf("chào") > -1 ||
                 val.indexOf("hi") > -1 ||
                 val.indexOf("chào buổi sáng") > -1 ||
                 val.indexOf("chào buổi trưa") > -1 ||
@@ -1540,26 +1541,33 @@
                 }
 
                 appendMsg("Tên bạn là gì?");
-            } else if (val.indexOf("tôi gặp vấn đề với") > -1) {
+            } else if (
+                val.indexOf("tôi gặp vấn đề với") > -1 ||
+                val.indexOf("giúp tôi") > -1 ||
+                val.indexOf("hãy giúp tôi") > -1 ||
+                val.indexOf("tôi muốn bạn hãy giúp tôi") > -1 ||
+                val.indexOf("tôi muốn bạn giúp tôi") > -1
+            ) {
                 if (
                     val.indexOf("bạn gái") > -1 ||
+                    val.indexOf("cửa hàng") > -1 ||
                     val.indexOf("người yêu") > -1
                 ) {
                     appendMsg("Dẫn bạn gái đi ăn tối hoặc xem phim.");
                     appendMsg("Có giúp ích không? (có/không)");
                 } else if (
-                    val.indexOf("bạn trai") > -1 ||
+                    val.indexOf("bạn gái") > -1 ||
                     val.indexOf("người yêu") > -1
                 ) {
-                    appendMsg("Mua quà cho anh ấy.");
+                    appendMsg("Mua quà cho cô ấy.");
                     appendMsg("Có giúp ích không? (có/không)");
                 } else {
-                    appendMsg("Xin lỗi, tôi không thể hiểu vấn đề của bạn, vui lòng hỏi điều khác.");
+                    appendMsg("Xin lỗi, tôi không thể hiểu vấn đề của bạn, vui lòng hỏi câu khác !.");
                 }
             } else if (val.indexOf("có") > -1) {
                 var nowtime = new Date();
                 var nowhoue = nowtime.getHours();
-                appendMsg("Rất vui được giúp bạn");
+                appendMsg("Rất vui được giúp bạn !");
                 saybye();
             } else if (val.indexOf("không") > -1) {
                 var nowtime = new Date();
@@ -1584,7 +1592,7 @@
 
                 appendMsg("Xin chào " + name + ", tôi có thể giúp gì cho bạn?");
             } else {
-                appendMsg("Xin lỗi, tôi không thể hiểu bạn muốn nói gì");
+                appendMsg("Xin lỗi, tôi không thể hiểu bạn muốn nói gì !");
             }
 
             function saybye() {
