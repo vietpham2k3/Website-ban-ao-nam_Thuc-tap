@@ -53,5 +53,14 @@ public class ChiTietSanPhamRestController {
 
         return ResponseEntity.ok(service.getAllbyFilter(IdColor,IdSize,IdMaterial,IdCategory,IdBrand,IdPhanLoai,IdXuatXu,IdPhongCach,min,max));
     }
+    @GetMapping("/ProductNew")
+    public  ResponseEntity<?> SanPhamMoi(){
+        return ResponseEntity.ok(service.getSanPhamMoi());
+    }
+    @GetMapping("/ProductBanChay")
+    public  ResponseEntity<?> SanPhamBanChay(){
+        return ResponseEntity.ok(service.getSanPhamBanChayReponses());
+    }
+
 
 }
