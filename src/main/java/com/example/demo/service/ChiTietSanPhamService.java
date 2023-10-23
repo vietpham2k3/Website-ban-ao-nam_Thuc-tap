@@ -5,6 +5,7 @@ import com.example.demo.repository.DanhMucRepository;
 import com.example.demo.request.ChiTietSanPhamRequest;
 import com.example.demo.response.ChiTietSanPhamCustom;
 import com.example.demo.repository.ChiTietSanPhamRepository;
+import com.example.demo.response.SanPhamBanChayReponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -78,6 +79,14 @@ public class ChiTietSanPhamService {
     public List<ChiTietSanPham> getAllbyFilter(Integer IdColor,Integer IdSize,Integer IdMaterial,Integer IdCategory, Integer IdBrand , Integer IdPhanLoai, Integer IdXuatXu,Integer IdPhongCach,Double min , Double max){
         return repository.getAllByFilter(IdColor,IdSize,IdMaterial,IdCategory,IdBrand,IdPhanLoai,IdXuatXu,IdPhongCach,min,max);
     }
+    public List<ChiTietSanPham> getSanPhamMoi(){
+        return  repository.getSanPhamMoi();
+    }
+    public List<SanPhamBanChayReponse> getSanPhamBanChayReponses(){
+        return  repository.getSanPhamBanChay();
+    }
+
+
 
 
 }
