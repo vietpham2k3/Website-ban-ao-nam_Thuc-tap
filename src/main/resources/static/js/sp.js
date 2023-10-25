@@ -9,44 +9,48 @@
     let urlkichthuoc = "/api/kichthuoc";
     let app = angular.module("myApp", []);
     app.controller("ctrl", function ($scope, $http, $location){
-        $scope.list = [];
+     $scope.loadAll = function (){
+         $scope.list = [];
 
-        $http.get(url).then(function (response) {
-            $scope.list = response.data;
-        });
+         $http.get(url).then(function (response) {
+             $scope.list = response.data;
+         });
 
-        $scope.listDM = [];
-        $http.get(urldanhmuc).then(function (response) {
-            $scope.listDM = response.data;
-        });
-        $scope.listTH = [];
-        $http.get(urlthuonghieu).then(function (response) {
-            $scope.listTH = response.data;
-        });
-        $scope.listPL = [];
-        $http.get(urlphanloai).then(function (response) {
-            $scope.listPL = response.data;
-        });
-        $scope.listXX = [];
-        $http.get(urlxuatxu).then(function (response) {
-            $scope.listXX = response.data;
-        });
-        $scope.listPC = [];
-        $http.get(urlphongcach).then(function (response) {
-            $scope.listPC = response.data;
-        });
-        $scope.listCL = [];
-        $http.get(urlchatlieu).then(function (response) {
-            $scope.listCL = response.data;
-        });
-        $scope.listMS = [];
-        $http.get(urlmausac).then(function (response) {
-            $scope.listMS = response.data;
-        });
-        $scope.listKT = [];
-        $http.get(urlkichthuoc).then(function (response) {
-            $scope.listKT = response.data;
-        });
+         $scope.listDM = [];
+         $http.get(urldanhmuc).then(function (response) {
+             $scope.listDM = response.data;
+         });
+         $scope.listTH = [];
+         $http.get(urlthuonghieu).then(function (response) {
+             $scope.listTH = response.data;
+         });
+         $scope.listPL = [];
+         $http.get(urlphanloai).then(function (response) {
+             $scope.listPL = response.data;
+         });
+         $scope.listXX = [];
+         $http.get(urlxuatxu).then(function (response) {
+             $scope.listXX = response.data;
+         });
+         $scope.listPC = [];
+         $http.get(urlphongcach).then(function (response) {
+             $scope.listPC = response.data;
+         });
+         $scope.listCL = [];
+         $http.get(urlchatlieu).then(function (response) {
+             $scope.listCL = response.data;
+         });
+         $scope.listMS = [];
+         $http.get(urlmausac).then(function (response) {
+             $scope.listMS = response.data;
+         });
+         $scope.listKT = [];
+         $http.get(urlkichthuoc).then(function (response) {
+             $scope.listKT = response.data;
+         });
+     }
+
+     $scope.loadAll();
 
 
         // mausac, kichthuoc
@@ -174,10 +178,11 @@
                         }
                     })
                     Swal.fire(
-                        'Thông báo',
                         'Thêm sản phẩm thành công !',
+                        '',
                         'success'
                     );
+                    location.href="/admin/san-pham/hien-thi"
 
                 }
             })
@@ -195,9 +200,7 @@
                     $http.put("/api/ctsp/" +idCTSP).then(function(response){
                         if (response.status === 200){
                             Swal.fire('Xóa thành công !', '', 'success')
-                            setTimeout(() => {
-                                location.href = "/admin/san-pham/hien-thi";
-                            }, 1500);
+                           $scope.loadAll();
                         }
                         else{
                             Swal.fire('Xóa thất bại !', '', 'error')
@@ -324,7 +327,8 @@
                     }
 
                 }
-                Swal.fire("Sửa sản phẩm thành công","success");
+                Swal.fire("Sửa sản phẩm thành công","","success");
+                location.href="/admin/san-pham/hien-thi"
 
             })
 
@@ -503,18 +507,25 @@
                 min : min,
                 max : max
             }
+
             $http({
                 method : 'GET',
-                url : '/api/ctsp/filter',
+                url : 'http://localhost:8080/api/ctsp/filter',
                 params : params
             }).then(function (resp){
                 $scope.list = resp.data;
+               
                 $scope.pager.first();
-                Swal.fire("Lọc thành công !","","success");
+                // Swal.fire("Lọc thành công !","","success");
             });
         }
 
 
+        $scope.openImage = function (){
+            const fileInput = document.getElementById('fileUpload');
+            fileInput.click();
+
+        }
 
 
 

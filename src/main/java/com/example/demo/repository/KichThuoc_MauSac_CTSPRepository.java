@@ -12,4 +12,10 @@ import java.util.UUID;
 public interface KichThuoc_MauSac_CTSPRepository extends JpaRepository<MauSac_KichThuoc_CTSP, UUID> {
     @Query("Select e from MauSac_KichThuoc_CTSP  e  where e.chiTietSanPham.IdCTSP = :id")
     public List<MauSac_KichThuoc_CTSP> getbyCTSP(@Param("id") UUID id);
+    @Query(value = "Select SUM(p.SoLuong) from MauSac_KichThuoc_CTSP p\n" +
+            "where p.chiTietSanPham.IdCTSP = :id and p.mauSac.IdMauSac = :idcolor and p.kichThuoc.IdKichThuoc = :idsize")
+    Integer getQuantityByProductAndColorAndSize(@Param("id") UUID id,@Param("idcolor") Integer idcolor,@Param("idsize") Integer idsize);
+    @Query(value = "Select p from MauSac_KichThuoc_CTSP p\n" +
+            "where p.chiTietSanPham.IdCTSP = :id and p.mauSac.IdMauSac = :idcolor and p.kichThuoc.IdKichThuoc = :idsize")
+    public MauSac_KichThuoc_CTSP getByProductAndColorAndSize(@Param("id") UUID id,@Param("idcolor") Integer idcolor,@Param("idsize") Integer idsize);
 }
