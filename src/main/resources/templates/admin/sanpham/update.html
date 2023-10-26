@@ -63,48 +63,51 @@
                 <div class="col-md-3 anh">
                     <div>Ảnh đại diện sản phẩm</div>
                     <img id="output"/>
-                    <input file-model="image" id="fileUpload" type="file" accept="image/*" onchange="loadFile(event)" multiple >
+                    <input file-model="image" id="fileUpload" type="file" accept="image/*" onchange="loadFile(event)" multiple style="display: none">
+                    <div>
+                        <button ng-click="openImage()" style="border-radius: 10px; margin-top: 5px; background-color: rgb(23, 146, 82); color: white; border: none; padding: 5px;">Chọn file</button>
+                    </div>
                 </div>
                 <div class="col-md-9">
 
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Mã Sản Phẩm</label> <input readonly ng-model="detail.sanPham.maSanPham">
+                            <label>Mã Sản Phẩm</label> <input class="haninput" readonly ng-model="detail.sanPham.maSanPham">
                         </div>
                         <div class="col-md-6">
-                            <label>Tên Sản Phẩm</label> <input ng-model="detail.sanPham.tenSanPham">
+                            <label>Tên Sản Phẩm</label> <input class="haninput" ng-model="detail.sanPham.tenSanPham">
                         </div>
                         <div class="col-md-6">
-                            <label> Giá Nhập</label> <input ng-model="detail.giaNhap">
+                            <label> Giá Nhập</label> <input class="haninput" ng-model="detail.giaNhap">
                         </div>
                         <div class="col-md-6">
-                            <label>Giá Bán</label> <input ng-model="detail.giaBan">
+                            <label>Giá Bán</label> <input class="haninput" ng-model="detail.giaBan">
                         </div>
                         <div class="col-md-6">
-                            <label>Giảm Giá</label> <input ng-model="detail.giamGia">
+                            <label>Giảm Giá</label> <input class="haninput" ng-model="detail.giamGia">
                         </div>
                         <div class="col-md-6">
-                            <label>Mô Tả</label> <input ng-model="detail.moTa">
+                            <label>Mô Tả</label> <input class="haninput" ng-model="detail.moTa">
                         </div>
                         <div class="col-md-6">
-                            <label>Danh Mục</label> <select ng-model="detail.danhMuc" id="danhMuc">
+                            <label>Danh Mục</label> <select class="haninput" ng-model="detail.danhMuc" id="danhMuc">
                             <option ng-repeat="dm in listDM" value="{{dm.idDanhMuc}}" ng-selected="detail.danhMuc.idDanhMuc == dm.idDanhMuc" ng-if="dm.trangThai == 0">
                                 {{dm.tenDanhMuc}}</option></select>
                         </div>
                         <div class="col-md-6">
                             <label>Phân Loại</label>
-                            <select ng-model="detail.phanLoai" id="phanLoai">
+                            <select class="haninput" ng-model="detail.phanLoai" id="phanLoai">
                                 <option ng-repeat="pl in listPL" value="{{pl.idPhanLoai}}" ng-selected="detail.phanLoai.idPhanLoai == pl.idPhanLoai" ng-if="pl.trangThai == 0">
                                     {{pl.tenPhanLoai}}</option></select>
                         </div>
                         <div class="col-md-6">
-                            <label>Thương Hiệu</label> <select ng-model="detail.thuongHieu" id="thuongHieu">
+                            <label>Thương Hiệu</label> <select class="haninput" ng-model="detail.thuongHieu" id="thuongHieu">
                             <option ng-repeat="th in listTH" value="{{th.idThuongHieu}}" ng-selected="detail.thuongHieu.idThuongHieu == th.idThuongHieu" ng-if="th.trangThai == 0">
                                 {{th.tenThuongHieu}}</option></select>
                         </div>
                         <div class="col-md-6">
                             <label>Xuất Xứ</label>
-                            <select ng-model="detail.xuatXu" id="xuatXu">
+                            <select class="haninput" ng-model="detail.xuatXu" id="xuatXu">
                                 <option ng-repeat="xx in listXX" value="{{xx.idXuatXu}}" ng-selected="detail.xuatXu.idXuatXu == xx.idXuatXu" ng-if="xx.trangThai == 0">
                                     {{xx.tenXuatXu}}</option></select>
                         </div>
@@ -128,7 +131,7 @@
                         </div>
                     </div>
 
-                    <div style="padding-top: 30px"><button  class="btn btn-danger" ng-click="update()">Sửa</button></div>
+                    <div style="padding-top: 30px"><button  class="btn btn-danger" ng-click="update()"><i class="fa-solid fa-pen-to-square"></i> Sửa</button></div>
 
                 </div>
             </div>

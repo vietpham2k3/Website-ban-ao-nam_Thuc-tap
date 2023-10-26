@@ -33,4 +33,7 @@ public class GioHang implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "gioHang")
     private List<GioHangChiTiet> gioHangChiTiets;
+    @ManyToOne
+    @JoinColumn(name = "IdKhachHang")
+    private KhachHang khachHang;
 }

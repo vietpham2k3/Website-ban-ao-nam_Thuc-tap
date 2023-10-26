@@ -30,4 +30,12 @@ public class KichThuoc_MauSac_CTSPService {
         }
 
     }
+    public Integer getQuantityByProductAndColorAndSize(UUID id,Integer IdColor, Integer IdSize){
+        return repository.getQuantityByProductAndColorAndSize(id,IdColor,IdSize);
+    }
+    public MauSac_KichThuoc_CTSP updateQuantity(UUID id,Integer IdColor, Integer IdSize,Integer quanity){
+        MauSac_KichThuoc_CTSP productDetail_size_color =repository.getByProductAndColorAndSize(id,IdColor,IdSize);
+        productDetail_size_color.setSoLuong(quanity);
+        return repository.save(productDetail_size_color);
+    }
 }

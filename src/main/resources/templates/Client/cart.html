@@ -25,14 +25,17 @@
     <link rel="stylesheet" href="../../static/assets3/css/jquery-ui.css">
     <link rel="stylesheet" href="../../static/assets3/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../../static/assets3/css/owl.theme.default.min.css">
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://kit.fontawesome.com/999051c9de.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../../static/assets3/css/aos.css">
     <link rel="stylesheet" href="../../static/assets3/css/style.css.css">
 
 </head>
 
-<body>
+<body ng-app="myApp" ng-controller="ctrl">
 
 <!-- ***** Preloader Start ***** -->
 <div id="preloader">
@@ -123,128 +126,127 @@
             </div>
         </div>
     </div>
-
+    <input th:value="${idGioHang}" id="idGioHang" type="hidden">
+    <input th:value="${idKhachHang}" id="idKhachHang" type="hidden">
     <div class="site-section">
         <div class="container">
             <div class="row mb-5">
-                <form class="col-md-12" method="post">
+                <form class="col-md-12" >
                     <div class="site-blocks-table">
-                        <table class="table table-bordered">
-                            <thead>
+                        <table class="table">
+                            <thead class="cart__row cart__header">
                             <tr>
-                                <th class="product-thumbnail">Image</th>
-                                <th class="product-name">Product</th>
-                                <th class="product-price">Price</th>
-                                <th class="product-quantity">Quantity</th>
-                                <th class="product-total">Total</th>
-                                <th class="product-remove">Remove</th>
+                                <td colspan="2" class="text-center"><h5>Sản Phẩm</h5></td>
+                                <td class="text-center"><h5>Đơn Giá</h5></td>
+                                <td class="text-center"><h5>Số Lượng</h5></td>
+                                <td class="text-center"><h5>Thành Tiền</h5></td>
+                                <td class="action">&nbsp;</td>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <img src="../../static/assets3/images/cloth_1.jpg" alt="Image" class="img-fluid">
+                            <tr ng-if="listCart.length > 0" ng-repeat="cart in listCart">
+
+                                <td class="cart__image-wrapper cart-flex-item">
+                                    <span ng-repeat="img in cart.chiTietSanPham.sanPham.anhs">
+
+                                            <a href="#"><img style="width: 100px;height: 100px" class="cart__image" src="{{img.link}}" alt="Elastic Waist Dress - Navy / Small"></a>
+
+                                    </span>
+
                                 </td>
-                                <td class="product-name">
-                                    <h2 class="h5 text-black">Top Up T-Shirt</h2>
-                                </td>
-                                <td>$49.00</td>
-                                <td>
-                                    <div class="input-group mb-3" style="max-width: 120px;">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                                        </div>
-                                        <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                                        </div>
+                                <td class="cart__meta small--text-left cart-flex-item">
+                                    <div class="list-view-item__title">
+                                        <a href="#/detail/{{cart.chiTietSanPham.idCTSP}}">{{cart.chiTietSanPham.sanPham.tenSanPham}}</a>
+                                        <br>SKU : {{cart.chiTietSanPham.sanPham.maSanPham}}
                                     </div>
 
+                                    <div class="cart__meta-text">
+                                        Màu :
+                                        <span ng-repeat="color in listColor">
+                                            <span ng-if="color.idMauSac == cart.mauSac">
+                                                {{color.tenMauSac}}
+                                            </span>
+                                        </span>
+                                        <br> Kích Thước :
+                                        <span ng-repeat="size in listSize">
+                                            <span ng-if="size.idKichThuoc == cart.kichThuoc">
+                                                {{size.tenKichThuoc}}
+                                            </span>
+                                        </span><br>
+                                    </div>
                                 </td>
-                                <td>$49.00</td>
-                                <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                            </tr>
+                                <td class="text-center"><span ng-if="cart.chiTietSanPham.giamGia > 0">
+                                    {{cart.chiTietSanPham.giaBan - (cart.chiTietSanPham.giaBan * (cart.chiTietSanPham.giamGia * 0.01)) | currency:'':0}} VNĐ
+                                </span>
+                                    <span ng-if="cart.chiTietSanPham.giamGia == 0">
+                                    {{cart.chiTietSanPham.giaBan | currency:'':0}} VNĐ
+                                </span>
 
-                            <tr>
-                                <td class="product-thumbnail">
-                                    <img src="../../static/assets3/images/shoe_1.jpg" alt="Image" class="img-fluid">
                                 </td>
-                                <td class="product-name">
-                                    <h2 class="h5 text-black">Polo Shirt</h2>
-                                </td>
-                                <td>$49.00</td>
-                                <td>
-                                    <div class="input-group mb-3" style="max-width: 120px;">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                                        </div>
-                                        <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                <td class="cart__update-wrapper cart-flex-item text-right">
+                                    <div class="cart__qty text-center">
+                                        <div class="qtyField">
+                                            <button style="background-color: black; color: white" ng-click="giam(cart.idGioHangChiTiet,cart.chiTietSanPham.idCTSP,cart.mauSac,cart.kichThuoc)"> <i class="fa-solid fa-minus"></i></button>
+
+
+                                            <input style="width: 50px" ng-keyup="EnterQuantity(cart.idGioHangChiTiet,cart.chiTietSanPham.idCTSP,cart.mauSac,cart.kichThuoc)" class="cart__qty-input qty" type="text" name="updates[]" id="qty{{cart.idGioHangChiTiet}}" value="{{cart.soLuong}}" pattern="[0-9]*">
+                                            <button style="background-color: black; color: white" ng-click="tang(cart.idGioHangChiTiet,cart.chiTietSanPham.idCTSP,cart.mauSac,cart.kichThuoc)"> <i class="fa-solid fa-plus"></i></button>
                                         </div>
                                     </div>
-
                                 </td>
-                                <td>$49.00</td>
-                                <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
+                                <td class="text-center">
+                                        <span ng-if="cart.chiTietSanPham.giamGia > 0">
+                                            {{(cart.chiTietSanPham.giaBan - (cart.chiTietSanPham.giaBan * (cart.chiTietSanPham.giamGia * 0.01))) * cart.soLuong | currency:'':0}} VNĐ
+                                        </span>
+                                    <span ng-if="cart.chiTietSanPham.giamGia == 0">
+                                            {{cart.chiTietSanPham.giaBan * cart.soLuong | currency:'':0}} VNĐ
+                                        </span>
+                                </td>
+                                <td><button class="btn btn-dark" ng-click="deleteByCart(cart.id)"><i class="fa-solid fa-trash"></i></button></td>
                             </tr>
+                            <tr ng-if="listCart.length == 0">
+                                <td colspan="13">
+                                    <div style="text-align: center;">
+                                        <div><img style="width: 80px; height: 80px;" src="../../static/image/empty-folder.png"></div>
+                                        <h5>Không có sản phẩm nào</h5>
+                                    </div>
+                                </td>
+                            </tr>
+
+
+
                             </tbody>
+
                         </table>
+
                     </div>
                 </form>
             </div>
-
             <div class="row">
                 <div class="col-md-6">
-                    <div class="row mb-5">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <button class="btn btn-primary btn-sm btn-block">Update Cart</button>
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn btn-outline-primary btn-sm btn-block">Continue Shopping</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <label class="text-black h4" for="coupon">Coupon</label>
-                            <p>Enter your coupon code if you have one.</p>
-                        </div>
-                        <div class="col-md-8 mb-3 mb-md-0">
-                            <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-                        </div>
-                        <div class="col-md-4">
-                            <button class="btn btn-primary btn-sm px-4">Apply Coupon</button>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="col-md-6 pl-5">
                     <div class="row justify-content-end">
                         <div class="col-md-7">
                             <div class="row">
                                 <div class="col-md-12 text-right border-bottom mb-5">
-                                    <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <span class="text-black">Subtotal</span>
-                                </div>
-                                <div class="col-md-6 text-right">
-                                    <strong class="text-black">$230.00</strong>
-                                </div>
-                            </div>
+
                             <div class="row mb-5">
                                 <div class="col-md-6">
-                                    <span class="text-black">Total</span>
+                                    <span class="text-black">Tổng tiền tạm tính </span>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <strong class="text-black">$230.00</strong>
+                                    <strong class="text-black">{{tongTien| currency:'':0}} VNĐ</strong>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='checkout.html'">Proceed To Checkout</button>
+                                    <button ng-click="checkCheckOut()" class="btn btn-primary btn-lg btn-block">Tiến hành thanh toán</button>
                                 </div>
                             </div>
                         </div>
@@ -316,6 +318,7 @@
 
 
 <!-- jQuery -->
+<script src="../../static/js/cart.js"></script>
 <script src="../../static/assets2/js/jquery-2.1.0.min.js"></script>
 
 <!-- Bootstrap -->
