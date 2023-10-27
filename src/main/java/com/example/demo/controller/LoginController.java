@@ -39,6 +39,7 @@ public class LoginController {
         if (khachHang != null) {
             // Đăng nhập thành công với vai trò Khách Hàng
             session.setAttribute("loggedInUser", username);
+            session.setAttribute("khachHang",khachHang);
             return "redirect:/client/home";
         } else if (nhanVien != null) {
             // Đăng nhập thành công với vai trò Nhân Viên

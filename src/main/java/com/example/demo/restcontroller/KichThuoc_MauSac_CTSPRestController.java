@@ -28,4 +28,12 @@ public class KichThuoc_MauSac_CTSPRestController {
         return ResponseEntity.ok("delete");
 
     }
+    @GetMapping("/getQuantityProductAndColorAndSize")
+    public ResponseEntity<?> getQuantityProductAndColorAndSize(@RequestParam("IdProduct") UUID IdProduct,@RequestParam("IdColor") Integer IdColor,@RequestParam("IdSize") Integer IdSize){
+        return ResponseEntity.ok(service.getQuantityByProductAndColorAndSize(IdProduct,IdColor,IdSize));
+    }
+    @PutMapping("/updateQuantity")
+    public ResponseEntity<?> updateQuantity(@RequestParam("IdProduct") UUID IdProduct, @RequestParam("IdColor") Integer IdColor, @RequestParam("IdSize") Integer IdSize, @RequestParam("Quantity") Integer Quanity){
+        return ResponseEntity.ok(service.updateQuantity(IdProduct,IdColor,IdSize,Quanity));
+    }
 }

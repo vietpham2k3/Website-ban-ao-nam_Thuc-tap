@@ -55,4 +55,8 @@ public class KhachHang implements Serializable{
     @JsonIgnore
     @OneToMany(mappedBy = "khachHang")
     private List<HoaDon> hoaDons;
+    @JsonIgnore
+    @OneToMany(mappedBy = "khachHang",fetch = FetchType.EAGER)
+    private List<GioHang> gioHangs;
+
 }
