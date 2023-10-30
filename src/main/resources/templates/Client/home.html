@@ -32,6 +32,7 @@
     <!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
     <script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
     <script src="../../../resources/static/js/ctsp.js"></script>
+
     <style>
         @import url('https://rsms.me/inter/inter.css');
 
@@ -1015,20 +1016,28 @@
             <div class="col-lg-12">
                 <div class="men-item-carousel">
                     <div class="owl-men-item owl-carousel">
-                        <div ng-repeat="SanPham in list"  class="item">
+                        <div ng-repeat="ctsp in list" class="item">
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a th:href="@{/client/detail}"><i class="fa fa-eye"></i></a></li>
-                                        <li><a th:href="@{/client/detail}"><i class="fa fa-star"></i></a></li>
-                                        <li><a th:href="@{/client/detail}"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{ctsp.idCTSP}}"><i class="fa fa-eye"></i></a></li>
+
+                                        <li><a href="{{ctsp.idCTSP}}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{ctsp.idCTSP}}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
-                                <img src="{{SanPham.sanPham.anhs[0].link}}" alt="">
+<!--                                <img src="{{SanPham.sanPham.anhs[0].link}}" alt="">-->
+
+
+                                    <img style="width: 500px;height: 500px" src="{{ctsp.sanPham.anhs[0].link}}" alt="">
+
                             </div>
                             <div class="down-content">
-                                <h4>{{SanPham.sanPham.tenSanPham}}</h4>
-                                <span>Giá bán: {{SanPham.giaBan}}</span>
+<!--                                    <a class="btn btn-info" th:href="@{/client/ctsp/(IdCTSP)(IdCTSP=${ctsp.IdCTSP})}" >Xem chi tiết</a>-->
+
+                                <a class="btn btn-info" href="{{ctsp.idCTSP}}">Xem chi tiết </a>
+                                <h4>Tên sản phẩm: {{ctsp.sanPham.tenSanPham}}</h4>
+                                <span>Giá bán: {{ctsp.giaBan}}</span>
                                 <ul class="stars">
                                     <li><i class="fa fa-star"></i></li>
                                     <li><i class="fa fa-star"></i></li>
@@ -1037,6 +1046,22 @@
                                     <li><i class="fa fa-star"></i></li>
                                 </ul>
                             </div>
+
+<!--                        <table class="table">-->
+<!--                            <thead>-->
+<!--                            <tr>-->
+
+<!--                            </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody>-->
+<!--                            <tr th:each="km,index : ${listCtsp}">-->
+<!--                                <td>-->
+<!--                                    <a class="btn btn-info" th:href="@{/client/details/{IdCTSP}(IdCTSP=${km.IdCTSP})}" >Xem chi tiết</a>-->
+<!--                                </td>-->
+
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
                         </div>
 
                     </div>

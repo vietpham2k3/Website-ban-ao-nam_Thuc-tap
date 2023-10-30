@@ -20,7 +20,7 @@ import java.util.*;
 @Builder
 public class ChiTietSanPham implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "IdCTSP")
     private UUID IdCTSP;
     @Column(name = "GiaNhap")
