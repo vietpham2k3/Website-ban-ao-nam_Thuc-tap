@@ -1026,10 +1026,9 @@
                                         <li><a href="{{ctsp.idCTSP}}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
-<!--                                <img src="{{SanPham.sanPham.anhs[0].link}}" alt="">-->
 
 
-                                    <img style="width: 500px;height: 500px" src="{{ctsp.sanPham.anhs[0].link}}" alt="">
+                                    <img style="width: 400px;height: 500px" src="{{ctsp.sanPham.anhs[0].link}}" alt="">
 
                             </div>
                             <div class="down-content">
@@ -1047,21 +1046,6 @@
                                 </ul>
                             </div>
 
-<!--                        <table class="table">-->
-<!--                            <thead>-->
-<!--                            <tr>-->
-
-<!--                            </tr>-->
-<!--                            </thead>-->
-<!--                            <tbody>-->
-<!--                            <tr th:each="km,index : ${listCtsp}">-->
-<!--                                <td>-->
-<!--                                    <a class="btn btn-info" th:href="@{/client/details/{IdCTSP}(IdCTSP=${km.IdCTSP})}" >Xem chi tiết</a>-->
-<!--                                </td>-->
-
-<!--                            </tr>-->
-<!--                            </tbody>-->
-<!--                        </table>-->
                         </div>
 
                     </div>
@@ -1092,12 +1076,12 @@
                             <div class="thumb">
                                 <div class="hover-content">
                                     <ul>
-                                        <li><a href="detailSP.html"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="detailSP.html"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="detailSP.html"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a href="{{SanPhamBanChay.idCTSP}}"><i class="fa fa-eye"></i></a></li>
+                                        <li><a href="{{SanPhamBanChay.idCTSP}}"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="{{SanPhamBanChay.idCTSP}}"><i class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
-                                <img src="../../static/assets2/images/Men3.jpg" alt="">
+                                <img src="{{SanPhamBanChay.sanPham.anhs[0].link}}" alt="">
                             </div>
                             <div class="down-content">
                                 <h4>{{SanPhamBanChay.tenSanPham}}</h4>
