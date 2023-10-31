@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <!-- App css -->
     <script src="https://kit.fontawesome.com/52ef4965e2.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
     <!-- Bootstrap 5 CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
@@ -39,11 +40,17 @@
     <link rel="stylesheet" href="../../static/assets2/css/owl-carousel.css">
 
     <link rel="stylesheet" href="../../static/assets2/css/lightbox.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script th:src="@{/static/js/ctsp.js}"></script>
+    <script th:src="@{/static/js/sp.js}"></script>
+    <script th:src="@{/static/js/sanpham.js}"></script>
 
 
 </head>
 
-<body>
+<body ng-app="myApp" ng-controller="ctrl">
 
 <div id="preloader">
     <div class="jumper">
@@ -94,22 +101,9 @@
 <br><br>
 <br><br>
 <!--//1-->
-<div class="row">
+<div class="row" >
     <div class="container col-3">
-        <div class="dropdown">
-            <a class="dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-               aria-expanded="false">
-                Lọc sản phẩm
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="#">Loại Áo</a></li>
-                <li><a class="dropdown-item" href="#">Màu Áo</a></li>
-                <li><a class="dropdown-item" href="#">Size</a></li>
-                <li><a class="dropdown-item" href="#">Chất Liệu</a></li>
-                <li><a class="dropdown-item" href="#">Phong Cách</a></li>
-            </ul>
-        </div>
-
+        <div class="timkiem"><input class="input-group-text" id="name" type="text" placeholder="Tìm theo tên.."><button class="btn btn-dark" ng-click="search()"><i class="fa-solid fa-magnifying-glass"></i></button></div>
         <div class="filter">
 
             <div class="form-check">
@@ -126,198 +120,132 @@
             </div>
         </div>
     </div>
-
-    <div class="row col-9">
-        <div class="col-3">
-            <div class="imgage">
-                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
-            </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
-        </div>
-        <div style="margin-left: 80px" class="col-3">
-            <div class="imgage">
-                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
-            </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
+    <div class="row" ng-repeat="SanPham in list">
+        <div class="container col-3">
         </div>
 
-        <div style="margin-left: 80px" class="col-3">
-            <div class="imgage">
-                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
+        <div class="row col-9">
+            <div class="col-3">
+                <div class="imgage">
+                    <img width="300px" height="350px"  src="{{SanPham.sanPham.anhs[0].link}}" alt="">
+                </div>
+                <div class="text">
+                    <h4>{{SanPham.sanPham.tenSanPham}}</h4>
+                    <i class="material-icons">&#xe8cc;</i>
+                    <i class="material-icons">&#xe417;</i>
+                    <i style="font-size:20px" class="fa">&#xf004;</i>
+                </div>
             </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
-        </div>
 
+        </div>
     </div>
-</div>
-<!--//2-->
-<div class="row">
-    <div class="container col-3">
-    </div>
-
-    <div class="row col-9">
-        <div class="col-3">
-            <div class="imgage">
-                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
-            </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
-        </div>
-        <div style="margin-left: 80px" class="col-3">
-            <div class="imgage">
-                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
-            </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
-        </div>
-
-        <div style="margin-left: 80px" class="col-3">
-            <div class="imgage">
-                <img width="300px" height="350px" src="../../static/assets4/images/cloth_2.jpg">
-            </div>
-            <div class="text">
-                <h4>Sản Phẩm Mới Về</h4>
-                <i class="material-icons">&#xe8cc;</i>
-                <i class="material-icons">&#xe417;</i>
-                <i style="font-size:20px" class="fa">&#xf004;</i>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-
-<!-- ***** Footer Start ***** -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="first-item">
-                    <div class="logo">
-                        <img src="../../static/assets2/images/white-logo.png" alt="hexashop ecommerce templatemo">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="first-item">
+                        <div class="logo">
+                            <img src="../../static/assets2/images/white-logo.png" alt="hexashop ecommerce templatemo">
+                        </div>
+                        <ul>
+                            <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
+                            <li><a href="#">hexashop@company.com</a></li>
+                            <li><a href="#">010-020-0340</a></li>
+                        </ul>
                     </div>
+                </div>
+                <div class="col-lg-3">
+                    <h4>Shopping &amp; Categories</h4>
                     <ul>
-                        <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
-                        <li><a href="#">hexashop@company.com</a></li>
-                        <li><a href="#">010-020-0340</a></li>
+                        <li><a href="#">Men’s Shopping</a></li>
+                        <li><a href="#">Women’s Shopping</a></li>
+                        <li><a href="#">Kid's Shopping</a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="col-lg-3">
-                <h4>Shopping &amp; Categories</h4>
-                <ul>
-                    <li><a href="#">Men’s Shopping</a></li>
-                    <li><a href="#">Women’s Shopping</a></li>
-                    <li><a href="#">Kid's Shopping</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3">
-                <h4>Useful Links</h4>
-                <ul>
-                    <li><a href="#">Homepage</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Help</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3">
-                <h4>Help &amp; Information</h4>
-                <ul>
-                    <li><a href="#">Help</a></li>
-                    <li><a href="#">FAQ's</a></li>
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#">Tracking ID</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-12">
-                <div class="under-footer">
-                    <p>Copyright © 2022 HexaShop Co., Ltd. All Rights Reserved.
-
-                        <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
-                    </p>
+                <div class="col-lg-3">
+                    <h4>Useful Links</h4>
                     <ul>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        <li><a href="#">Homepage</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Contact Us</a></li>
                     </ul>
+                </div>
+                <div class="col-lg-3">
+                    <h4>Help &amp; Information</h4>
+                    <ul>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">FAQ's</a></li>
+                        <li><a href="#">Shipping</a></li>
+                        <li><a href="#">Tracking ID</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-12">
+                    <div class="under-footer">
+                        <p>Copyright © 2022 HexaShop Co., Ltd. All Rights Reserved.
+
+                            <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a>
+                        </p>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<script src="../../static/assets2/js/jquery-2.1.0.min.js"></script>
-<script src="../../static/assets2/js/popper.js"></script>
-<script src="../../static/assets2/js/bootstrap.min.js"></script>
-<script src="../../static/assets2/js/owl-carousel.js"></script>
-<script src="../../static/assets2/js/accordions.js"></script>
-<script src="../../static/assets2/js/datepicker.js"></script>
-<script src="../../static/assets2/js/scrollreveal.min.js"></script>
-<script src="../../static/assets2/js/waypoints.min.js"></script>
-<script src="../../static/assets2/js/jquery.counterup.min.js"></script>
-<script src="../../static/assets2/js/imgfix.min.js"></script>
-<script src="../../static/assets2/js/slick.js"></script>
-<script src="../../static/assets2/js/lightbox.js"></script>
-<script src="../../static/assets2/js/isotope.js"></script>
-<script src="../../static/assets3/js/jquery-3.3.1.min.js"></script>
-<script src="../../static/assets3/js/jquery-ui.js"></script>
-<script src="../../static/assets3/js/popper.min.js"></script>
-<script src="../../static/assets3/js/bootstrap.min.js"></script>
-<script src="../../static/assets3/js/owl.carousel.min.js"></script>
-<script src="../../static/assets3/js/jquery.magnific-popup.min.js"></script>
-<script src="../../static/assets3/js/aos.js"></script>
-<script src="../../static/assets3/js/main.js"></script>
-<script src="../../static/assets2/js/custom.js"></script>
-<script>
+    <script src="../../static/assets2/js/jquery-2.1.0.min.js"></script>
+    <script src="../../static/assets2/js/popper.js"></script>
+    <script src="../../static/assets2/js/bootstrap.min.js"></script>
+    <script src="../../static/assets2/js/owl-carousel.js"></script>
+    <script src="../../static/assets2/js/accordions.js"></script>
+    <script src="../../static/assets2/js/datepicker.js"></script>
+    <script src="../../static/assets2/js/scrollreveal.min.js"></script>
+    <script src="../../static/assets2/js/waypoints.min.js"></script>
+    <script src="../../static/assets2/js/jquery.counterup.min.js"></script>
+    <script src="../../static/assets2/js/imgfix.min.js"></script>
+    <script src="../../static/assets2/js/slick.js"></script>
+    <script src="../../static/assets2/js/lightbox.js"></script>
+    <script src="../../static/assets2/js/isotope.js"></script>
+    <script src="../../static/assets3/js/jquery-3.3.1.min.js"></script>
+    <script src="../../static/assets3/js/jquery-ui.js"></script>
+    <script src="../../static/assets3/js/popper.min.js"></script>
+    <script src="../../static/assets3/js/bootstrap.min.js"></script>
+    <script src="../../static/assets3/js/owl.carousel.min.js"></script>
+    <script src="../../static/assets3/js/jquery.magnific-popup.min.js"></script>
+    <script src="../../static/assets3/js/aos.js"></script>
+    <script src="../../static/assets3/js/main.js"></script>
+    <script src="../../static/assets2/js/custom.js"></script>
+    <script>
 
-    $(function () {
-        var selectedClass = "";
-        $("p").click(function () {
-            selectedClass = $(this).attr("data-rel");
-            $("#portfolio").fadeTo(50, 0.1);
-            $("#portfolio div").not("." + selectedClass).fadeOut();
-            setTimeout(function () {
-                $("." + selectedClass).fadeIn();
-                $("#portfolio").fadeTo(50, 1);
-            }, 500);
+        $(function () {
+            var selectedClass = "";
+            $("p").click(function () {
+                selectedClass = $(this).attr("data-rel");
+                $("#portfolio").fadeTo(50, 0.1);
+                $("#portfolio div").not("." + selectedClass).fadeOut();
+                setTimeout(function () {
+                    $("." + selectedClass).fadeIn();
+                    $("#portfolio").fadeTo(50, 1);
+                }, 500);
 
+            });
         });
-    });
 
-</script>
-<script src="../../static/assets3/js/jquery-3.3.1.min.js"></script>
-<script src="../../static/assets3/js/jquery-ui.js"></script>
-<script src="../../static/assets3/js/popper.min.js"></script>
-<script src="../../static/assets3/js/bootstrap.min.js"></script>
-<script src="../../static/assets3/js/owl.carousel.min.js"></script>
-<script src="../../static/assets3/js/jquery.magnific-popup.min.js"></script>
-<script src="../../static/assets3/js/aos.js"></script>
-<script src="../../static/assets3/js/main.js"></script>
-<!-- Đường dẫn đến tệp JavaScript của Bootstrap -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </script>
+    <script src="../../static/assets3/js/jquery-3.3.1.min.js"></script>
+    <script src="../../static/assets3/js/jquery-ui.js"></script>
+    <script src="../../static/assets3/js/popper.min.js"></script>
+    <script src="../../static/assets3/js/bootstrap.min.js"></script>
+    <script src="../../static/assets3/js/owl.carousel.min.js"></script>
+    <script src="../../static/assets3/js/jquery.magnific-popup.min.js"></script>
+    <script src="../../static/assets3/js/aos.js"></script>
+    <script src="../../static/assets3/js/main.js"></script>
+    <!-- Đường dẫn đến tệp JavaScript của Bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

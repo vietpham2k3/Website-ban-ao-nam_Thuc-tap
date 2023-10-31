@@ -6,6 +6,7 @@ import com.example.demo.response.SanPhamCustom;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.UUID;
 public interface SanPhamRepository extends JpaRepository<SanPham, Integer> {
     @Query("SELECT DISTINCT s FROM SanPham s JOIN FETCH s.chiTietSanPhams JOIN FETCH s.danhGias")
     List<SanPham> getAll();
+    @Query(value = "Select e from SanPham e where e.TrangThai = 0 and e.TenSanPham like :name")
+    List<SanPham> searchByName(@Param("name") String name);
 
 
 }

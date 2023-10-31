@@ -64,3 +64,18 @@ $('#rangeMaxTL').on('input', function(e) {
         'right': (100 - calcLeftPosition1(newValue)) + '%'
     });
 });
+
+$scope.search = function (){
+    var name = document.getElementById("name").value;
+    if (name.trim().length === 0){
+        Swal.fire("Nhập tên trước khi tìm kiếm...","","error");
+    }
+    else{
+        $http.get("/api/sanpham/search/"+name).then(function (search){
+            $scope.list = search.data;
+            $scope.pager.first();
+        })
+    }
+
+}
+

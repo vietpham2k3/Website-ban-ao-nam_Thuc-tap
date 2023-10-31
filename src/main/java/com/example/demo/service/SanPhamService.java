@@ -22,7 +22,7 @@ public class SanPhamService {
         return repository.findAll();
     }
     public SanPham add(SanPham sanPham){
-       return repository.save(sanPham);
+        return repository.save(sanPham);
     }
     public SanPham update(SanPham sanPham,Integer id){
         SanPham sp = repository.getById(id);
@@ -40,5 +40,10 @@ public class SanPhamService {
         sanPham.setTrangThai(1);
         return repository.save(sanPham);
     }
+
+    public List<SanPham> getAllbyName(String name){
+        return repository.searchByName('%'+name+'%');
+    }
+
 
 }
