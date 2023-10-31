@@ -5,6 +5,7 @@ import com.example.demo.repository.KichThuoc_MauSac_CTSPRepository;
 import com.example.demo.repository.PhongCach_CTSPRepository;
 import com.example.demo.request.KichThuoc_MauSac_CTSPRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,5 +38,14 @@ public class KichThuoc_MauSac_CTSPService {
         MauSac_KichThuoc_CTSP productDetail_size_color =repository.getByProductAndColorAndSize(id,IdColor,IdSize);
         productDetail_size_color.setSoLuong(quanity);
         return repository.save(productDetail_size_color);
+    }
+    public List<MauSac_KichThuoc_CTSP> getAllByIdProductAndIdColor(UUID IdProduct,Integer IdColor){
+        return repository.getAllByIdProductAndIdColor(IdProduct,IdColor);
+    }
+    public Integer getQuantityByProduct(UUID id){
+        return repository.getQuantityByProduct(id);
+    }
+    public Integer getQuantityByProductAndColor(UUID id,Integer IdColor){
+        return repository.getQuantityByProductAndColor(id,IdColor);
     }
 }

@@ -16,7 +16,11 @@
       <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>
       <!-- CSS Files -->
       <link id="pagestyle" href="../../../static/assets/css/soft-ui-dashboard.css?v=1.0.7" rel="stylesheet"/>
-
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+      <script src="https://kit.fontawesome.com/999051c9de.js" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <!-- App css -->
       <script src="https://kit.fontawesome.com/52ef4965e2.js" crossorigin="anonymous"></script>
 
@@ -398,6 +402,7 @@
     <link rel="stylesheet" href="../../static/assets2/css/owl-carousel.css">
 
     <link rel="stylesheet" href="../../static/assets2/css/lightbox.css">
+      <link rel="stylesheet" href="../../static/css/detail.css">
 <!--
 
 TemplateMo 571 Hexashop
@@ -407,7 +412,7 @@ https://templatemo.com/tm-571-hexashop
 -->
     </head>
     
-    <body>
+    <body ng-app="myApp" ng-controller="ctrl">
     
     <!-- ***** Preloader Start ***** -->
     <div id="preloader">
@@ -484,6 +489,9 @@ https://templatemo.com/tm-571-hexashop
                 </div>
                 <div class="col-lg-4">
                     <div class="right-content">
+                        <input th:value="${idGioHang}" id="idGioHang" type="hidden">
+                        <input th:value="${idKhachHang}" id="idKhachHang" type="hidden">
+                        <input type="hidden" th:value="${chiTietSanPham.idCTSP}" id="idCTSP">
                         <h4>Tên Sản phẩm: <span th:text="${chiTietSanPham.sanPham.tenSanPham}"></span></h4>
                         <p>Mô tả: <span th:text="${chiTietSanPham.moTa}"></span></p>
                         <p>Giá bán: <span th:text="${chiTietSanPham.giaBan}"></span></p>
@@ -491,7 +499,46 @@ https://templatemo.com/tm-571-hexashop
                         <p>Phân loại: <span th:text="${phanLoai.tenPhanLoai}"></span></p>
 <!--                        <p>Chất liệu: <span th:text="${sanPham.chatLieu.tenChatLieu}"></span></p>-->
 <!--                        <p>Màu sắc: <span th:text="${sanPham.mauSac.tenMauSac}"></span></p>-->
+                        <div class="swatch clearfix swatch-1 option2" data-option-index="1">
+                            <div class="product-form__item">
+                                <div>
+                                    <label class="header">Màu Sắc : </label>
+                                </div>
+                                <span class="colorButton custom-radio-button" ng-repeat="c in colorid">
 
+                                                <span ng-repeat="color in listColor">
+
+                                                    <span ng-if="c == color.idMauSac">
+                                                    <input ng-click="check()" type="radio" id="Color{{color.idMauSac}}" value="{{color.idMauSac}}" name="ColorRadioGroup">
+                                                    <label for="Color{{color.idMauSac}}">{{color.tenMauSac}}</label>
+                                                    </span>
+                                                </span>
+                                                </span>
+
+
+
+
+
+                            </div>
+                        </div>
+                        <br>
+                        <div class="swatch clearfix swatch-1 option2" data-option-index="1">
+                            <div class="product-form__item">
+                                <div>
+                                    <label class="header">Kích Thước : </label>
+                                </div>
+
+                                <span class="colorButton custom-radio-button" ng-repeat="kt in listKT">
+                                                <input ng-click="checkSize()" type="radio" id="Size{{kt.kichThuoc.idKichThuoc}}" value="{{kt.kichThuoc.idKichThuoc}}" name="SizeRadioGroup">
+                                                <label for="Size{{kt.kichThuoc.idKichThuoc}}">Size {{kt.kichThuoc.tenKichThuoc}}</label>
+
+                                        </span>
+
+                            </div>
+                        </div>
+                        <div style="color: red; font-weight: initial">
+                            Có {{quantity}} có sẵn !
+                        </div>
                         <div class="quantity-content">
                             <div class="left-content">
                                 <h6>Số lượng:</h6>
@@ -499,20 +546,21 @@ https://templatemo.com/tm-571-hexashop
                             <div class="right-content">
                                 <div class="quantity buttons_added">
                                     <input type="button" value="-" class="minus">
-                                    <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                    <input type="number" step="1" min="1" max="" name="quantity" value="1" id="Quantity" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
                                     <input type="button" value="+" class="plus">
                                 </div>
                             </div>
                         </div>
                         <div class="total">
-                            <h4>Total: $210.00</h4>
-                            <div class="main-border-button"><a href="#">Add To Cart</a></div>
+<!--                            <h4>Total: $210.00</h4>-->
+                            <div class="main-border-button"><button class="btn btn-dark" ng-click="addToCart()">Add To Cart</button></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <script src="../../static/js/detail.js"></script>
 
     <!-- ***** Product Area Ends ***** -->
     
@@ -577,6 +625,7 @@ https://templatemo.com/tm-571-hexashop
     
 
     <!-- jQuery -->
+
     <script src="../../static/assets2/js/jquery-2.1.0.min.js"></script>
 
     <!-- Bootstrap -->

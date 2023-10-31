@@ -6,10 +6,13 @@ import com.example.demo.entity.XuatXu;
 import com.example.demo.repository.MauSacRepository;
 import com.example.demo.repository.XuatXuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class MauSacService {
@@ -38,5 +41,9 @@ public class MauSacService {
     }
     public MauSac getById(Integer id){
         return repository.getById(id);
+    }
+
+    public List<Integer> getColorByProduct(UUID id){
+        return repository.getColorByProduct(id);
     }
 }

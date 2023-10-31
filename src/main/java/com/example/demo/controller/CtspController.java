@@ -1,12 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.ChiTietSanPham;
-import com.example.demo.entity.DanhMuc;
-import com.example.demo.entity.KhuyenMai;
-import com.example.demo.entity.PhanLoai;
-import com.example.demo.entity.SanPham;
-import com.example.demo.entity.ThuongHieu;
-import com.example.demo.entity.XuatXu;
+import com.example.demo.entity.*;
 import com.example.demo.repository.ChiTietSanPhamRepository;
 import com.example.demo.repository.DanhMucRepository;
 import com.example.demo.repository.PhanLoaiRepository;
@@ -15,6 +9,7 @@ import com.example.demo.repository.ThuongHieuRepository;
 import com.example.demo.repository.XuatXuRepository;
 import com.example.demo.service.ChiTietSanPhamService;
 import com.example.demo.service.KhuyenMaiService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +23,8 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/client")
 public class CtspController {
-
+    @Autowired
+    HttpSession session;
     @Autowired
     private ChiTietSanPhamRepository chiTietSanPhamRepository;
 
@@ -57,6 +53,9 @@ public class CtspController {
         if (chiTietSanPham == null) {
             return "client/home";
         } else {
+            KhachHang khachHang = (KhachHang) session.getAttribute("khachHang");
+            model.addAttribute("idKhachHang",khachHang.getIdKhachHang());
+            model.addAttribute("idGioHang",khachHang.getGioHangs().get(0).getIdGioHang());
 
 
             DanhMuc danhMuc = danhMucRepository.findById(chiTietSanPham.getDanhMuc().getIdDanhMuc()).orElse(null);

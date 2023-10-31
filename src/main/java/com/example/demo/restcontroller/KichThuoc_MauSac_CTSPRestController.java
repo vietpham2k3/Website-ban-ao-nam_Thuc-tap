@@ -36,4 +36,17 @@ public class KichThuoc_MauSac_CTSPRestController {
     public ResponseEntity<?> updateQuantity(@RequestParam("IdProduct") UUID IdProduct, @RequestParam("IdColor") Integer IdColor, @RequestParam("IdSize") Integer IdSize, @RequestParam("Quantity") Integer Quanity){
         return ResponseEntity.ok(service.updateQuantity(IdProduct,IdColor,IdSize,Quanity));
     }
+    @GetMapping("/getbycolor")
+    public ResponseEntity<?> getByColor(@RequestParam("IdProduct") UUID IdProduct , @RequestParam("IdColor") Integer IdColor){
+        return ResponseEntity.ok(service.getAllByIdProductAndIdColor(IdProduct,IdColor));
+    }
+    @GetMapping("/getQuantityProduct")
+    public ResponseEntity<?> getQuantityProduct(@RequestParam("IdProduct") UUID IdProduct){
+        return ResponseEntity.ok(service.getQuantityByProduct(IdProduct));
+    }
+    @GetMapping("/getQuantityProductAndColor")
+    public ResponseEntity<?> getQuantityProductAndColor(@RequestParam("IdProduct") UUID IdProduct,@RequestParam("IdColor") Integer IdColor){
+        return ResponseEntity.ok(service.getQuantityByProductAndColor(IdProduct,IdColor));
+    }
+
 }

@@ -1,0 +1,37 @@
+
+/* Ẩn radio button mặc định */
+input[type="radio"] {
+    display: none;
+}
+
+
+/* Tạo kiểu cho radio button tùy chỉnh */
+.custom-radio-button {
+    color: #333;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 24px;
+    text-transform: capitalize;
+    display: inline-block;
+    margin: 0;
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #f9f9f9;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px #ddd;
+    border-radius: 5px;
+    -ms-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+
+/* Đổi màu khi radio button được chọn */
+input[type="radio"]:checked + label{
+    border: 2px solid rgb(17, 17, 17);
+    box-shadow: none;
+
+}

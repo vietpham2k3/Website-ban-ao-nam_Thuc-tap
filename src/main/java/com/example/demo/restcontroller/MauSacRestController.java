@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/mausac")
@@ -33,5 +35,10 @@ public class MauSacRestController {
     @PutMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Integer id){
         return ResponseEntity.ok(service.delete(id));
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getColorById(@PathVariable("id") UUID id){
+        return ResponseEntity.ok(service.getColorByProduct(id));
     }
 }
