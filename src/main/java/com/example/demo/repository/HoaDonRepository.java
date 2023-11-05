@@ -49,4 +49,42 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
             "JOIN KhuyenMai KM ON HD.IdKhuyenMai = KM.IdKhuyenMai \n" +
             "JOIN HinhThucThanhToan HTTT ON HD.IdHTTT = HTTT.IdHTTT", nativeQuery = true)
     public List<HoaDon> hienThiDetail();
+
+    @Query (value = "SELECT COUNT(*) AS HOADON" +
+            " FROM HoaDon WHERE TrangThai = 0",nativeQuery = true)
+    public Integer soDonChoXacNhan();
+
+    @Query (value = "SELECT COUNT(*) AS HOADON" +
+            " FROM HoaDon WHERE TrangThai = 2",nativeQuery = true)
+    public Integer soDonDaHuy();
+
+    @Query (value = "SELECT COUNT(*) AS HOADON" +
+            " FROM HoaDon WHERE TrangThai = 4",nativeQuery = true)
+    public Integer soDonDangGiao();
+
+    @Query (value = "SELECT COUNT(*) AS HOADON" +
+            " FROM HoaDon WHERE TrangThai = 7",nativeQuery = true)
+    public Integer soDonDaBan();
+
+    ///
+    @Query (value = "SELECT SUM(TongTienKhiGiam) AS HOADON FROM HoaDon WHERE TrangThai = 7 \n" +
+            "AND DAY(NgayCapNhat) = DAY(GETDATE())\n" +
+            "AND MONTH(NgayCapNhat) = MONTH(GETDATE())\n" +
+            "  AND YEAR(NgayCapNhat) = YEAR(GETDATE());",nativeQuery = true)
+    public Double doanhThuTongNgay();
+
+    @Query (value = "SELECT SUM(TongTienKhiGiam) AS HOADON FROM HoaDon WHERE TrangThai = 7 \n" +
+            "AND MONTH(NgayCapNhat) = MONTH(GETDATE())\n" +
+            "  AND YEAR(NgayCapNhat) = YEAR(GETDATE());",nativeQuery = true)
+    public Double doanhThuTongThang();
+
+    @Query (value = "SELECT SUM(TongTienKhiGiam) AS HOADON FROM HoaDon WHERE TrangThai = 7 \n" +
+            "AND DAY(NgayCapNhat) = DAY(GETDATE()) - 1\n" +
+            "AND MONTH(NgayCapNhat) = MONTH(GETDATE())\n" +
+            "  AND YEAR(NgayCapNhat) = YEAR(GETDATE());",nativeQuery = true)
+    public Double doanhThuHomQua();
+
+    @Query (value = "SELECT SUM(TongTienKhiGiam) AS HOADON FROM HoaDon WHERE TrangThai = 7 \n" +
+            "  AND YEAR(NgayCapNhat) = YEAR(GETDATE());",nativeQuery = true)
+    public Double doanhThuTongNam();
 }
