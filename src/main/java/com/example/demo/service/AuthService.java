@@ -23,5 +23,13 @@ public class AuthService {
     public NhanVien loginNhanVien(String maNhanVien, String matKhau) {
         return nhanVienRepository.findByMaNhanVienAndMatKhau(maNhanVien, matKhau);
     }
+
+    public void dangKy(String taiKhoan, String matKhau) {
+        khachHangRepository.signUp(taiKhoan, matKhau);
+    }
+
+    public KhachHang findByTaiKhoan(String taiKhoan) {
+        return khachHangRepository.findByTaiKhoan(taiKhoan);
+    }
 }
 

@@ -37,6 +37,11 @@ public class KhachHangService {
         khachHang.setTrangThai(0);
         return res.save(khachHang);
     }
+
+    public KhachHang signup(KhachHang kh){
+        return res.save(kh);
+    }
+
     public  KhachHang update(UUID id , KhachHangReques reques){
         KhachHang khachHang = res.getById(id);
         khachHang.setTenKhachHang(reques.getTenKhachHang());

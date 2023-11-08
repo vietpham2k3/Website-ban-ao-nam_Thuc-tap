@@ -509,22 +509,41 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form th:action="@{/signup}" th:object="${kh}" method="post" role="form text-left">
+                            <form id="forgetPasswordForm" th:action="@{/forget}" th:object="${kh}" method="post" role="form text-left">
                                 <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Nhập tài khoản đăng ký"
-                                           name="taiKhoan" id="taiKhoan" aria-label="Name" aria-describedby="email-addon">
+                                    <input type="text" class="form-control" placeholder="Nhập tài khoản đã đăng ký..."
+                                           th:field="*{taiKhoan}" id="taiKhoan" aria-label="Name" aria-describedby="email-addon">
                                 </div>
                                 <div id="error-message" class="text-danger"></div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Lấy lại mật khẩu</button>
+                                    <button type="button" id="showPasswordButton" class="btn bg-gradient-dark w-100 my-4 mb-2">Lấy lại mật khẩu</button>
                                 </div>
                                 <p class="text-sm mt-3 mb-0">Đã có tài khoản ? <a th:href="@{/login/sign-in}" class="text-dark font-weight-bolder">Đăng nhập</a></p>
                             </form>
                             <p th:text="${error}"></p>
                             <p th:if="${error}" style="color: red" th:text="${error}"></p>
                         </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="passwordModal" tabindex="-1" role="dialog" aria-labelledby="passwordModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="passwordModalLabel">Mật khẩu của bạn</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Đóng">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Mật khẩu của bạn là: <span id="passwordValue"></span></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
-                </div>
             </div>
         </div>
     </section>
@@ -614,7 +633,33 @@
             }
         });
     });
+    $(document).ready(function() {
+        $("#showPasswordButton").click(function() {
+            var taiKhoan = $("#taiKhoan").val();
+            // Gửi tài khoản đã nhập vào controller qua Ajax
+            $.post("/forget", {taiKhoan: taiKhoan}, function(data) {
+                // Đặt giá trị mật khẩu vào modal
+                $("#passwordValue").text(data);
+                // Hiển thị modal
+                $("#passwordModal").modal("show");
+            });
+        });
+    });
+    $(document).ready(function() {
+        $("#showPasswordButton").click(function() {
+            var taiKhoan = $("#taiKhoan").val();
+            $.post("/forget", {taiKhoan: taiKhoan}, function(data) {
+                if (data === "Tài khoản không tồn tại") {
+                    alert(data);
+                } else {
+                    $("#passwordValue").text(data);
+                    $("#passwordModal").modal("show");
+                }
+            });
+        });
+    });
 </script>
+
 
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
