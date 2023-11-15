@@ -45,4 +45,14 @@ public class TrangChuController {
     public String product(){
         return"/Client/product";
     }
+
+    @GetMapping("/policy")
+    public String policy(){
+        return"/Client/policy";
+    }
+
+    @GetMapping("/support")
+    public String support(){
+        return"/Client/supportkh";
+    }
 }

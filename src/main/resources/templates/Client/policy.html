@@ -929,8 +929,347 @@
                 width: 250px;
             }
         }
+
+        *,
+        *:before,
+        *:after {
+            margin: 0;
+            padding: 0;
+            box-sizing: inherit;
+        }
+
+        html {
+            box-sizing: border-box;
+            font-family: "Roboto", sans-serif;
+            font-size: 62.5%;
+        }
+        @media only screen and (max-width: 800px) {
+            html {
+                font-size: 57%;
+            }
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            padding: 8rem;
+        }
+        @media only screen and (max-width: 1000px) {
+            body {
+                padding: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5rem;
+        }
+        @media only screen and (max-width: 1000px) {
+            .container {
+                border-radius: 0;
+            }
+        }
+
+        .slider {
+            display: flex;
+            width: 500%;
+            height: 55rem;
+            transition: all 0.25s ease-in;
+            transform: translateX(0);
+        }
+        @media only screen and (max-width: 1000px) {
+            .slider {
+                height: 100vh;
+            }
+        }
+        .slider .box {
+            height: 100%;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        @media only screen and (max-width: 650px) {
+            .slider .box {
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(2, 1fr);
+            }
+        }
+        .slider .box .bg {
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.2);
+            width: 55%;
+            transform: skewX(7deg);
+            position: absolute;
+            height: 100%;
+            left: -10%;
+            padding-left: 20rem;
+            transform-origin: 0 100%;
+        }
+        @media only screen and (max-width: 800px) {
+            .slider .box .bg {
+                width: 65%;
+            }
+        }
+        @media only screen and (max-width: 650px) {
+            .slider .box .bg {
+                width: 100%;
+                left: 0;
+                bottom: 0;
+                height: 54%;
+                transform: skewX(0deg);
+            }
+        }
+        .slider .box .bg::before {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: inherit;
+            pointer-events: none;
+            transform: skewX(10deg);
+        }
+        @media only screen and (max-width: 650px) {
+            .slider .box .bg::before {
+                width: 120%;
+                bottom: 0;
+                transform: skewX(0deg);
+            }
+        }
+        .slider .box .details {
+            padding: 5rem;
+            padding-left: 10rem;
+            z-index: 100;
+            grid-column: 1/span 1;
+            grid-row: 1/-1;
+        }
+        @media only screen and (max-width: 650px) {
+            .slider .box .details {
+                grid-row: 2/span 1;
+                grid-column: 1/-1;
+                text-align: center;
+                padding: 2rem;
+                transform: translateY(-9rem);
+            }
+        }
+        .slider .box .details h1 {
+            font-size: 3.5rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .slider .box .details p {
+            display: inline-block;
+            font-size: 1.3rem;
+            color: #B5B4B4;
+            margin-bottom: 2rem;
+            margin-right: 5rem;
+        }
+        @media only screen and (max-width: 800px) {
+            .slider .box .details p {
+                margin-right: 0;
+            }
+        }
+        .slider .box .details button {
+            padding: 1rem 3rem;
+            color: #fff;
+            border-radius: 2rem;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .slider .box .details button:hover {
+            opacity: 0.8;
+        }
+        .slider .box .details button:focus {
+            outline: none;
+            border: none;
+        }
+        .slider .box1 {
+            background-color: #500033;
+        }
+        .slider .box1 .illustration .inner {
+            background-color: #FF0077;
+        }
+        .slider .box1 .illustration .inner::after, .slider .box1 .illustration .inner::before {
+            background-color: rgba(255, 0, 119, 0.4);
+        }
+        .slider .box1 button {
+            background-color: #FF0077;
+        }
+        .slider .box2 {
+            background-color: #000050;
+        }
+        .slider .box2 .illustration .inner {
+            background-color: #0033FF;
+        }
+        .slider .box2 .illustration .inner::after, .slider .box2 .illustration .inner::before {
+            background-color: rgba(0, 51, 255, 0.4);
+        }
+        .slider .box2 button {
+            background-color: #0033FF;
+        }
+        .slider .box3 {
+            background-color: #00501D;
+        }
+        .slider .box3 .illustration .inner {
+            background-color: #00FF44;
+        }
+        .slider .box3 .illustration .inner::after, .slider .box3 .illustration .inner::before {
+            background-color: rgba(0, 255, 68, 0.4);
+        }
+        .slider .box3 button {
+            background-color: #00FF44;
+        }
+        .slider .box4 {
+            background-color: #554D00;
+        }
+        .slider .box4 .illustration .inner {
+            background-color: #FF4E00;
+        }
+        .slider .box4 .illustration .inner::after, .slider .box4 .illustration .inner::before {
+            background-color: rgba(255, 78, 0, 0.4);
+        }
+        .slider .box4 button {
+            background-color: #FF4E00;
+        }
+        .slider .box5 {
+            background-color: #300050;
+        }
+        .slider .box5 .illustration .inner {
+            background-color: #8000FF;
+        }
+        .slider .box5 .illustration .inner::after, .slider .box5 .illustration .inner::before {
+            background-color: rgba(128, 0, 255, 0.4);
+        }
+        .slider .box5 button {
+            background-color: #8000FF;
+        }
+        .slider .illustration {
+            grid-column: 2/-1;
+            grid-row: 1/-1;
+            justify-self: center;
+        }
+        @media only screen and (max-width: 650px) {
+            .slider .illustration {
+                grid-row: 1/span 1;
+                grid-column: 1/-1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+        .slider .illustration div {
+            height: 25rem;
+            width: 18rem;
+            border-radius: 3rem;
+            background-color: #FF0077;
+            position: relative;
+            transform: skewX(-10deg);
+        }
+        @media only screen and (max-width: 800px) {
+            .slider .illustration div {
+                height: 20rem;
+                width: 15rem;
+            }
+        }
+        .slider .illustration div::after, .slider .illustration div::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-radius: 3rem;
+            top: 0;
+            left: 0;
+        }
+        .slider .illustration div::after {
+            transform: translate(4rem, -1rem);
+        }
+        .slider .illustration div::before {
+            transform: translate(2rem, -2rem);
+        }
+
+        .prev,
+        .next,
+        .trail {
+            z-index: 10000;
+            position: absolute;
+        }
+
+        .prev,
+        .next {
+            width: 4rem;
+            cursor: pointer;
+            opacity: 0.2;
+            transition: all 0.3s ease;
+        }
+        @media only screen and (max-width: 650px) {
+            .prev,
+            .next {
+                display: none;
+            }
+        }
+        .prev:hover,
+        .next:hover {
+            opacity: 1;
+        }
+
+        .prev {
+            top: 50%;
+            left: 2%;
+            transform: translateY(-50%);
+        }
+
+        .next {
+            top: 50%;
+            right: 2%;
+            transform: translateY(-50%);
+        }
+
+        .trail {
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        @media only screen and (max-width: 650px) {
+            .trail {
+                width: 90%;
+                bottom: 13%;
+            }
+        }
+        .trail div {
+            padding: 2rem;
+            border-top: 3px solid #fff;
+            cursor: pointer;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+        .trail div:hover {
+            opacity: 0.6;
+        }
+        @media only screen and (max-width: 650px) {
+            .trail div {
+                padding: 1rem;
+            }
+        }
+
+        .active {
+            opacity: 1 !important;
+        }
     </style>
 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <!--    &lt;!&ndash; Additional CSS Files &ndash;&gt;-->
     <!--      <link href="../../../static/assets/css/nucleo-icons.css" rel="stylesheet"/>-->
     <!--      <link href="../../../static/assets/css/nucleo-svg.css" rel="stylesheet"/>-->
@@ -999,167 +1338,112 @@
 <!-- ***** Header Area End ***** -->
 <br>
 <!-- ***** Men Area Starts ***** -->
-<section class="section" id="men">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="section-heading">
-                    <h2>Sản Phẩm Moi </h2>
-                    <span>
-                            Chi tiết đến từng chi tiết là điều khiến Hexashop khác biệt so với các chủ đề khác.</span>
-                </div>
+<div class="container">
+    <div class="slider">
+
+        <div class="box1 box">
+            <div class="bg"></div>
+            <div class="details">
+                <h1>Chính sách khuyến mãi</h1>
+                <p>
+                    Định nghĩa: Là mã giảm giá để nhập vào ô "Mã giảm giá" ở website khi thanh toán
+
+                    Đối tượng áp dụng: Dành cho mọi khách hàng có Voucher chúng tôi còn thời gian sử dụng.
+
+                    Thời gian áp dụng: Được ghi rõ trong Voucher, thời gian Voucher còn hiệu lực
+
+                    Điều kiện: Được khi rõ trên Voucher
+                </p>
+                <button>Check Now</button>
             </div>
+
+            <div class="illustration"><div class="inner"></div></div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="men-item-carousel">
-                    <div class="owl-men-item owl-carousel">
-                        <div ng-repeat="ctsp in list" class="item">
-                            <div class="thumb">
-                                <div class="hover-content">
-                                    <ul>
-                                        <li><a href="{{ctsp.idCTSP}}"><i class="fa fa-eye"></i></a></li>
-
-                                        <li><a href="{{ctsp.idCTSP}}"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="{{ctsp.idCTSP}}"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
 
 
-                                    <img style="width: 400px;height: 500px" src="{{ctsp.sanPham.anhs[0].link}}" alt="">
+        <div class="box2 box">
+            <div class="bg"></div>
+            <div class="details">
+                <h1>Chính sách bảo mật</h1>
+                <p>
+                    Chúng tôi thu thập thông tin cá nhân chỉ cần thiết nhằm phục vụ cho các mục đích:
 
-                            </div>
-                            <div class="down-content">
-<!--                                    <a class="btn btn-info" th:href="@{/client/ctsp/(IdCTSP)(IdCTSP=${ctsp.IdCTSP})}" >Xem chi tiết</a>-->
+                    -      Đơn Hàng: để xử lý các vấn đề liên quan đến đơn đặt hàng của bạn;
 
-                                <a class="btn btn-info" href="{{ctsp.idCTSP}}">Xem chi tiết </a>
-                                <h4>Tên sản phẩm: {{ctsp.sanPham.tenSanPham}}</h4>
-                                <span>Giá bán: {{ctsp.giaBan}}</span>
-                                <ul class="stars">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
+                    -      Duy Trì Tài Khoản: để tạo và duy trình tài khoản của bạn với chúng tôi, bao gồm
+                    cả các chương trình khách hàng thân thiết hoặc các chương trình thưởng đi kèm với tài khoản của bạn;
+                </p>
+                <button>Check Now</button>
             </div>
+
+            <div class="illustration"><div class="inner"></div></div>
         </div>
-    </div>
-</section>
-<!-- ***** Men Area Ends ***** -->
 
-<section class="section" id="women">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="section-heading">
-                    <h2>Sản Phẩm Ban Chay</h2>
-                    <span>dep lam ca nha oi mua di .</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="women-item-carousel">
-                    <div class="owl-women-item owl-carousel">
-                        <div ng-repeat="SanPhamBanChay in list1"  class="item">
-                            <div class="thumb">
-                                <div class="hover-content">
-                                    <ul>
-                                        <li><a href="{{SanPhamBanChay.idCTSP}}"><i class="fa fa-eye"></i></a></li>
-                                        <li><a href="{{SanPhamBanChay.idCTSP}}"><i class="fa fa-star"></i></a></li>
-                                        <li><a href="{{SanPhamBanChay.idCTSP}}"><i class="fa fa-shopping-cart"></i></a></li>
-                                    </ul>
-                                </div>
-                                <img src="{{SanPhamBanChay.sanPham.anhs[0].link}}" alt="">
-                            </div>
-                            <div class="down-content">
-                                <h4>{{SanPhamBanChay.tenSanPham}}</h4>
-                                <span>{{SanPhamBanChay.giaBan}}</span>
-                                <ul class="stars">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                            </div>
-                        </div>
+        <div class="box3 box">
+            <div class="bg"></div>
+            <div class="details">
+                <h1>Chính sách giao hàng</h1>
+                <p>
+                    Giao hàng nhanh và đúng hẹn cho 95% đơn hàng là mục tiêu mà đội ngũ vận
+                    hành của shop hướng tới. Khách hàng hãy tin ở chúng tôi, chúng tôi sẽ làm được!
 
-                    </div>
-                </div>
+                    Tuy nhiên hiện tại do ảnh hưởng của dịch Covid 19, nên thời gian giao hàng ở
+                    một số nơi có thể lâu hơn dự kiến, mong các bạn thông cảm cho chúng tôi nhé!
+                </p>
+                <button>Check Now</button>
             </div>
-        </div>
-    </div>
-</section>
-<!-- ***** Women Area Ends ***** -->
 
-<!-- ***** Explore Area Starts ***** -->
-<section class="section" id="explore">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="left-content">
-                    <h2>Khám phá sản phẩm của chúng tôi</h2>
-                    <span>You are allowed to use this HexaShop HTML CSS template. You can feel free to modify or edit this layout. You can convert this template as any kind of ecommerce CMS theme as you wish.</span>
-                    <div class="quote">
-                        <i class="fa fa-quote-left"></i>
-                        <p>You are not allowed to redistribute this template ZIP file on any other website.</p>
-                    </div>
-                    <p>There are 5 pages included in this HexaShop Template and we are providing it to you for
-                        absolutely free of charge at our TemplateMo website. There are web development costs for us.</p>
-                    <p>If this template is beneficial for your website or business, please kindly <a rel="nofollow"
-                                                                                                     href="https://paypal.me/templatemo"
-                                                                                                     target="_blank">support
-                        us</a> a little via PayPal. Please also tell your friends about our great website. Thank you.
-                    </p>
-                    <div class="main-border-button">
-                        <a href="detailSP.html">Discover More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="right-content">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="leather">
-                                <h4>Ao dep nhat nhe gioi</h4>
-                                <span>Hay tin san pham cua chung toi</span>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="first-image">
-                                <img src="../../static/assets2/images/team-member-02.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="second-image">
-                                <img src="../../static/assets2/images/team-member-03.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="types">
-                                <h4>Different Types</h4>
-                                <span>Over 304 Products</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="illustration"><div class="inner"></div></div>
         </div>
+
+        <div class="box4 box">
+            <div class="bg"></div>
+            <div class="details">
+                <h1>Ưu đãi & Đặc quyền</h1>
+                <p>
+                    . Đặc quyền Hội viên:
+                    Hội viên CoolClub sở hữu rất nhiều đặc quyền khi mua sắm tại website, bao gồm: Tích lũy chi tiêu để thăng hạng; Hưởng các quyền lợi theo hạng Hội viên: nhận quà tặng định kỳ, ưu đãi độc quyền; Hoàn tiền
+                    CoolCash cho mỗi đơn hàng; Đổi thưởng và rất nhiều quyền lợi khác sẽ được chúng tôi cập nhật thường xuyên.
+                </p>
+                <button>Check Now</button>
+            </div>
+
+            <div class="illustration"><div class="inner"></div></div>
+        </div>
+
+        <div class="box5 box">
+            <div class="bg"></div>
+            <div class="details">
+                <h1>Dịch vụ 60 ngày đổi trả</h1>
+                <p>
+                    Với những sản phẩm bạn đã mua , 60 ngày kể từ khi bạn nhận sản phẩm thì bạn sẽ
+                    được đổi hàng và trả hàng với bất kỳ lý do gì, bao gồm cả các sản phẩm đã qua giặt và sử dụng.
+
+                    Một số lưu ý:
+
+                    Chúng tôi sẽ không áp dụng đổi trả với 1 số dòng sản phẩm nhất định như:
+                    Outlet, Áo in theo yêu cầu, Sản phẩm Săn Deal vì các sản phẩm này thường sẽ không về lại.
+                </p>
+                <button>Check Now</button>
+            </div>
+
+            <div class="illustration"><div class="inner"></div></div>
+        </div>
+
     </div>
-</section>
-<!-- ***** Explore Area Ends ***** -->
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="prev" width="56.898" height="91" viewBox="0 0 56.898 91"><path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(0 91) rotate(-90)" fill="#fff"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="next" width="56.898" height="91" viewBox="0 0 56.898 91"><path d="M45.5,0,91,56.9,48.452,24.068,0,56.9Z" transform="translate(56.898) rotate(90)" fill="#fff"/></svg>
+    <div class="trail">
+        <div class="box1 active">1</div>
+        <div class="box2">2</div>
+        <div class="box3">3</div>
+        <div class="box4">4</div>
+        <div class="box5">5</div>
+    </div>
+</div>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js"></script>
+<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/CSSRulePlugin3.min.js"></script>
 
 <!-- ***** Subscribe Area Starts ***** -->
 <div class="subscribe">
@@ -1276,18 +1560,18 @@
                 </ul>
             </div>
             <div class="col-lg-3">
-                <h4>Liên kết người dùng</h4>
+                <h4>Useful Links</h4>
                 <ul>
-                    <li><a th:href="@{/client/policy}">Chính sách và điều khoản</a></li>
+                    <li><a href="#">Homepage</a></li>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Help</a></li>
-                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="#">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col-lg-3">
                 <h4>Help &amp; Information</h4>
                 <ul>
-                    <li><a th:href="@{/client/support}">Hỗ trợ</a></li>
+                    <li><a href="#">Help</a></li>
                     <li><a href="#">FAQ's</a></li>
                     <li><a href="#">Shipping</a></li>
                     <li><a href="#">Tracking ID</a></li>
@@ -1352,6 +1636,163 @@
 </script>
 <!--chat-->
 <script>
+    // Slider(all Slides in a container)
+    const slider = document.querySelector(".slider")
+    // All trails
+    const trail = document.querySelector(".trail").querySelectorAll("div")
+
+    // Transform value
+    let value = 0
+    // trail index number
+    let trailValue = 0
+    // interval (Duration)
+    let interval = 4000
+
+    // Function to slide forward
+    const slide = (condition) => {
+        // CLear interval
+        clearInterval(start)
+        // update value and trailValue
+        condition === "increase" ? initiateINC() : initiateDEC()
+        // move slide
+        move(value, trailValue)
+        // Restart Animation
+        animate()
+        // start interal for slides back
+        start = setInterval(() => slide("increase"), interval);
+    }
+
+    // function for increase(forward, next) configuration
+    const initiateINC = () => {
+        // Remove active from all trails
+        trail.forEach(cur => cur.classList.remove("active"))
+        // increase transform value
+        value === 80 ? value = 0 : value += 20
+        // update trailValue based on value
+        trailUpdate()
+    }
+
+    // function for decrease(backward, previous) configuration
+    const initiateDEC = () => {
+        // Remove active from all trails
+        trail.forEach(cur => cur.classList.remove("active"))
+        // decrease transform value
+        value === 0 ? value = 80 : value -= 20
+        // update trailValue based on value
+        trailUpdate()
+    }
+
+    // function to transform slide
+    const move = (S, T) => {
+        // transform slider
+        slider.style.transform = `translateX(-${S}%)`
+        //add active class to the current trail
+        trail[T].classList.add("active")
+    }
+
+    const tl = gsap.timeline({defaults: {duration: 0.6, ease: "power2.inOut"}})
+    tl.from(".bg", {x: "-100%", opacity: 0})
+        .from("p", {opacity: 0}, "-=0.3")
+        .from("h1", {opacity: 0, y: "30px"}, "-=0.3")
+        .from("button", {opacity: 0, y: "-40px"}, "-=0.8")
+
+    // function to restart animation
+    const animate = () => tl.restart()
+
+    // function to update trailValue based on slide value
+    const trailUpdate = () => {
+        if (value === 0) {
+            trailValue = 0
+        } else if (value === 20) {
+            trailValue = 1
+        } else if (value === 40) {
+            trailValue = 2
+        } else if (value === 60) {
+            trailValue = 3
+        } else {
+            trailValue = 4
+        }
+    }
+
+    // Start interval for slides
+    let start = setInterval(() => slide("increase"), interval)
+
+    // Next  and  Previous button function (SVG icon with different classes)
+    document.querySelectorAll("svg").forEach(cur => {
+        // Assign function based on the class Name("next" and "prev")
+        cur.addEventListener("click", () => cur.classList.contains("next") ? slide("increase") : slide("decrease"))
+    })
+
+    // function to slide when trail is clicked
+    const clickCheck = (e) => {
+        // CLear interval
+        clearInterval(start)
+        // remove active class from all trails
+        trail.forEach(cur => cur.classList.remove("active"))
+        // Get selected trail
+        const check = e.target
+        // add active class
+        check.classList.add("active")
+
+        // Update slide value based on the selected trail
+        if(check.classList.contains("box1")) {
+            value = 0
+        } else if (check.classList.contains("box2")) {
+            value = 20
+        } else if (check.classList.contains("box3")) {
+            value = 40
+        } else if (check.classList.contains("box4")) {
+            value = 60
+        } else {
+            value = 80
+        }
+        // update trail based on value
+        trailUpdate()
+        // transfrom slide
+        move(value, trailValue)
+        // start animation
+        animate()
+        // start interval
+        start = setInterval(() => slide("increase"), interval)
+    }
+
+    // Add function to all trails
+    trail.forEach(cur => cur.addEventListener("click", (ev) => clickCheck(ev)))
+
+    // Mobile touch Slide Section
+    const touchSlide = (() => {
+        let start, move, change, sliderWidth
+
+        // Do this on initial touch on screen
+        slider.addEventListener("touchstart", (e) => {
+            // get the touche position of X on the screen
+            start = e.touches[0].clientX
+            // (each slide with) the width of the slider container divided by the number of slides
+            sliderWidth = slider.clientWidth/trail.length
+        })
+
+        // Do this on touchDrag on screen
+        slider.addEventListener("touchmove", (e) => {
+            // prevent default function
+            e.preventDefault()
+            // get the touche position of X on the screen when dragging stops
+            move = e.touches[0].clientX
+            // Subtract initial position from end position and save to change variabla
+            change = start - move
+        })
+
+        const mobile = (e) => {
+            // if change is greater than a quarter of sliderWidth, next else Do NOTHING
+            change > (sliderWidth/4)  ? slide("increase") : null;
+            // if change * -1 is greater than a quarter of sliderWidth, prev else Do NOTHING
+            (change * -1) > (sliderWidth/4) ? slide("decrease") : null;
+            // reset all variable to 0
+            [start, move, change, sliderWidth] = [0,0,0,0]
+        }
+        // call mobile on touch end
+        slider.addEventListener("touchend", mobile)
+    })();
+
     jQuery(document).ready(function($) {
         jQuery(document).on('click', '.iconInner', function(e) {
             jQuery(this).parents('.botIcon').addClass('showBotSubject');
